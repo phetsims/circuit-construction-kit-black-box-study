@@ -34,7 +34,7 @@ define( function( require ) {
     }, simOptions );
   }
 
-  // Circuit Construction Kit: Basics has unit tests for checking the mathematics for the Modified Nodal Analysis
+  // Circuit Construction Kit has unit tests for checking the mathematics for the Modified Nodal Analysis
   // algorithm.  In order to load the classes into an accessible namespace, the *-config.js and *-main.js are loaded
   // however, when running the unit tests we don't also want to launch the simulation.
   if ( !window.circuitConstructionKitTestSuite ) {
