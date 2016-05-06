@@ -16,7 +16,7 @@
   "phet": {
     "requirejsNamespace": "CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX",
     "phetLibs": [
-      "circuit-construction-kit-basics"
+      "circuit-construction-kit"
     ]
   }
 }
