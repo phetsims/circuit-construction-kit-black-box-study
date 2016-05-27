@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box 1.0.0-dev.13 Tue May 24 2016 10:16:36 GMT-0600 (MDT)",
+  "comment": "# circuit-construction-kit-black-box 1.0.0-dev.14 Fri May 27 2016 12:15:48 GMT-0600 (MDT)",
   "assert": {
     "sha": "7d27130a4d27da15aa7f8a21bbfb9245288c1b44",
     "branch": "master"
@@ -17,11 +17,11 @@
     "branch": "master"
   },
   "circuit-construction-kit": {
-    "sha": "b107d8977e1ad59f8d18c47df97809c7c713c8f2",
+    "sha": "78bf11ebacc47dd64da7e7dcb06f37e0e3ab3268",
     "branch": "master"
   },
   "circuit-construction-kit-black-box": {
-    "sha": "94325ce875295ac3ecfe29a1a5cdac33715cd2a2",
+    "sha": "2044a095ab50fc210d7fe71cd2a390b075cd3103",
     "branch": "master"
   },
   "dot": {
@@ -41,11 +41,11 @@
     "branch": "master"
   },
   "phetcommon": {
-    "sha": "f999576731370113c805028f57177819a3ac1feb",
+    "sha": "35ef94ad2852b567a056b5f3b8c1e3906b8da7c1",
     "branch": "master"
   },
   "scenery": {
-    "sha": "d36b3155914d419aa7e7205d3fac81e251139a4e",
+    "sha": "a7d52a821915111a3fb8d14d19f0decf98a63b98",
     "branch": "master"
   },
   "scenery-phet": {
