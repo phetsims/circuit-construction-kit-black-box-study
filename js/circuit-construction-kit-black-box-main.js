@@ -13,6 +13,13 @@ define( function( require ) {
   var BlackBoxScreen = require( 'CIRCUIT_CONSTRUCTION_KIT/blackbox/BlackBoxScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
+  var Tandem = require( 'TANDEM/Tandem' );
+
+  // If running as phet-io, load the API
+  require( 'ifphetio!PHET_IO/simulations/circuit-construction-kit-black-box/circuit-construction-kit-black-box-api' );
+
+  // constants
+  var tandem = Tandem.createRootTandem();
 
   // strings
   var circuitConstructionKitBlackBoxTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX/circuit-construction-kit-black-box.title' );
@@ -24,7 +31,8 @@ define( function( require ) {
       team: 'Michael Dubson, Ariel Paul, Kathy Perkins',
       qualityAssurance: 'Steele Dalton, Bryce Griebenow, Elise Morgan, Ben Roberts',
       graphicArts: 'Bryce Gruneich'
-    }
+    },
+    tandem: tandem
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
@@ -40,8 +48,8 @@ define( function( require ) {
   if ( !window.circuitConstructionKitTestSuite ) {
     SimLauncher.launch( function() {
       var sim = new Sim( circuitConstructionKitBlackBoxTitleString, [
-        new ExploreScreen(),
-        new BlackBoxScreen()
+        new ExploreScreen( tandem.createTandem( 'exploreScreen' ) ),
+        new BlackBoxScreen( tandem.createTandem( 'blackBoxScreen' ) )
       ], simOptions );
       sim.start();
     } );
