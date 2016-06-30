@@ -14,7 +14,7 @@
     "requirejs": "~2.1.8"
   },
   "phet": {
-    "requirejsNamespace": "CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX",
+    "requirejsNamespace": "CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY",
     "phetLibs": [
       "circuit-construction-kit"
     ]

@@ -44,7 +44,7 @@ require.config( {
     CIRCUIT_CONSTRUCTION_KIT: '../../circuit-construction-kit/js',
 
     // this sim
-    CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX: '.'
+    CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY: '.'
   },
 
   // optional cache buster to make browser refresh load all included scripts, can be disabled with ?cacheBuster=false
