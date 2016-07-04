@@ -16,7 +16,7 @@ define( function( require ) {
   var Tandem = require( 'TANDEM/Tandem' );
 
   // If running as phet-io, load the API
-  require( 'ifphetio!PHET_IO/simulations/circuit-construction-kit-black-box/circuit-construction-kit-black-box-api' );
+  require( 'ifphetio!PHET_IO/simulations/circuit-construction-kit-black-box-study/circuit-construction-kit-black-box-study-api' );
 
   // constants
   var tandem = Tandem.createRootTandem();
