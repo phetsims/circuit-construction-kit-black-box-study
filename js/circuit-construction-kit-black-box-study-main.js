@@ -22,7 +22,7 @@ define( function( require ) {
   var tandem = Tandem.createRootTandem();
 
   // strings
-  var circuitConstructionKitBlackBoxTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuit-construction-kit-black-box.title' );
+  var circuitConstructionKitBlackBoxStudyTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuit-construction-kit-black-box-study.title' );
 
   var simOptions = {
     credits: {
@@ -47,7 +47,7 @@ define( function( require ) {
   // however, when running the unit tests we don't also want to launch the simulation.
   if ( !window.circuitConstructionKitTestSuite ) {
     SimLauncher.launch( function() {
-      var sim = new Sim( circuitConstructionKitBlackBoxTitleString, [
+      var sim = new Sim( circuitConstructionKitBlackBoxStudyTitleString, [
         new ExploreScreen( tandem.createTandem( 'exploreScreen' ) ),
         new BlackBoxScreen( tandem.createTandem( 'blackBoxScreen' ) )
       ], simOptions );
