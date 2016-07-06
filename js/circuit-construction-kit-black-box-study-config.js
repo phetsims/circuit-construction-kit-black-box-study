@@ -41,7 +41,7 @@ require.config( {
     TANDEM: '../../tandem/js',
 
     // sim dependencies
-    CIRCUIT_CONSTRUCTION_KIT: '../../circuit-construction-kit/js',
+    CIRCUIT_CONSTRUCTION_KIT_COMMON: '../../circuit-construction-kit-common/js',
 
     // this sim
     CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY: '.'
