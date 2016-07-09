@@ -17,6 +17,9 @@
     "requirejsNamespace": "CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY",
     "phetLibs": [
       "circuit-construction-kit-common"
+    ],
+    "preload": [
+      "../sherpa/lib/lz-string-1.4.4.js"
     ]
   }
 }
