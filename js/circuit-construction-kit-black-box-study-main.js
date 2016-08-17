@@ -28,8 +28,7 @@ define( function( require ) {
       team: 'Michael Dubson, Ariel Paul, Kathy Perkins',
       qualityAssurance: 'Steele Dalton, Bryce Griebenow, Elise Morgan, Ben Roberts',
       graphicArts: 'Bryce Gruneich'
-    },
-    tandem: tandem
+    }
   };
 
   // Appending '?dev' to the URL will enable developer-only features.
