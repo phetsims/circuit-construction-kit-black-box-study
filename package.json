@@ -6,6 +6,7 @@
     "type": "git",
     "url": "https://github.com/phetsims/circuit-construction-kit-black-box.git"
   },
+  "notes": "hello",
   "devDependencies": {
     "grunt": "~1.0.0",
     "grunt-eslint": "~19.0.0",
