@@ -17,10 +17,10 @@ define( function( require ) {
   var CircuitStruct = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/CircuitStruct' );
   var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Wire' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Vertex' );
+  var Property = require( 'AXON/Property' );
 
   // phet-io modules
   var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
-  var TString = require( 'ifphetio!PHET_IO/types/TString' );
 
   /**
    * @param {CircuitStruct} trueBlackBoxCircuit - the circuit inside the black box (the true one, not the user-created one)
@@ -82,36 +82,22 @@ define( function( require ) {
       circuitElement.insideTrueBlackBox = true;
     }
 
-    // additional Properties that will be added to supertype
-    var additionalProperties = {
+    CircuitConstructionKitModel.call( this, tandem );
 
-      // @public - whether the user is in the 'investigate' or 'build' mode
-      mode: {
-        value: 'investigate',
-        tandem: tandem.createTandem( 'modeProperty' ),
-        phetioValueType: TString
-      },
+    // @public - true when the user is holding down the reveal button and the answer (inside the black box) is showing
+    this.revealingProperty = new Property( false, {
+      tandem: tandem.createTandem( 'revealingProperty' ),
+      phetioValueType: TBoolean
+    } );
 
-      // @public - true when the user is holding down the reveal button and the answer (inside the black box) is showing
-      revealing: {
-        value: false,
-        tandem: tandem.createTandem( 'revealingProperty' ),
-        phetioValueType: TBoolean
-      },
-
-      // @public - true if the user has created a circuit for comparison with the black box (1+ terminal connected)
-      isRevealEnabled: {
-        value: false,
-        tandem: tandem.createTandem( 'isRevealEnabledProperty' ),
-        phetioValueType: TBoolean
-      }
-    };
-
-    CircuitConstructionKitModel.call( this, tandem, additionalProperties );
-
-    this.revealingProperty = this.revealingProperty || null;
-    this.modeProperty = this.modeProperty || null;
-    this.isRevealEnabledProperty = this.isRevealEnabledProperty || null;
+    // @public - true if the user has created a circuit for comparison with the black box (1+ terminal connected)
+    this.isRevealEnabledProperty = new Property( false, {
+      tandem: tandem.createTandem( 'isRevealEnabledProperty' ),
+      phetioValueType: TBoolean
+    } );
+    Property.preventGetSet( this, 'mode' );
+    Property.preventGetSet( this, 'revealing' );
+    Property.preventGetSet( this, 'isRevealEnabled' );
 
     // For syntax highlighting and navigation
     this.circuit = this.circuit || null;
@@ -121,7 +107,7 @@ define( function( require ) {
 
     // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
     this.revealingProperty.lazyLink( function( revealing ) {
-      self.mode = revealing ? 'investigate' : 'build';
+      self.modeProperty.set( revealing ? 'investigate' : 'build' );
     } );
 
     // Keep track of what the user has built inside the black box so it may be restored.
@@ -149,8 +135,8 @@ define( function( require ) {
 
     // Enable the reveal button if the user has done something in build mode.
     circuit.circuitChangedEmitter.addListener( function() {
-      var builtSomething = self.mode === 'build' && userBuiltSomething();
-      self.isRevealEnabled = self.revealing || builtSomething;
+      var builtSomething = self.modeProperty.get() === 'build' && userBuiltSomething();
+      self.isRevealEnabledProperty.set( self.revealingProperty.get() || builtSomething );
     } );
 
     // Remove the true black box contents or user-created black box contents
@@ -262,6 +248,10 @@ define( function( require ) {
      */
     reset: function() {
       CircuitConstructionKitModel.prototype.reset.call( this );
+      // @public - whether the user is in the 'investigate' or 'build' mode
+      this.modeProperty.reset();
+      this.revealingProperty.reset();
+      this.isRevealEnabledProperty.reset();
       this.resetBlackBoxSceneModel();
     }
   } );
