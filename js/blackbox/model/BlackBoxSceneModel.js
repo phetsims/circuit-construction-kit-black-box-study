@@ -41,7 +41,7 @@ define( function( require ) {
         trueBlackBoxCircuit.vertices[ i ].attachable = false;
       }
       else {
-        trueBlackBoxCircuit.vertices[ i ].insideTrueBlackBox = true;
+        trueBlackBoxCircuit.vertices[ i ].insideTrueBlackBoxProperty.set( true );
       }
     }
 
@@ -78,8 +78,8 @@ define( function( require ) {
     // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
     for ( i = 0; i < trueBlackBoxCircuit.circuitElements.length; i++ ) {
       var circuitElement = trueBlackBoxCircuit.circuitElements[ i ];
-      circuitElement.interactive = false;
-      circuitElement.insideTrueBlackBox = true;
+      circuitElement.interactiveProperty.set( false );
+      circuitElement.insideTrueBlackBoxProperty.set( true );
     }
 
     CircuitConstructionKitModel.call( this, tandem );
@@ -121,8 +121,8 @@ define( function( require ) {
     var userBuiltSomething = function() {
       var count = 0;
       var callback = function( element ) {
-        var isConnectedToBlackBoxInterface = element.startVertex.blackBoxInterface || element.endVertex.blackBoxInterface;
-        if ( element.interactive && isConnectedToBlackBoxInterface ) {
+        var isConnectedToBlackBoxInterface = element.startVertexProperty.get().blackBoxInterface || element.endVertexProperty.get().blackBoxInterface;
+        if ( element.interactiveProperty.get() && isConnectedToBlackBoxInterface ) {
           count++;
         }
       };
@@ -198,7 +198,7 @@ define( function( require ) {
           }
         } );
         circuit.circuitElements.forEach( function( circuitElement ) {
-          circuitElement.interactive = false;
+          circuitElement.interactiveProperty.set( false );
         } );
         addBlackBoxContents( userBlackBoxCircuit );
       }
@@ -207,10 +207,10 @@ define( function( require ) {
         // Switched to 'investigate'. Move interior elements to userBlackBoxCircuit
         userBlackBoxCircuit.clear();
         circuit.vertices.forEach( function( v ) { if ( v.interactive && v.draggable ) {userBlackBoxCircuit.vertices.push( v );}} );
-        circuit.wires.forEach( function( wire ) { if ( wire.interactive ) { userBlackBoxCircuit.wires.push( wire ); } } );
-        circuit.batteries.forEach( function( b ) { if ( b.interactive ) { userBlackBoxCircuit.batteries.push( b ); } } );
-        circuit.lightBulbs.forEach( function( bulb ) { if ( bulb.interactive ) { userBlackBoxCircuit.lightBulbs.push( bulb ); } } );
-        circuit.resistors.forEach( function( r ) { if ( r.interactive ) { userBlackBoxCircuit.resistors.push( r ); } } );
+        circuit.wires.forEach( function( wire ) { if ( wire.interactiveProperty.get() ) { userBlackBoxCircuit.wires.push( wire ); } } );
+        circuit.batteries.forEach( function( b ) { if ( b.interactiveProperty.get() ) { userBlackBoxCircuit.batteries.push( b ); } } );
+        circuit.lightBulbs.forEach( function( bulb ) { if ( bulb.interactiveProperty.get() ) { userBlackBoxCircuit.lightBulbs.push( bulb ); } } );
+        circuit.resistors.forEach( function( r ) { if ( r.interactiveProperty.get() ) { userBlackBoxCircuit.resistors.push( r ); } } );
         removeBlackBoxContents( userBlackBoxCircuit );
 
         // Any attachable vertices outside the box should become attachable and draggable
@@ -222,7 +222,7 @@ define( function( require ) {
           }
         } );
         circuit.circuitElements.forEach( function( circuitElement ) {
-          circuitElement.interactive = true;
+          circuitElement.interactiveProperty.set( true );
         } );
 
         addBlackBoxContents( trueBlackBoxCircuit );
