@@ -34,11 +34,11 @@ define( function( require ) {
     // When loading a black box circuit, none of the vertices should be draggable
     // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
     for ( i = 0; i < trueBlackBoxCircuit.vertices.length; i++ ) {
-      trueBlackBoxCircuit.vertices[ i ].draggable = false;
+      trueBlackBoxCircuit.vertices[ i ].draggableProperty.set( false );
 
-      if ( trueBlackBoxCircuit.vertices[ i ].attachable ) {
-        trueBlackBoxCircuit.vertices[ i ].blackBoxInterface = true;
-        trueBlackBoxCircuit.vertices[ i ].attachable = false;
+      if ( trueBlackBoxCircuit.vertices[ i ].attachableProperty.get() ) {
+        trueBlackBoxCircuit.vertices[ i ].blackBoxInterfaceProperty.set( true );
+        trueBlackBoxCircuit.vertices[ i ].attachableProperty.set( false );
       }
       else {
         trueBlackBoxCircuit.vertices[ i ].insideTrueBlackBoxProperty.set( true );
@@ -48,7 +48,7 @@ define( function( require ) {
     // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
     for ( var i = 0; i < trueBlackBoxCircuit.vertices.length; i++ ) {
       var vertex = trueBlackBoxCircuit.vertices[ i ];
-      if ( vertex.blackBoxInterface ) {
+      if ( vertex.blackBoxInterfaceProperty.get() ) {
         console.log( vertex.positionProperty.value );
 
         // the center of the black box is approximately (508, 305).  Point the wires away from the box.
@@ -66,9 +66,9 @@ define( function( require ) {
                  side === 'bottom' ? +extentLength :
                  0;
         var outerVertex = new Vertex( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy );
-        outerVertex.attachable = true;
-        outerVertex.blackBoxInterface = true;
-        outerVertex.draggable = false;
+        outerVertex.attachableProperty.set( true );
+        outerVertex.blackBoxInterfaceProperty.set( true );
+        outerVertex.draggableProperty.set( false );
 
         trueBlackBoxCircuit.wires.push( new Wire( vertex, outerVertex, 1E-6 ) ); // TODO: resistivity
       }
@@ -121,7 +121,7 @@ define( function( require ) {
     var userBuiltSomething = function() {
       var count = 0;
       var callback = function( element ) {
-        var isConnectedToBlackBoxInterface = element.startVertexProperty.get().blackBoxInterface || element.endVertexProperty.get().blackBoxInterface;
+        var isConnectedToBlackBoxInterface = element.startVertexProperty.get().blackBoxInterfaceProperty.get() || element.endVertexProperty.get().blackBoxInterfaceProperty.get();
         if ( element.interactiveProperty.get() && isConnectedToBlackBoxInterface ) {
           count++;
         }
@@ -149,7 +149,7 @@ define( function( require ) {
       // Remove the vertices but not those on the black box interface
       for ( var i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
         var vertex = blackBoxCircuit.vertices[ i ];
-        if ( !vertex.blackBoxInterface ) {
+        if ( !vertex.blackBoxInterfaceProperty.get() ) {
           circuit.vertices.remove( vertex );
         }
       }
@@ -161,7 +161,7 @@ define( function( require ) {
       // Add the vertices, but only if not already added
       for ( var i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
         var vertex = blackBoxCircuit.vertices[ i ];
-        if ( !vertex.blackBoxInterface ) {
+        if ( !vertex.blackBoxInterfaceProperty.get() ) {
           circuit.vertices.add( vertex );
         }
       }
@@ -191,10 +191,10 @@ define( function( require ) {
         // Any draggable vertices that remain should be made unattachable and undraggable, so the user cannot update the
         // circuit outside the box
         circuit.vertices.forEach( function( vertex ) {
-          if ( !vertex.blackBoxInterface ) {
-            vertex.attachable = false;
-            vertex.draggable = false;
-            vertex.interactive = false;
+          if ( !vertex.blackBoxInterfaceProperty.get() ) {
+            vertex.attachableProperty.set( false );
+            vertex.draggableProperty.set( false );
+            vertex.interactiveProperty.set( false );
           }
         } );
         circuit.circuitElements.forEach( function( circuitElement ) {
@@ -206,7 +206,7 @@ define( function( require ) {
 
         // Switched to 'investigate'. Move interior elements to userBlackBoxCircuit
         userBlackBoxCircuit.clear();
-        circuit.vertices.forEach( function( v ) { if ( v.interactive && v.draggable ) {userBlackBoxCircuit.vertices.push( v );}} );
+        circuit.vertices.forEach( function( v ) { if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {userBlackBoxCircuit.vertices.push( v );}} );
         circuit.wires.forEach( function( wire ) { if ( wire.interactiveProperty.get() ) { userBlackBoxCircuit.wires.push( wire ); } } );
         circuit.batteries.forEach( function( b ) { if ( b.interactiveProperty.get() ) { userBlackBoxCircuit.batteries.push( b ); } } );
         circuit.lightBulbs.forEach( function( bulb ) { if ( bulb.interactiveProperty.get() ) { userBlackBoxCircuit.lightBulbs.push( bulb ); } } );
@@ -215,10 +215,10 @@ define( function( require ) {
 
         // Any attachable vertices outside the box should become attachable and draggable
         circuit.vertices.forEach( function( vertex ) {
-          if ( !vertex.blackBoxInterface ) {
-            vertex.draggable = true;
-            vertex.attachable = true;
-            vertex.interactive = true;
+          if ( !vertex.blackBoxInterfaceProperty.get() ) {
+            vertex.draggableProperty.set( true );
+            vertex.attachableProperty.set( true );
+            vertex.interactiveProperty.set( true );
           }
         } );
         circuit.circuitElements.forEach( function( circuitElement ) {

@@ -164,13 +164,15 @@ define( function( require ) {
           // Find all the vertices that must be translated into the box, translating wires
           (function() {
             var vertices = blackBoxSceneModel.circuit.findAllConnectedVertices( vertex );
-            var connectedToBlackBox = vertices.filter( function( v ) {return v.blackBoxInterface;} ).length > 0;
+            var connectedToBlackBox = vertices.filter( function( v ) {
+                return v.blackBoxInterfaceProperty.get();
+              } ).length > 0;
             if ( !connectedToBlackBox ) {
               for ( var i = 0; i < vertices.length; i++ ) {
                 var vertexInGroup = vertices[ i ];
 
-                var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.position );
-                var delta = closestPoint.minus( vertexInGroup.position );
+                var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
+                var delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
 
                 self.circuitNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
               }
@@ -181,13 +183,15 @@ define( function( require ) {
           // TODO: Factor out
           (function() {
             var vertices = blackBoxSceneModel.circuit.findAllFixedVertices( vertex );
-            var connectedToBlackBox = vertices.filter( function( v ) {return v.blackBoxInterface;} ).length > 0;
+            var connectedToBlackBox = vertices.filter( function( v ) {
+                return v.blackBoxInterfaceProperty.get();
+              } ).length > 0;
             if ( !connectedToBlackBox ) {
               for ( var i = 0; i < vertices.length; i++ ) {
                 var vertexInGroup = vertices[ i ];
 
-                var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.position );
-                var delta = closestPoint.minus( vertexInGroup.position );
+                var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
+                var delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
 
                 self.circuitNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
               }
