@@ -95,7 +95,6 @@ define( function( require ) {
       tandem: tandem.createTandem( 'isRevealEnabledProperty' ),
       phetioValueType: TBoolean
     } );
-    Property.preventGetSet( this, 'mode' );
     Property.preventGetSet( this, 'revealing' );
     Property.preventGetSet( this, 'isRevealEnabled' );
 
@@ -249,7 +248,6 @@ define( function( require ) {
     reset: function() {
       CircuitConstructionKitModel.prototype.reset.call( this );
       // @public - whether the user is in the 'investigate' or 'build' mode
-      this.modeProperty.reset();
       this.revealingProperty.reset();
       this.isRevealEnabledProperty.reset();
       this.resetBlackBoxSceneModel();
