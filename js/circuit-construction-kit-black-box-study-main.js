@@ -16,7 +16,7 @@ define( function( require ) {
   var Tandem = require( 'TANDEM/Tandem' );
 
   // constants
-  var tandem = Tandem.createRootTandem();
+  var TANDEM = Tandem.createRootTandem();
 
   // strings
   var circuitConstructionKitBlackBoxStudyTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuit-construction-kit-black-box-study.title' );
@@ -37,8 +37,8 @@ define( function( require ) {
   if ( !window.circuitConstructionKitTestSuite ) {
     SimLauncher.launch( function() {
       var sim = new Sim( circuitConstructionKitBlackBoxStudyTitleString, [
-        new ExploreScreen( tandem.createTandem( 'exploreScreen' ) ),
-        new BlackBoxScreen( tandem.createTandem( 'blackBoxScreen' ) )
+        new ExploreScreen( TANDEM.createTandem( 'exploreScreen' ) ),
+        new BlackBoxScreen( TANDEM.createTandem( 'blackBoxScreen' ) )
       ], simOptions );
       sim.start();
     } );

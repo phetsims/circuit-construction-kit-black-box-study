@@ -26,8 +26,8 @@ define( function( require ) {
   var Property = require( 'AXON/Property' );
 
   // constants
-  var fadedColor = new Color( '#e3edfc' );
-  var solidColor = CircuitConstructionKitConstants.BACKGROUND_COLOR;
+  var FADED_COLOR = new Color( '#e3edfc' );
+  var SOLID_COLOR = CircuitConstructionKitConstants.BACKGROUND_COLOR;
 
   /**
    * @param {number} blackBoxWidth
@@ -129,8 +129,8 @@ define( function( require ) {
       var isBuildBode = mode === 'build';
 
       self.backgroundPlane.fill = !exploreScreenRunning ? 'gray' :
-                                  isBuildBode ? fadedColor :
-                                  solidColor;
+                                  isBuildBode ? FADED_COLOR :
+                                  SOLID_COLOR;
       if ( isBuildBode ) {
         self.circuitElementToolbox.moveToFront();
       }
