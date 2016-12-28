@@ -21,7 +21,7 @@ define( function( require ) {
   var CircuitConstructionKitConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitConstants' );
 
   // constants
-  var backgroundColor = CircuitConstructionKitConstants.backgroundColor;
+  var BACKGROUND_COLOR = CircuitConstructionKitConstants.BACKGROUND_COLOR;
 
   /**
    * @constructor
@@ -29,7 +29,7 @@ define( function( require ) {
   function BlackBoxScreen( tandem ) {
 
     var icon = new Rectangle( 0, 0, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.width, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.height, {
-      fill: backgroundColor
+      fill: BACKGROUND_COLOR
     } );
     var blackBoxNode = new BlackBoxNode( 220, 160, new Property( true ) );
     blackBoxNode.mutate( {

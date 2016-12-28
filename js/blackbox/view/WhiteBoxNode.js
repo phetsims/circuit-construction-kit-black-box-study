@@ -22,7 +22,7 @@ define( function( require ) {
         new Rectangle( 0, 0, width, height, 20, 20, {
           stroke: 'black',
           lineWidth: 3,
-          fill: CircuitConstructionKitConstants.backgroundColor
+          fill: CircuitConstructionKitConstants.BACKGROUND_COLOR
         } )
       ]
     } );

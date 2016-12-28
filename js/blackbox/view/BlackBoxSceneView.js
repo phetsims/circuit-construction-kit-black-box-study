@@ -27,7 +27,7 @@ define( function( require ) {
 
   // constants
   var fadedColor = new Color( '#e3edfc' );
-  var solidColor = CircuitConstructionKitConstants.backgroundColor;
+  var solidColor = CircuitConstructionKitConstants.BACKGROUND_COLOR;
 
   /**
    * @param {number} blackBoxWidth
