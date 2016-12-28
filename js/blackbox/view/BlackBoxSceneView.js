@@ -92,7 +92,7 @@ define( function( require ) {
       revealButton.right = modeRadioButtonGroup.right;
 
       sceneSelectionComboBox.centerX = visibleBounds.centerX;
-      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitConstants.layoutInset;
+      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitConstants.LAYOUT_INSET;
     } );
 
     var blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {
