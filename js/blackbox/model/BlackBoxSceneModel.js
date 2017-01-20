@@ -202,7 +202,7 @@ define( function( require ) {
             vertex.interactiveProperty.set( false );
           }
         } );
-        circuit.circuitElements.forEach( function( circuitElement ) {
+        circuit.circuitElementArray.forEach( function( circuitElement ) {
           circuitElement.interactiveProperty.set( false );
         } );
         addBlackBoxContents( userBlackBoxCircuit );
@@ -226,7 +226,7 @@ define( function( require ) {
             vertex.interactiveProperty.set( true );
           }
         } );
-        circuit.circuitElements.forEach( function( circuitElement ) {
+        circuit.circuitElementArray.forEach( function( circuitElement ) {
           circuitElement.interactiveProperty.set( true );
         } );
 
