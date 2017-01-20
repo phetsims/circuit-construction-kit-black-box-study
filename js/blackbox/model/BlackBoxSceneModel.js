@@ -125,7 +125,7 @@ define( function( require ) {
           count++;
         }
       };
-      circuit.wires.forEach( callback );
+      circuit.circuitElements.forEach( callback );
       circuit.batteries.forEach( callback );
       circuit.lightBulbs.forEach( callback );
       circuit.resistors.forEach( callback );
@@ -143,7 +143,7 @@ define( function( require ) {
      * @param {CircuitStruct} blackBoxCircuit
      */
     var removeBlackBoxContents = function( blackBoxCircuit ) {
-      circuit.wires.removeAll( blackBoxCircuit.wires );
+      circuit.circuitElements.removeAll( blackBoxCircuit.wires );
       circuit.lightBulbs.removeAll( blackBoxCircuit.lightBulbs );
       circuit.resistors.removeAll( blackBoxCircuit.resistors );
       circuit.batteries.removeAll( blackBoxCircuit.batteries );
@@ -170,13 +170,13 @@ define( function( require ) {
           circuit.vertices.add( vertex );
         }
       }
-      circuit.wires.addAll( blackBoxCircuit.wires );
+      circuit.circuitElements.addAll( blackBoxCircuit.wires );
       circuit.resistors.addAll( blackBoxCircuit.resistors );
       circuit.batteries.addAll( blackBoxCircuit.batteries );
       circuit.lightBulbs.addAll( blackBoxCircuit.lightBulbs );
 
       var updateElectrons = function( circuitElement ) { circuitElement.moveToFrontEmitter.emit(); };
-      blackBoxCircuit.wires.forEach( updateElectrons );
+      blackBoxCircuit.circuitElements.forEach( updateElectrons );
       blackBoxCircuit.resistors.forEach( updateElectrons );
       blackBoxCircuit.lightBulbs.forEach( updateElectrons );
       blackBoxCircuit.batteries.forEach( updateElectrons );
@@ -212,7 +212,7 @@ define( function( require ) {
         // Switched to 'investigate'. Move interior elements to userBlackBoxCircuit
         userBlackBoxCircuit.clear();
         circuit.vertices.forEach( function( v ) { if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {userBlackBoxCircuit.vertices.push( v );}} );
-        circuit.wires.forEach( function( wire ) { if ( wire.interactiveProperty.get() ) { userBlackBoxCircuit.wires.push( wire ); } } );
+        circuit.circuitElements.forEach( function( circuitElement ) { if ( circuitElement.interactiveProperty.get() ) { userBlackBoxCircuit.wires.push( circuitElement ); } } );
         circuit.batteries.forEach( function( b ) { if ( b.interactiveProperty.get() ) { userBlackBoxCircuit.batteries.push( b ); } } );
         circuit.lightBulbs.forEach( function( bulb ) { if ( bulb.interactiveProperty.get() ) { userBlackBoxCircuit.lightBulbs.push( bulb ); } } );
         circuit.resistors.forEach( function( r ) { if ( r.interactiveProperty.get() ) { userBlackBoxCircuit.resistors.push( r ); } } );
