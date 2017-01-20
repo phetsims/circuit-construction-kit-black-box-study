@@ -126,7 +126,6 @@ define( function( require ) {
         }
       };
       circuit.circuitElements.forEach( callback );
-      circuit.lightBulbs.forEach( callback );
       circuit.resistors.forEach( callback );
       return count > 0;
     };
@@ -143,7 +142,7 @@ define( function( require ) {
      */
     var removeBlackBoxContents = function( blackBoxCircuit ) {
       circuit.circuitElements.removeAll( blackBoxCircuit.wires );
-      circuit.lightBulbs.removeAll( blackBoxCircuit.lightBulbs );
+      circuit.circuitElements.removeAll( blackBoxCircuit.lightBulbs );
       circuit.resistors.removeAll( blackBoxCircuit.resistors );
       circuit.circuitElements.removeAll( blackBoxCircuit.batteries );
 
@@ -172,7 +171,7 @@ define( function( require ) {
       circuit.circuitElements.addAll( blackBoxCircuit.wires );
       circuit.resistors.addAll( blackBoxCircuit.resistors );
       circuit.circuitElements.addAll( blackBoxCircuit.batteries );
-      circuit.lightBulbs.addAll( blackBoxCircuit.lightBulbs );
+      circuit.circuitElements.addAll( blackBoxCircuit.lightBulbs );
 
       var updateElectrons = function( circuitElement ) { circuitElement.moveToFrontEmitter.emit(); };
       blackBoxCircuit.circuitElements.forEach( updateElectrons );
@@ -218,7 +217,10 @@ define( function( require ) {
               userBlackBoxCircuit.wires.push( circuitElement );
             }
             else if ( circuitElement instanceof Battery ) {
-              circuit.batteries.forEach( function( b ) { if ( b.interactiveProperty.get() ) { userBlackBoxCircuit.batteries.push( b ); } } );
+              userBlackBoxCircuit.batteries.push( b );
+            }
+            else if ( circuitElement instanceof LightBulb ) {
+              userBlackBoxCircuit.lightBulbs.push( circuitElement );
             }
             else if ( circuitElement instanceof Switch ) {
               // TODO: switches
@@ -226,7 +228,6 @@ define( function( require ) {
           }
         } );
 
-        circuit.lightBulbs.forEach( function( bulb ) { if ( bulb.interactiveProperty.get() ) { userBlackBoxCircuit.lightBulbs.push( bulb ); } } );
         circuit.resistors.forEach( function( r ) { if ( r.interactiveProperty.get() ) { userBlackBoxCircuit.resistors.push( r ); } } );
         removeBlackBoxContents( userBlackBoxCircuit );
 
