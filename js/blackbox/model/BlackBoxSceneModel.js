@@ -119,14 +119,12 @@ define( function( require ) {
      */
     var userBuiltSomething = function() {
       var count = 0;
-      var callback = function( element ) {
+      circuit.circuitElements.forEach( function( element ) {
         var isConnectedToBlackBoxInterface = element.startVertexProperty.get().blackBoxInterfaceProperty.get() || element.endVertexProperty.get().blackBoxInterfaceProperty.get();
         if ( element.interactiveProperty.get() && isConnectedToBlackBoxInterface ) {
           count++;
         }
-      };
-      circuit.circuitElements.forEach( callback );
-      circuit.resistors.forEach( callback );
+      } );
       return count > 0;
     };
 
@@ -143,7 +141,7 @@ define( function( require ) {
     var removeBlackBoxContents = function( blackBoxCircuit ) {
       circuit.circuitElements.removeAll( blackBoxCircuit.wires );
       circuit.circuitElements.removeAll( blackBoxCircuit.lightBulbs );
-      circuit.resistors.removeAll( blackBoxCircuit.resistors );
+      circuit.circuitElements.removeAll( blackBoxCircuit.resistors );
       circuit.circuitElements.removeAll( blackBoxCircuit.batteries );
 
       // Remove the vertices but not those on the black box interface
@@ -169,16 +167,13 @@ define( function( require ) {
         }
       }
       circuit.circuitElements.addAll( blackBoxCircuit.wires );
-      circuit.resistors.addAll( blackBoxCircuit.resistors );
+      circuit.circuitElements.addAll( blackBoxCircuit.resistors );
       circuit.circuitElements.addAll( blackBoxCircuit.batteries );
       circuit.circuitElements.addAll( blackBoxCircuit.lightBulbs );
 
-      var updateElectrons = function( circuitElement ) { circuitElement.moveToFrontEmitter.emit(); };
-      blackBoxCircuit.circuitElements.forEach( updateElectrons );
-      blackBoxCircuit.resistors.forEach( updateElectrons );
-      blackBoxCircuit.lightBulbs.forEach( updateElectrons );
-
-      // TODO: Switches
+      blackBoxCircuit.circuitElements.forEach( function( circuitElement ) {
+        circuitElement.moveToFrontEmitter.emit();
+      } );
     };
 
     // Logic for changing the contents of the black box when the mode changes
@@ -222,13 +217,14 @@ define( function( require ) {
             else if ( circuitElement instanceof LightBulb ) {
               userBlackBoxCircuit.lightBulbs.push( circuitElement );
             }
+            else if ( circuitElement instanceof Resistor ) {
+              userBlackBoxCircuit.resistors.push( circuitElement );
+            }
             else if ( circuitElement instanceof Switch ) {
-              // TODO: switches
+              userBlackBoxCircuit.switches.push( circuitElement );
             }
           }
         } );
-
-        circuit.resistors.forEach( function( r ) { if ( r.interactiveProperty.get() ) { userBlackBoxCircuit.resistors.push( r ); } } );
         removeBlackBoxContents( userBlackBoxCircuit );
 
         // Any attachable vertices outside the box should become attachable and draggable
