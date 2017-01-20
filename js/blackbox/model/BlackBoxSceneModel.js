@@ -138,7 +138,10 @@ define( function( require ) {
       self.isRevealEnabledProperty.set( self.revealingProperty.get() || builtSomething );
     } );
 
-    // Remove the true black box contents or user-created black box contents
+    /**
+     * Remove the true black box contents or user-created black box contents
+     * @param {CircuitStruct} blackBoxCircuit
+     */
     var removeBlackBoxContents = function( blackBoxCircuit ) {
       circuit.wires.removeAll( blackBoxCircuit.wires );
       circuit.lightBulbs.removeAll( blackBoxCircuit.lightBulbs );
@@ -154,7 +157,10 @@ define( function( require ) {
       }
     };
 
-    // Add the true black box contents or user-created black box contents
+    /**
+     * Add the true black box contents or user-created black box contents
+     * @param {CircuitStruct} blackBoxCircuit
+     */
     var addBlackBoxContents = function( blackBoxCircuit ) {
 
       // Add the vertices, but only if not already added
