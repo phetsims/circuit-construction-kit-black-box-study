@@ -286,6 +286,7 @@ define( function( require ) {
 
     // @private - called by reset
     this.resetBlackBoxSceneModel = function() {
+      addWireStubs();
       addBlackBoxContents( trueBlackBoxCircuit );
       userBlackBoxCircuit.clear();
     };

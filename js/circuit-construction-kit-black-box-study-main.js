@@ -8,6 +8,9 @@
 define( function( require ) {
   'use strict';
 
+  // Global flag/hack for settings that differ in the black box study sim.  TODO: pass this through constructors like a normal argument?
+  window.phetBlackBoxStudy = true;
+
   // modules
   var ExploreScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/explore/ExploreScreen' );
   var BlackBoxScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxScreen' );
