@@ -16,6 +16,10 @@ define( function( require ) {
   var CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/CircuitConstructionKitModel' );
   var CircuitStruct = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/CircuitStruct' );
   var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Wire' );
+  var Battery = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Battery' );
+  var Switch = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Switch' );
+  var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Resistor' );
+  var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/LightBulb' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Vertex' );
   var Property = require( 'AXON/Property' );
 
@@ -252,7 +256,7 @@ define( function( require ) {
               userBlackBoxCircuit.wires.push( circuitElement );
             }
             else if ( circuitElement instanceof Battery ) {
-              userBlackBoxCircuit.batteries.push( b );
+              userBlackBoxCircuit.batteries.push( circuitElement );
             }
             else if ( circuitElement instanceof LightBulb ) {
               userBlackBoxCircuit.lightBulbs.push( circuitElement );
