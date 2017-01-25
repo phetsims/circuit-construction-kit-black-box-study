@@ -95,8 +95,6 @@ define( function( require ) {
     this.isRevealEnabledProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'isRevealEnabledProperty' )
     } );
-    Property.preventGetSet( this, 'revealing' );
-    Property.preventGetSet( this, 'isRevealEnabled' );
 
     // For syntax highlighting and navigation
     this.circuit = this.circuit || null;
