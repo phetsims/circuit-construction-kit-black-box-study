@@ -24,9 +24,6 @@ define( function( require ) {
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Property = require( 'AXON/Property' );
 
-  // phet-io modules
-  var TBoolean = require( 'ifphetio!PHET_IO/types/TBoolean' );
-
   /**
    * @param {CircuitStruct} trueBlackBoxCircuit - the circuit inside the black box (the true one, not the user-created one)
    * @param {Tandem} tandem
@@ -123,7 +120,6 @@ define( function( require ) {
         var vertex = trueBlackBoxCircuit.vertices[ i ];
         if ( vertex.blackBoxInterfaceProperty.get() ) {
           vertex.blackBoxInterfaceProperty.set( false );
-          console.log( vertex.positionProperty.value );
 
           // the center of the black box is approximately (508, 305).  Point the wires away from the box.
           var side = vertex.positionProperty.value.x < 400 ? 'left' :

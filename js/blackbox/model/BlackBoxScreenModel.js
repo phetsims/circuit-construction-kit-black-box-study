@@ -14,9 +14,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var StringProperty = require( 'AXON/StringProperty' );
 
-  // phet-io modules
-  var TString = require( 'ifphetio!PHET_IO/types/TString' );
-
   /**
    * @constructor
    */
