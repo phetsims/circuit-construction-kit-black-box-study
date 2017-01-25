@@ -22,7 +22,6 @@ define( function( require ) {
   var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/LightBulb' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Vertex' );
   var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var Property = require( 'AXON/Property' );
 
   /**
    * @param {CircuitStruct} trueBlackBoxCircuit - the circuit inside the black box (the true one, not the user-created one)
