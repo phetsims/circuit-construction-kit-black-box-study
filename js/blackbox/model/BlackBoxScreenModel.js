@@ -12,7 +12,7 @@ define( function( require ) {
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Property = require( 'AXON/Property' );
+  var StringProperty = require( 'AXON/StringProperty' );
 
   // phet-io modules
   var TString = require( 'ifphetio!PHET_IO/types/TString' );
@@ -21,9 +21,7 @@ define( function( require ) {
    * @constructor
    */
   function BlackBoxScreenModel() {
-    this.sceneProperty = new Property( 'warmup', {
-      phetioValueType: TString
-    } );
+    this.sceneProperty = new StringProperty( 'warmup' );
     Object.defineProperty( this, 'scene', this.sceneProperty.getDeclarator() );
   }
 

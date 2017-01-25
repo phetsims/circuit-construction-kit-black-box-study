@@ -18,6 +18,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
   var Property = require( 'AXON/Property' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var CircuitConstructionKitConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitConstants' );
 
   // constants
@@ -31,7 +32,7 @@ define( function( require ) {
     var icon = new Rectangle( 0, 0, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.width, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.height, {
       fill: BACKGROUND_COLOR
     } );
-    var blackBoxNode = new BlackBoxNode( 220, 160, new Property( true ) );
+    var blackBoxNode = new BlackBoxNode( 220, 160, new BooleanProperty( true ) );
     blackBoxNode.mutate( {
       scale: icon.width / blackBoxNode.bounds.width / 2,
       centerX: icon.centerX,

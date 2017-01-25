@@ -21,6 +21,7 @@ define( function( require ) {
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Resistor' );
   var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/LightBulb' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/common/model/Vertex' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var Property = require( 'AXON/Property' );
 
   // phet-io modules
@@ -89,15 +90,13 @@ define( function( require ) {
     CircuitConstructionKitModel.call( this, tandem );
 
     // @public - true when the user is holding down the reveal button and the answer (inside the black box) is showing
-    this.revealingProperty = new Property( false, {
-      tandem: tandem.createTandem( 'revealingProperty' ),
-      phetioValueType: TBoolean
+    this.revealingProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'revealingProperty' )
     } );
 
     // @public - true if the user has created a circuit for comparison with the black box (1+ terminal connected)
-    this.isRevealEnabledProperty = new Property( false, {
-      tandem: tandem.createTandem( 'isRevealEnabledProperty' ),
-      phetioValueType: TBoolean
+    this.isRevealEnabledProperty = new BooleanProperty( false, {
+      tandem: tandem.createTandem( 'isRevealEnabledProperty' )
     } );
     Property.preventGetSet( this, 'revealing' );
     Property.preventGetSet( this, 'isRevealEnabled' );
