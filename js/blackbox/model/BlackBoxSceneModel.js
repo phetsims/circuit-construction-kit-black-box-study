@@ -195,13 +195,6 @@ define( function( require ) {
      */
     var addBlackBoxContents = function( blackBoxCircuit ) {
 
-      // Add the vertices, but only if not already added
-      for ( var i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
-        var vertex = blackBoxCircuit.vertices[ i ];
-        if ( !vertex.blackBoxInterfaceProperty.get() ) {
-          circuit.vertices.add( vertex );
-        }
-      }
       circuit.circuitElements.addAll( blackBoxCircuit.wires );
       circuit.circuitElements.addAll( blackBoxCircuit.resistors );
       circuit.circuitElements.addAll( blackBoxCircuit.batteries );
