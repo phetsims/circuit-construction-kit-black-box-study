@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.0.8-dev.5 Fri Jan 27 2017 10:05:04 GMT-0700 (MST)",
+  "comment": "# circuit-construction-kit-black-box-study 1.0.8-dev.6 Fri Jan 27 2017 10:25:44 GMT-0700 (MST)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "HEAD"
@@ -17,11 +17,11 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "7dedb2ec9c72c5f32bd2be121acf34a432d37065",
+    "sha": "a921c27524874e3b925d283f7d726cd52b2e1042",
     "branch": "1.0-phetio"
   },
   "circuit-construction-kit-common": {
-    "sha": "54931a97100289d0e3502a6a25d5fcbc158a24c5",
+    "sha": "4447c627d3ac24c54dd5256cfe394b6d8deb5d8a",
     "branch": "circuit-construction-kit-black-box-study-1.0-phetio"
   },
   "dot": {
