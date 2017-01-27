@@ -136,6 +136,7 @@ define( function( require ) {
           // outerVertex.attachable = true;
           outerVertex.blackBoxInterfaceProperty.set( true );
           outerVertex.draggableProperty.set( false );
+          outerVertex.outerWireStub = true;
           vertex.blackBoxInterfaceProperty.set( true );
 
           var w = new Wire( vertex, outerVertex, 1E-6, { // TODO: resistivity
