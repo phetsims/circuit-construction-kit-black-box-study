@@ -158,8 +158,8 @@ define( function( require ) {
       // and attach to it, see #173
       setTimeout( function() {
 
-        // If the wire connected to a black box vertex, then it may no longer exist in the model.
-        // In this case there is no need to move it inside the black box
+        // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
+        // no need to move it inside the black box.
         if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === 'build' ) {
 
           // Find all the vertices that must be translated into the box, translating wires
