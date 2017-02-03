@@ -24,6 +24,7 @@ define( function( require ) {
   var ScreenView = require( 'JOIST/ScreenView' );
   var Color = require( 'SCENERY/util/Color' );
   var Property = require( 'AXON/Property' );
+  var BlackBoxQueryParameters = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxQueryParameters' );
 
   // constants
   var FADED_COLOR = new Color( '#e3edfc' );
@@ -51,7 +52,9 @@ define( function( require ) {
     var revealButton = new RevealButton( blackBoxSceneModel.revealingProperty, blackBoxSceneModel.isRevealEnabledProperty,
       tandem.createTandem( 'revealButton' )
     );
-    this.addChild( revealButton );
+    if ( BlackBoxQueryParameters.showRevealButton ) {
+      this.addChild( revealButton );
+    }
 
     // Circuit components and ammeter/voltmeter should be in front of these controls
     modeRadioButtonGroup.moveToBack();
