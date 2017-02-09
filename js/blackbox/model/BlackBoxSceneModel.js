@@ -266,7 +266,12 @@ define( function( require ) {
           }
         } );
         circuit.circuitElements.forEach( function( circuitElement ) {
-          circuitElement.interactiveProperty.set( true );
+          if ( circuitElement.wireStub === true ) {
+            // no nop, wire stubs remain non-interactive
+          }
+          else {
+            circuitElement.interactiveProperty.set( true );
+          }
         } );
 
         addBlackBoxContents( trueBlackBoxCircuit );
