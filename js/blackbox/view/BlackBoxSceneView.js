@@ -110,7 +110,7 @@ define( function( require ) {
       blackBoxNode.opacity = revealing ? 0.2 : 1.0;
     } );
     blackBoxSceneModel.modeProperty.link( function( mode ) {
-      blackBoxNode.visible = mode === 'investigate';
+      blackBoxNode.visible = mode === 'explore';
     } );
 
     var whiteBoxNode = new WhiteBoxNode( blackBoxWidth, blackBoxHeight, {
@@ -120,7 +120,7 @@ define( function( require ) {
       centerY: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 2
     } );
     blackBoxSceneModel.modeProperty.link( function( mode ) {
-      whiteBoxNode.visible = mode === 'build';
+      whiteBoxNode.visible = mode === 'test';
     } );
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
@@ -129,7 +129,7 @@ define( function( require ) {
 
     this.unlinkBackgroundListener();
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.exploreScreenRunningProperty ], function( mode, exploreScreenRunning ) {
-      var isBuildBode = mode === 'build';
+      var isBuildBode = mode === 'test';
 
       self.backgroundPlane.fill = !exploreScreenRunning ? 'gray' :
                                   isBuildBode ? FADED_COLOR :
@@ -163,7 +163,7 @@ define( function( require ) {
 
         // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
         // no need to move it inside the black box.
-        if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === 'build' ) {
+        if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === 'test' ) {
 
           // Find all the vertices that must be translated into the box, translating wires
           (function() {

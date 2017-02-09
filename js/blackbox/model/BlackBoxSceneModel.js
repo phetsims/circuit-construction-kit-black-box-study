@@ -103,7 +103,7 @@ define( function( require ) {
 
     // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
     this.revealingProperty.lazyLink( function( revealing ) {
-      self.modeProperty.set( revealing ? 'investigate' : 'build' );
+      self.modeProperty.set( revealing ? 'explore' : 'test' );
     } );
 
     // Keep track of what the user has built inside the black box so it may be restored.
@@ -167,7 +167,7 @@ define( function( require ) {
 
     // Enable the reveal button if the user has done something in build mode.
     circuit.circuitChangedEmitter.addListener( function() {
-      var builtSomething = self.modeProperty.get() === 'build' && userBuiltSomething();
+      var builtSomething = self.modeProperty.get() === 'test' && userBuiltSomething();
       self.isRevealEnabledProperty.set( self.revealingProperty.get() || builtSomething );
     } );
 
@@ -211,7 +211,7 @@ define( function( require ) {
     this.modeProperty.link( function( mode ) {
 
       // When switching to build (build===test) mode, remove all of the black box circuitry and vice-versa
-      if ( mode === 'build' ) {
+      if ( mode === 'test' ) {
 
         removeBlackBoxContents( trueBlackBoxCircuit );
 
@@ -293,7 +293,7 @@ define( function( require ) {
      */
     reset: function() {
       CircuitConstructionKitModel.prototype.reset.call( this );
-      // @public - whether the user is in the 'investigate' or 'build' mode
+      // @public - whether the user is in the 'explore' or 'test' mode
       this.revealingProperty.reset();
       this.isRevealEnabledProperty.reset();
       this.resetBlackBoxSceneModel();

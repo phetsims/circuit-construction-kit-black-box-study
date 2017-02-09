@@ -2,7 +2,7 @@
 // TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
- * Shows an empty box for 'Build' mode.
+ * Shows an empty box for 'Test' mode.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */

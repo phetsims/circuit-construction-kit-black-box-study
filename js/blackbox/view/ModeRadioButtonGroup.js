@@ -19,11 +19,11 @@ define( function( require ) {
   function ModeRadioButtonGroup( modeProperty, tandem ) {
     var textOptions = { fontSize: 18 };
     RadioButtonGroup.call( this, modeProperty, [ {
-      value: 'investigate',
+      value: 'explore',
       node: new Text( 'Explore', textOptions ),
       tandemName: 'investigateCircuitButton'
     }, {
-      value: 'build',
+      value: 'test',
       node: new Text( 'Test', textOptions ),
       tandemName: 'buildCircuitButton'
     } ], {

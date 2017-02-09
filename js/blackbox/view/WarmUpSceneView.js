@@ -36,7 +36,7 @@ define( function( require ) {
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], function( mode, revealing ) {
-      questionText.visible = !revealing && mode === 'investigate';
+      questionText.visible = !revealing && mode === 'explore';
     } );
 
     // TODO: i18n
@@ -45,7 +45,7 @@ define( function( require ) {
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
     blackBoxSceneModel.modeProperty.link( function( mode ) {
-      tryToText.visible = mode === 'build';
+      tryToText.visible = mode === 'test';
     } );
 
     this.addChild( questionText );
