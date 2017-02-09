@@ -210,7 +210,7 @@ define( function( require ) {
     // TODO: All of this logic must be re-read and re-evaluated.
     this.modeProperty.link( function( mode ) {
 
-      // When switching to build mode, remove all of the black box circuitry and vice-versa
+      // When switching to build (build===test) mode, remove all of the black box circuitry and vice-versa
       if ( mode === 'build' ) {
 
         removeBlackBoxContents( trueBlackBoxCircuit );
@@ -231,7 +231,7 @@ define( function( require ) {
       }
       else {
 
-        // Switched to 'investigate'. Move interior elements to userBlackBoxCircuit
+        // Switched to 'investigate===explore'. Move interior elements to userBlackBoxCircuit
         userBlackBoxCircuit.clear();
         circuit.vertices.forEach( function( v ) { if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {userBlackBoxCircuit.vertices.push( v );}} );
         circuit.circuitElements.forEach( function( circuitElement ) {
