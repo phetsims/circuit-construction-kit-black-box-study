@@ -69,8 +69,6 @@ define( function( require ) {
       // Show the selected scene
       self.children = [ sceneViews[ scene ] ];
 
-      // Hack to fix the solder layering on startup, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/36
-      sceneViews[ scene ].circuitConstructionKitModel.reset();
       sceneViews[ scene ].reset();
     } );
 
