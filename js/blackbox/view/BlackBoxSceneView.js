@@ -125,16 +125,19 @@ define( function( require ) {
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
     this.circuitNode.mainLayer.addChild( blackBoxNode );
+
+    // Store the black box node reference for help with layering
+    this.circuitNode.blackBoxNode = blackBoxNode;
     this.circuitNode.mainLayer.addChild( whiteBoxNode );
 
     this.unlinkBackgroundListener();
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.exploreScreenRunningProperty ], function( mode, exploreScreenRunning ) {
-      var isBuildBode = mode === 'test';
+      var isTestMode = mode === 'test';
 
       self.backgroundPlane.fill = !exploreScreenRunning ? 'gray' :
-                                  isBuildBode ? FADED_COLOR :
+                                  isTestMode ? FADED_COLOR :
                                   SOLID_COLOR;
-      if ( isBuildBode ) {
+      if ( isTestMode ) {
         self.circuitElementToolbox.moveToFront();
       }
       else {
