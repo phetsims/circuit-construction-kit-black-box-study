@@ -35,6 +35,7 @@ define( function( require ) {
    * @param {number} blackBoxHeight
    * @param {BlackBoxSceneModel} blackBoxSceneModel
    * @param {Property.<string>} sceneProperty - for switching screens
+   * @param {Tandem} tandem
    * @constructor
    */
   function BlackBoxSceneView( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {

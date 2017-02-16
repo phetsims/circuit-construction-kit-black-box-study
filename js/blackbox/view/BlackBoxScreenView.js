@@ -21,6 +21,7 @@ define( function( require ) {
 
   /**
    * @param {BlackBoxScreenModel} blackBoxScreenModel
+   * @param {Tandem} tandem
    * @constructor
    */
   function BlackBoxScreenView( blackBoxScreenModel, tandem ) {
@@ -67,9 +68,13 @@ define( function( require ) {
       self.updateAllSceneLayouts && self.updateAllSceneLayouts();
 
       // Show the selected scene
-      self.children = [ sceneViews[ scene ] ];
+      var sceneView = sceneViews[ scene ];
+      self.children = [ sceneView ];
 
-      sceneViews[ scene ].reset();
+      // Fix the vertex layering.
+      sceneView.circuitConstructionKitModel.circuit.vertices.forEach( function( vertex ) {
+        vertex.relayerEmitter.emit();
+      } );
     } );
 
     this.visibleBoundsProperty.link( function( visibleBounds ) {
