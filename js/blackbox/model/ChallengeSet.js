@@ -835,7 +835,7 @@ define( function( require ) {
         {
           startVertex: 9,
           endVertex: 8,
-          resistance: 10
+          resistance: 25
         }
       ],
       switches: [],
