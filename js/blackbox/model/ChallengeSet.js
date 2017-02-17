@@ -850,6 +850,77 @@ define( function( require ) {
           }
         }
       ]
+    },
+    {
+      wires: [
+        {
+          startVertex: 4,
+          endVertex: 2,
+          resistivity: resistivity
+        },
+        {
+          startVertex: 3,
+          endVertex: 1,
+          resistivity: resistivity
+        },
+        {
+          startVertex: 0,
+          endVertex: 3,
+          resistivity: resistivity
+        },
+        {
+          startVertex: 5,
+          endVertex: 2,
+          resistivity: resistivity
+        }
+      ],
+      batteries: [],
+      lightBulbs: [],
+      resistors: [
+        {
+          startVertex: 0,
+          endVertex: 5,
+          resistance: 40
+        },
+        {
+          startVertex: 1,
+          endVertex: 4,
+          resistance: 40
+        }
+      ],
+      switches: [],
+      vertices: [
+        {
+          x: 381,
+          y: 305
+        },
+        {
+          x: 508.6893353941268,
+          y: 178.18907779495106
+        },
+        {
+          x: 641,
+          y: 305
+        },
+        {
+          x: 509.23947750362845,
+          y: 437.4721819061441
+        },
+        {
+          x: 586.7772375369744,
+          y: 255.66345768229866,
+          options: {
+            attachable: false
+          }
+        },
+        {
+          x: 491,
+          y: 305,
+          options: {
+            attachable: false
+          }
+        }
+      ]
     }
   ];
 
