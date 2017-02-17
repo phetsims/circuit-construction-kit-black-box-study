@@ -65,7 +65,7 @@ define( function( require ) {
       tandem: tandem.createTandem( 'isRevealEnabledProperty' )
     } );
 
-    // For syntax highlighting and navigation
+    // @public - or syntax highlighting and navigation only
     this.circuit = this.circuit || null;
 
     // @public {Bounds2} - filled in by the BlackBoxSceneView after the black box node is created and positioned
@@ -80,9 +80,8 @@ define( function( require ) {
     var userBlackBoxCircuit = new CircuitStruct( [], [], [], [], [], [] );
     var circuit = this.circuit;
 
-
+    // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
     var addWireStubs = function() {
-      // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
       for ( i = 0; i < trueBlackBoxCircuit.vertices.length; i++ ) {
         var vertex = trueBlackBoxCircuit.vertices[ i ];
         if ( vertex.blackBoxInterfaceProperty.get() ) {
@@ -121,7 +120,7 @@ define( function( require ) {
     addWireStubs();
 
     /**
-     * Check whether the user built (at least part of) their own black box circuit.
+     * Check whether the user built (at least part of) their own black box circuit, which enables the reveal button.
      * @returns {boolean}
      */
     var userBuiltSomething = function() {

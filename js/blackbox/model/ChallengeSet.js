@@ -1,7 +1,8 @@
 // Copyright 2016, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
+ * Challenges that appear in the combo box for the black box circuits.  See https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/41#issuecomment-280704297
+ * for a description of how to create new circuits.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
@@ -11,7 +12,9 @@ define( function( require ) {
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
 
+  // constants
   var resistivity = 1E-4;
+
   var warmupCircuitStateObject = {
     wires: [
       {
