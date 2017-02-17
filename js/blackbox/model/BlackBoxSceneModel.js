@@ -39,7 +39,6 @@ define( function( require ) {
 
       if ( trueBlackBoxCircuit.vertices[ i ].attachableProperty.get() ) {
         trueBlackBoxCircuit.vertices[ i ].blackBoxInterfaceProperty.set( true );
-        //trueBlackBoxCircuit.vertices[ i ].attachableProperty.set( false );
       }
       else {
         trueBlackBoxCircuit.vertices[ i ].insideTrueBlackBoxProperty.set( true );
