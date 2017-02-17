@@ -46,35 +46,6 @@ define( function( require ) {
       }
     }
 
-    // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
-    // for ( var i = 0; i < trueBlackBoxCircuit.vertices.length; i++ ) {
-    //   var vertex = trueBlackBoxCircuit.vertices[ i ];
-    //   if ( vertex.blackBoxInterfaceProperty.get() ) {
-    //     console.log( vertex.positionProperty.value );
-    //
-    //     // the center of the black box is approximately (508, 305).  Point the wires away from the box.
-    //     var side = vertex.positionProperty.value.x < 400 ? 'left' :
-    //                vertex.positionProperty.value.x > 600 ? 'right' :
-    //                vertex.positionProperty.value.y < 200 ? 'top' :
-    //                'bottom';
-    //
-    //     var extentLength = 40;
-    //
-    //     var dx = side === 'left' ? -extentLength :
-    //              side === 'right' ? +extentLength :
-    //              0;
-    //     var dy = side === 'top' ? -extentLength :
-    //              side === 'bottom' ? +extentLength :
-    //              0;
-    //     var outerVertex = new Vertex( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy );
-    //     outerVertex.attachableProperty.set( true );
-    //     outerVertex.blackBoxInterfaceProperty.set( true );
-    //     outerVertex.draggableProperty.set( false );
-    //
-    //     trueBlackBoxCircuit.wires.push( new Wire( vertex, outerVertex, 1E-6 ) ); // TODO: resistivity
-    //   }
-    // }
-
     // All of the circuit elements should be non-interactive
     // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
     for ( var i = 0; i < trueBlackBoxCircuit.circuitElements.length; i++ ) {
