@@ -1,7 +1,7 @@
 // Copyright 2016, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
+ * A press-and-hold button that shows the true black box circuit.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
@@ -16,13 +16,23 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var FontAwesomeNode = require( 'SUN/FontAwesomeNode' );
 
-  function RevealButton( revealingProperty, enabledProperty, tandem ) {
+  // constants
+  var LIGHT_GREEN = '#91e053';
+  var MIN_MARGIN = 15;
 
+  /**
+   * @param {BooleanProperty} revealingProperty - true if the user is revealing the true black box circuit
+   * @param {BooleanProperty} enabledProperty - true if the reveal button is enabled (when the user attaches a component
+   *                                          - to the interior of the black box)
+   * @param {Tandem} tandem
+   * @constructor
+   */
+  function RevealButton( revealingProperty, enabledProperty, tandem ) {
     RoundMomentaryButton.call( this, false, true, revealingProperty, {
       tandem: tandem,
       baseColor: 'yellow',
-      minXMargin: 15,
-      minYMargin: 15,
+      minXMargin: MIN_MARGIN,
+      minYMargin: MIN_MARGIN,
       content: new VBox( {
         spacing: 5,
         children: [
@@ -35,7 +45,7 @@ define( function( require ) {
 
     var self = this;
     revealingProperty.link( function( revealing ) {
-      self.setBaseColor( revealing ? '#91e053' : 'yellow' ); // Light green
+      self.setBaseColor( revealing ? LIGHT_GREEN : 'yellow' ); // Light green
     } );
   }
 
