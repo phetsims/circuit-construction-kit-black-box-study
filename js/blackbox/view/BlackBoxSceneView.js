@@ -31,9 +31,9 @@ define( function( require ) {
   var SOLID_COLOR = CircuitConstructionKitConstants.BACKGROUND_COLOR;
 
   /**
-   * @param {number} blackBoxWidth
-   * @param {number} blackBoxHeight
-   * @param {BlackBoxSceneModel} blackBoxSceneModel
+   * @param {number} blackBoxWidth - the width of the black box in view coordinates
+   * @param {number} blackBoxHeight - the height of the black box in view coordinates
+   * @param {BlackBoxSceneModel} blackBoxSceneModel - the model for the scene to display
    * @param {Property.<string>} sceneProperty - for switching screens
    * @param {Tandem} tandem
    * @constructor
@@ -50,9 +50,13 @@ define( function( require ) {
     var modeRadioButtonGroup = new ModeRadioButtonGroup( blackBoxSceneModel.modeProperty, tandem.createTandem( 'modeRadioButtonGroup' ) );
     this.addChild( modeRadioButtonGroup );
 
-    var revealButton = new RevealButton( blackBoxSceneModel.revealingProperty, blackBoxSceneModel.isRevealEnabledProperty,
+    var revealButton = new RevealButton(
+      blackBoxSceneModel.revealingProperty,
+      blackBoxSceneModel.isRevealEnabledProperty,
       tandem.createTandem( 'revealButton' )
     );
+
+    // The reveal button can be hidden with a sim-specific query parameter
     if ( BlackBoxQueryParameters.showRevealButton ) {
       this.addChild( revealButton );
     }
@@ -61,12 +65,15 @@ define( function( require ) {
     modeRadioButtonGroup.moveToBack();
     revealButton.moveToBack();
 
+    // Options for Text instances that will appear in the ComboBox
     var comboBoxTextOptions = {
       fontSize: 16
     };
 
     // A different ComboBox instance appears in each BlackBoxSceneView
     var elements = [ {
+
+      // TODO: i18n
       node: new Text( 'Warm-up', comboBoxTextOptions ),
       value: 'warmup',
       options: {
@@ -75,6 +82,8 @@ define( function( require ) {
     } ];
     for ( var i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
       elements.push( {
+
+        // TODO: i18n
         node: new Text( 'Black Box ' + (i + 1), comboBoxTextOptions ),
         value: 'scene' + i,
         options: {
@@ -132,6 +141,8 @@ define( function( require ) {
     this.circuitNode.mainLayer.addChild( whiteBoxNode );
 
     this.unlinkBackgroundListener();
+
+    // Update the layering of view objects when the mode changes
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.exploreScreenRunningProperty ], function( mode, exploreScreenRunning ) {
       var isTestMode = mode === 'test';
 
@@ -150,7 +161,7 @@ define( function( require ) {
       self.moveBackgroundToBack();
     } );
 
-    // When reset, move the boxes in front of the black box circuit elements
+    // @private - When reset, move the boxes in front of the black box circuit elements
     this.resetBlackBoxSceneView = function() {
       blackBoxNode.moveToFront();
       whiteBoxNode.moveToBack();
@@ -214,6 +225,11 @@ define( function( require ) {
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );
 
   return inherit( CircuitConstructionKitScreenView, BlackBoxSceneView, {
+
+    /**
+     * Reset the BlackBoxSceneView
+     * @public
+     */
     reset: function() {
       CircuitConstructionKitScreenView.prototype.reset.call( this );
       this.resetBlackBoxSceneView();
