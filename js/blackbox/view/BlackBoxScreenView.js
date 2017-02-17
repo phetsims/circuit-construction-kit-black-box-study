@@ -1,5 +1,4 @@
 // Copyright 2015-2016, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
  * This screen view creates and delegates to the scene views, it does not show anything that is not in a scene.
@@ -39,7 +38,8 @@ define( function( require ) {
       // Create the scene if it did not already exist
       if ( !self.sceneViews[ scene ] ) {
 
-        // Use the same dimensions for every black box so the size doesn't indicate what could be inside
+        // Use the same dimensions for every black box so the size doesn't indicate what could be inside, in view
+        // coordinates
         var blackBoxWidth = 250;
         var blackBoxHeight = 250;
 
@@ -81,6 +81,8 @@ define( function( require ) {
     } );
 
     this.visibleBoundsProperty.link( function( visibleBounds ) {
+
+      // TODO: it seems odd to change this function each time the bounds change.  Perhaps factor out into a single function.
       self.updateAllSceneLayouts = function() {
         _.keys( self.sceneViews ).forEach( function( key ) {
           self.sceneViews[ key ].visibleBoundsProperty.set( visibleBounds.copy() );
@@ -93,6 +95,11 @@ define( function( require ) {
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenView', BlackBoxScreenView );
 
   return inherit( ScreenView, BlackBoxScreenView, {
+
+    /**
+     * When the model clock ticks in Joist, send the clock tick to the selected scene.
+     * @param {number} dt - in seconds
+     */
     step: function( dt ) {
       this.sceneViews[ this.blackBoxScreenModel.scene ].circuitConstructionKitModel.step( dt );
     }
