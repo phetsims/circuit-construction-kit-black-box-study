@@ -27,21 +27,24 @@ define( function( require ) {
   function BlackBoxScreenView( blackBoxScreenModel, tandem ) {
     ScreenView.call( this );
     var self = this;
+
+    // @private - the model
     this.blackBoxScreenModel = blackBoxScreenModel;
 
-    var sceneViews = {}; // Populated lazily, key = scene name
-    this.sceneViews = sceneViews;
+    // @private - the scene views which will be populated when selected
+    this.sceneViews = {};
+
     blackBoxScreenModel.sceneProperty.link( function( scene ) {
 
       // Create the scene if it did not already exist
-      if ( !sceneViews[ scene ] ) {
+      if ( !self.sceneViews[ scene ] ) {
 
         // Use the same dimensions for every black box so the size doesn't indicate what could be inside
         var blackBoxWidth = 250;
         var blackBoxHeight = 250;
 
         if ( scene === 'warmup' ) {
-          sceneViews[ scene ] = new WarmUpSceneView(
+          self.sceneViews[ scene ] = new WarmUpSceneView(
             blackBoxWidth,
             blackBoxHeight,
             new BlackBoxSceneModel( CircuitStruct.fromStateObject( ChallengeSet.warmupCircuitStateObject ), tandem.createTandem( scene + 'Model' ) ),
@@ -51,7 +54,7 @@ define( function( require ) {
         }
         else if ( scene.indexOf( 'scene' ) === 0 ) {
           var index = parseInt( scene.substring( 'scene'.length ), 10 );
-          sceneViews[ scene ] = new BlackBoxSceneView(
+          self.sceneViews[ scene ] = new BlackBoxSceneView(
             blackBoxWidth,
             blackBoxHeight,
             new BlackBoxSceneModel( CircuitStruct.fromStateObject( ChallengeSet.challengeArray[ index ] ), tandem.createTandem( scene + 'Model' ) ),
@@ -68,7 +71,7 @@ define( function( require ) {
       self.updateAllSceneLayouts && self.updateAllSceneLayouts();
 
       // Show the selected scene
-      var sceneView = sceneViews[ scene ];
+      var sceneView = self.sceneViews[ scene ];
       self.children = [ sceneView ];
 
       // Fix the vertex layering.
@@ -79,8 +82,8 @@ define( function( require ) {
 
     this.visibleBoundsProperty.link( function( visibleBounds ) {
       self.updateAllSceneLayouts = function() {
-        _.keys( sceneViews ).forEach( function( key ) {
-          sceneViews[ key ].visibleBoundsProperty.set( visibleBounds.copy() );
+        _.keys( self.sceneViews ).forEach( function( key ) {
+          self.sceneViews[ key ].visibleBoundsProperty.set( visibleBounds.copy() );
         } );
       };
       self.updateAllSceneLayouts();
