@@ -1,5 +1,4 @@
 // Copyright 2015-2016, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
  * This model is solely responsible for choosing between different scenes, one for each black box.
@@ -18,10 +17,15 @@ define( function( require ) {
    * @constructor
    */
   function BlackBoxScreenModel() {
+
+    // @public - indicates which scene is selected: warmup/scene0-scene14
     this.sceneProperty = new StringProperty( 'warmup' );
+
+    // TODO: Remove this declarator and use the Property API
     Object.defineProperty( this, 'scene', this.sceneProperty.getDeclarator() );
   }
 
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenModel', BlackBoxScreenModel );
+
   return inherit( Object, BlackBoxScreenModel );
 } );

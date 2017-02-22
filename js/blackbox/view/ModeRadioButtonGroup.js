@@ -1,5 +1,4 @@
 // Copyright 2016, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
  * Radio buttons for choosing 'Explore' or 'Test'
@@ -16,14 +15,23 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
 
+  /**
+   * @param {Property.<string>} modeProperty - property that indicates which mode the black box simulation is in
+   * @param tandem
+   * @constructor
+   */
   function ModeRadioButtonGroup( modeProperty, tandem ) {
     var textOptions = { fontSize: 18 };
     RadioButtonGroup.call( this, modeProperty, [ {
       value: 'explore',
+
+      // TODO: i18n
       node: new Text( 'Explore', textOptions ),
       tandemName: 'investigateCircuitButton'
     }, {
       value: 'test',
+
+      // TODO: i18n
       node: new Text( 'Test', textOptions ),
       tandemName: 'buildCircuitButton'
     } ], {

@@ -1,5 +1,4 @@
 // Copyright 2016, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
 
 /**
  * The node that shows the black round rectangle with a question mark.
@@ -17,20 +16,27 @@ define( function( require ) {
   var Text = require( 'SCENERY/nodes/Text' );
 
   /**
-   * @param {number} width
-   * @param {number} height
+   * @param {number} width - the width of the black box in view coordinates
+   * @param {number} height - the height of the black box in view coordinates
    * @param {Property.<boolean>} revealingProperty - true if the user is pressing the "reveal" button
    * @param {Object} [options]
    * @constructor
    */
   function BlackBoxNode( width, height, revealingProperty, options ) {
+
+    // TODO: i18n
     var questionMarkTextNode = new Text( '?', {
       fontSize: 82,
       centerX: width / 2,
       centerY: height / 2,
       fill: 'white'
     } );
-    revealingProperty.link( function( revealing ) {questionMarkTextNode.visible = !revealing;} );
+
+    // Show the question mark if and only if the reveal button is not being pressed.
+    revealingProperty.link( function( revealing ) {
+      questionMarkTextNode.visible = !revealing;
+    } );
+
     Node.call( this, {
 
       // Don't let clicks go through the black box
@@ -48,5 +54,6 @@ define( function( require ) {
   }
 
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxNode', BlackBoxNode );
+
   return inherit( Node, BlackBoxNode );
 } );

@@ -3,6 +3,7 @@
 
 /**
  * One scene focuses on one black box, and has a separate model + view because scenes are independent.
+ * TODO: Combine this class with BlackBoxSceneView.  It will simplify usage in BlackBoxScreenView.
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
