@@ -64,6 +64,8 @@ define( function( require ) {
     ]
   };
   var challengeArray = [
+
+    // Black Box 1
     {
       wires: [
         {
@@ -113,6 +115,7 @@ define( function( require ) {
       ]
     },
 
+    // Black Box 2
     {
       wires: [ {
         resistivity: resistivity,
@@ -202,6 +205,8 @@ define( function( require ) {
         }
       ]
     },
+
+    // Black Box 3
     {
       wires: [
         {
@@ -271,6 +276,7 @@ define( function( require ) {
         }
       ]
     },
+
 
     {
       wires: [
@@ -342,6 +348,7 @@ define( function( require ) {
       ]
     },
 
+    // Black Box 4
     {
       wires: [
         {
@@ -428,6 +435,7 @@ define( function( require ) {
       ]
     },
 
+    // Black Box 5
     {
       wires: [
         {
@@ -507,6 +515,7 @@ define( function( require ) {
       ]
     },
 
+    // Black Box 6
     {
       wires: [
         {
@@ -598,6 +607,7 @@ define( function( require ) {
       ]
     },
 
+    // Black Box 7
     {
       wires: [
         {
@@ -685,6 +695,7 @@ define( function( require ) {
       ]
     },
 
+    // Black Box 10 or maybe 8
     {
       wires: [
         {
@@ -793,7 +804,7 @@ define( function( require ) {
       ]
     },
 
-    // Black Box 11
+    // Black Box 11 or maybe 9
     {
       wires: [
         {
@@ -1310,6 +1321,72 @@ define( function( require ) {
         {
           x: 509.97860962566824,
           y: 364.1038961038961,
+          options: {
+            attachable: false
+          }
+        }
+      ]
+    },
+
+    // Black Box 16
+    {
+      wires: [
+        {
+          resistivity: resistivity,
+          startVertex: 0,
+          endVertex: 4
+        },
+        {
+          resistivity: resistivity,
+          startVertex: 3,
+          endVertex: 2
+        },
+        {
+          resistivity: resistivity,
+          startVertex: 5,
+          endVertex: 1
+        }
+      ],
+      batteries: [
+        {
+          voltage: 10,
+          startVertex: 3,
+          endVertex: 4
+        }
+      ],
+      lightBulbs: [],
+      resistors: [],
+      switches: [],
+      vertices: [
+        {
+          x: 381,
+          y: 305
+        },
+        {
+          x: 641,
+          y: 305
+        },
+        {
+          x: 508.6893353941268,
+          y: 178.18907779495106
+        },
+        {
+          x: 509.76052249637144,
+          y: 226.43009192065796,
+          options: {
+            attachable: false
+          }
+        },
+        {
+          x: 429.54911989720756,
+          y: 289.4390666232742,
+          options: {
+            attachable: false
+          }
+        },
+        {
+          x: 598.6720936090605,
+          y: 305,
           options: {
             attachable: false
           }
