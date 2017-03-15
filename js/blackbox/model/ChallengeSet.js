@@ -1350,8 +1350,8 @@ define( function( require ) {
       batteries: [
         {
           voltage: 10,
-          startVertex: 3,
-          endVertex: 4
+          startVertex: 4,
+          endVertex: 3
         }
       ],
       lightBulbs: [],
