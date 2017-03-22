@@ -47,7 +47,7 @@ define( function( require ) {
           self.sceneViews[ scene ] = new WarmUpSceneView(
             blackBoxWidth,
             blackBoxHeight,
-            new BlackBoxSceneModel( CircuitStruct.fromStateObject( ChallengeSet.warmupCircuitStateObject ), tandem.createTandem( scene + 'Model' ) ),
+            new BlackBoxSceneModel( ChallengeSet.warmupCircuitStateObject, tandem.createTandem( scene + 'Model' ) ),
             blackBoxScreenModel.sceneProperty,
             tandem.createTandem( scene + 'SceneView' )
           );
@@ -57,7 +57,7 @@ define( function( require ) {
           self.sceneViews[ scene ] = new BlackBoxSceneView(
             blackBoxWidth,
             blackBoxHeight,
-            new BlackBoxSceneModel( CircuitStruct.fromStateObject( ChallengeSet.challengeArray[ index ] ), tandem.createTandem( scene + 'Model' ) ),
+            new BlackBoxSceneModel( ChallengeSet.challengeArray[ index ], tandem.createTandem( scene + 'Model' ) ),
             blackBoxScreenModel.sceneProperty,
             tandem.createTandem( scene + 'SceneView' )
           );

@@ -24,36 +24,37 @@ define( function( require ) {
   var BooleanProperty = require( 'AXON/BooleanProperty' );
 
   /**
-   * @param {CircuitStruct} trueBlackBoxCircuit - the circuit inside the black box (the true one, not the user-created one)
+   * @param {Object} trueBlackBoxCircuit - plain object for the circuit inside the black box (the true one, not the user-created one)
    * @param {Tandem} tandem
    * @constructor
    */
-  function BlackBoxSceneModel( trueBlackBoxCircuit, tandem ) {
-    assert && assert( trueBlackBoxCircuit instanceof CircuitStruct, 'circuit should be CircuitStruct' );
+  function BlackBoxSceneModel( trueBlackBoxCircuitObject, tandem ) {
+    CircuitConstructionKitModel.call( this, tandem );
+    var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty );
+
+    assert && assert( trueBlackBoxCircuitStruct instanceof CircuitStruct, 'circuit should be CircuitStruct' );
     var self = this;
 
     // When loading a black box circuit, none of the vertices should be draggable
     // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
-    for ( i = 0; i < trueBlackBoxCircuit.vertices.length; i++ ) {
-      trueBlackBoxCircuit.vertices[ i ].draggableProperty.set( false );
+    for ( i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
+      trueBlackBoxCircuitStruct.vertices[ i ].draggableProperty.set( false );
 
-      if ( trueBlackBoxCircuit.vertices[ i ].attachableProperty.get() ) {
-        trueBlackBoxCircuit.vertices[ i ].blackBoxInterfaceProperty.set( true );
+      if ( trueBlackBoxCircuitStruct.vertices[ i ].attachableProperty.get() ) {
+        trueBlackBoxCircuitStruct.vertices[ i ].blackBoxInterfaceProperty.set( true );
       }
       else {
-        trueBlackBoxCircuit.vertices[ i ].insideTrueBlackBoxProperty.set( true );
+        trueBlackBoxCircuitStruct.vertices[ i ].insideTrueBlackBoxProperty.set( true );
       }
     }
 
     // All of the circuit elements should be non-interactive
     // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
-    for ( var i = 0; i < trueBlackBoxCircuit.circuitElements.length; i++ ) {
-      var circuitElement = trueBlackBoxCircuit.circuitElements[ i ];
+    for ( var i = 0; i < trueBlackBoxCircuitStruct.circuitElements.length; i++ ) {
+      var circuitElement = trueBlackBoxCircuitStruct.circuitElements[ i ];
       circuitElement.interactiveProperty.set( false );
       circuitElement.insideTrueBlackBoxProperty.set( true );
     }
-
-    CircuitConstructionKitModel.call( this, tandem );
 
     // @public - true when the user is holding down the reveal button and the answer (inside the black box) is showing
     this.revealingProperty = new BooleanProperty( false, {
@@ -82,8 +83,8 @@ define( function( require ) {
 
     // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
     var addWireStubs = function() {
-      for ( i = 0; i < trueBlackBoxCircuit.vertices.length; i++ ) {
-        var vertex = trueBlackBoxCircuit.vertices[ i ];
+      for ( i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
+        var vertex = trueBlackBoxCircuitStruct.vertices[ i ];
         if ( vertex.blackBoxInterfaceProperty.get() ) {
           vertex.blackBoxInterfaceProperty.set( false );
 
@@ -108,7 +109,7 @@ define( function( require ) {
           outerVertex.outerWireStub = true;
           vertex.blackBoxInterfaceProperty.set( true );
 
-          var w = new Wire( vertex, outerVertex, 1E-6, { // TODO: resistivity
+          var w = new Wire( vertex, outerVertex, self.circuit.wireResistivityProperty, {
             wireStub: true,
             interactive: false
           } );
@@ -182,7 +183,7 @@ define( function( require ) {
       // When switching to 'test' mode, remove all of the black box circuitry and vice-versa
       if ( mode === 'test' ) {
 
-        removeBlackBoxContents( trueBlackBoxCircuit );
+        removeBlackBoxContents( trueBlackBoxCircuitStruct );
 
         // Any draggable vertices that remain should be made unattachable and undraggable, so the user cannot update the
         // circuit outside the box
@@ -243,7 +244,7 @@ define( function( require ) {
           }
         } );
 
-        addBlackBoxContents( trueBlackBoxCircuit );
+        addBlackBoxContents( trueBlackBoxCircuitStruct );
       }
       circuit.solve();
     } );
@@ -251,7 +252,7 @@ define( function( require ) {
     // @private - called by reset
     this.resetBlackBoxSceneModel = function() {
       addWireStubs();
-      addBlackBoxContents( trueBlackBoxCircuit );
+      addBlackBoxContents( trueBlackBoxCircuitStruct );
       userBlackBoxCircuit.clear();
     };
   }
