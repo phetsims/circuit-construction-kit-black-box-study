@@ -30,7 +30,7 @@ define( function( require ) {
    */
   function BlackBoxSceneModel( trueBlackBoxCircuitObject, tandem ) {
     CircuitConstructionKitModel.call( this, tandem );
-    var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty );
+    var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ) );
 
     assert && assert( trueBlackBoxCircuitStruct instanceof CircuitStruct, 'circuit should be CircuitStruct' );
     var self = this;
@@ -81,6 +81,7 @@ define( function( require ) {
     var userBlackBoxCircuit = new CircuitStruct( [], [], [], [], [], [] );
     var circuit = this.circuit;
 
+    var wireStubGroupTandem = tandem.createGroupTandem( 'wireStubs' );
     // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
     var addWireStubs = function() {
       for ( i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
@@ -109,7 +110,7 @@ define( function( require ) {
           outerVertex.outerWireStub = true;
           vertex.blackBoxInterfaceProperty.set( true );
 
-          var w = new Wire( vertex, outerVertex, self.circuit.wireResistivityProperty, {
+          var w = new Wire( vertex, outerVertex, self.circuit.wireResistivityProperty, wireStubGroupTandem.createNextTandem(), {
             wireStub: true,
             interactive: false
           } );
