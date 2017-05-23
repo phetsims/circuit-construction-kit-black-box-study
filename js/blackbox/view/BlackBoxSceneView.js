@@ -12,7 +12,7 @@ define( function( require ) {
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var CircuitConstructionKitScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitConstructionKitScreenView' );
+  var CCKScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKScreenView' );
   var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
   var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
   var ComboBox = require( 'SUN/ComboBox' );
@@ -40,7 +40,7 @@ define( function( require ) {
    */
   function BlackBoxSceneView( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
     var self = this;
-    CircuitConstructionKitScreenView.call( this, blackBoxSceneModel, tandem, {
+    CCKScreenView.call( this, blackBoxSceneModel, tandem, {
       numberOfLeftBatteriesInToolbox: 0,
       toolboxOrientation: 'vertical',
       showResetAllButton: true
@@ -224,14 +224,14 @@ define( function( require ) {
 
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );
 
-  return inherit( CircuitConstructionKitScreenView, BlackBoxSceneView, {
+  return inherit( CCKScreenView, BlackBoxSceneView, {
 
     /**
      * Reset the BlackBoxSceneView
      * @public
      */
     reset: function() {
-      CircuitConstructionKitScreenView.prototype.reset.call( this );
+      CCKScreenView.prototype.reset.call( this );
       this.resetBlackBoxSceneView();
     }
   } );
