@@ -105,7 +105,7 @@ define( function( require ) {
       revealButton.right = modeRadioButtonGroup.right;
 
       sceneSelectionComboBox.centerX = visibleBounds.centerX;
-      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitConstants.LAYOUT_INSET;
+      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitConstants.VERTICAL_MARGIN;
     } );
 
     var blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {
@@ -134,11 +134,11 @@ define( function( require ) {
     } );
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
-    this.circuitNode.mainLayer.addChild( blackBoxNode );
+    this.circuitLayerNode.mainLayer.addChild( blackBoxNode );
 
     // Store the black box node reference for help with layering
-    this.circuitNode.blackBoxNode = blackBoxNode;
-    this.circuitNode.mainLayer.addChild( whiteBoxNode );
+    this.circuitLayerNode.blackBoxNode = blackBoxNode;
+    this.circuitLayerNode.mainLayer.addChild( whiteBoxNode );
 
     this.unlinkBackgroundListener();
 
@@ -155,7 +155,7 @@ define( function( require ) {
       else {
 
         // investigate mode - move black box circuit elements to the back so they won't appear in front of the black box
-        self.circuitNode.moveTrueBlackBoxElementsToBack();
+        self.circuitLayerNode.moveTrueBlackBoxElementsToBack();
       }
       whiteBoxNode.moveToBack();
       self.moveBackgroundToBack();
@@ -193,7 +193,7 @@ define( function( require ) {
                 var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
                 var delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
 
-                self.circuitNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
+                self.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
               }
             }
           })();
@@ -212,7 +212,7 @@ define( function( require ) {
                 var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
                 var delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
 
-                self.circuitNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
+                self.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
               }
             }
           })();

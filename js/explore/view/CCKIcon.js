@@ -9,7 +9,7 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var circuitConstructionKitCommon = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/circuitConstructionKitCommon' );
+  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -83,7 +83,7 @@ define( function( require ) {
     this.addChild( vBox );
   }
 
-  circuitConstructionKitCommon.register( 'CCKIcon', CCKIcon );
+  circuitConstructionKitBlackBoxStudy.register( 'CCKIcon', CCKIcon );
 
   return inherit( Rectangle, CCKIcon );
 } );
