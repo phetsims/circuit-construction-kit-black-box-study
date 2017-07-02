@@ -143,10 +143,10 @@ define( function( require ) {
     this.unlinkBackgroundListener();
 
     // Update the layering of view objects when the mode changes
-    Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.exploreScreenRunningProperty ], function( mode, exploreScreenRunning ) {
+    Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], function( mode, isValueDepictionEnabled ) {
       var isTestMode = mode === 'test';
 
-      self.backgroundPlane.fill = !exploreScreenRunning ? 'gray' :
+      self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
                                   isTestMode ? FADED_COLOR :
                                   SOLID_COLOR;
       if ( isTestMode ) {
