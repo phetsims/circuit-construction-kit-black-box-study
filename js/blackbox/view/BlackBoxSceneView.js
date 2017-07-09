@@ -17,7 +17,8 @@ define( function( require ) {
   var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
   var ComboBox = require( 'SUN/ComboBox' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var CircuitConstructionKitConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitConstants' );
+  var CircuitConstructionKitCommonConstants =
+    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
   var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
   var WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
   var RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
@@ -28,7 +29,7 @@ define( function( require ) {
 
   // constants
   var FADED_COLOR = new Color( '#e3edfc' );
-  var SOLID_COLOR = CircuitConstructionKitConstants.BACKGROUND_COLOR;
+  var SOLID_COLOR = CircuitConstructionKitCommonConstants.BACKGROUND_COLOR;
 
   /**
    * @param {number} blackBoxWidth - the width of the black box in view coordinates
@@ -105,7 +106,7 @@ define( function( require ) {
       revealButton.right = modeRadioButtonGroup.right;
 
       sceneSelectionComboBox.centerX = visibleBounds.centerX;
-      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitConstants.VERTICAL_MARGIN;
+      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitCommonConstants.VERTICAL_MARGIN;
     } );
 
     var blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {

@@ -15,7 +15,8 @@ define( function( require ) {
   var ExploreScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/ExploreScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
-  var CircuitConstructionKitConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitConstants' );
+  var CircuitConstructionKitCommonConstants =
+    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
   var Property = require( 'AXON/Property' );
   var CCKIcon = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/CCKIcon' );
 
@@ -26,7 +27,7 @@ define( function( require ) {
 
     var options = {
       name: 'Explore', //TODO i18n
-      backgroundColorProperty: new Property( CircuitConstructionKitConstants.BACKGROUND_COLOR ),
+      backgroundColorProperty: new Property( CircuitConstructionKitCommonConstants.BACKGROUND_COLOR ),
       homeScreenIcon: new CCKIcon( tandem.createTandem( 'icon' ) ),
       tandem: tandem
     };
