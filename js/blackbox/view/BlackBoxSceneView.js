@@ -156,7 +156,7 @@ define( function( require ) {
       else {
 
         // investigate mode - move black box circuit elements to the back so they won't appear in front of the black box
-        self.circuitLayerNode.moveTrueBlackBoxElementsToBack();
+        // TODO: fix layering
       }
       whiteBoxNode.moveToBack();
       self.moveBackgroundToBack();
