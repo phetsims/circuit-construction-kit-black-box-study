@@ -42,7 +42,7 @@ define( function( require ) {
 
     // When loading a black box circuit, none of the vertices should be draggable
     // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
-    for ( i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
+    for ( var i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
       trueBlackBoxCircuitStruct.vertices[ i ].draggableProperty.set( false );
 
       if ( trueBlackBoxCircuitStruct.vertices[ i ].attachableProperty.get() ) {
