@@ -30,7 +30,12 @@ define( function( require ) {
    */
   function BlackBoxSceneModel( trueBlackBoxCircuitObject, tandem ) {
     CircuitConstructionKitModel.call( this, tandem );
-    var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ) );
+    var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
+
+      // All of the circuit elements in the true black box should be non-interactive
+      interactive: false,
+      insideTrueBlackBox: true
+    } );
 
     assert && assert( trueBlackBoxCircuitStruct instanceof CircuitStruct, 'circuit should be CircuitStruct' );
     var self = this;
@@ -46,14 +51,6 @@ define( function( require ) {
       else {
         trueBlackBoxCircuitStruct.vertices[ i ].insideTrueBlackBoxProperty.set( true );
       }
-    }
-
-    // All of the circuit elements should be non-interactive
-    // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
-    for ( var i = 0; i < trueBlackBoxCircuitStruct.circuitElements.length; i++ ) {
-      var circuitElement = trueBlackBoxCircuitStruct.circuitElements[ i ];
-      circuitElement.interactiveProperty.set( false );
-      circuitElement.insideTrueBlackBoxProperty.set( true );
     }
 
     // @public - true when the user is holding down the reveal button and the answer (inside the black box) is showing
