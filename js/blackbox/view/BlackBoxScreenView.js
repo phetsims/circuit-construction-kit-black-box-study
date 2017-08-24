@@ -74,7 +74,7 @@ define( function( require ) {
       self.children = [ sceneView ];
 
       // Fix the vertex layering.
-      sceneView.circuitConstructionKitModel.circuit.vertices.forEach( function( vertex ) {
+      sceneView.model.circuit.vertices.forEach( function( vertex ) {
         vertex.relayerEmitter.emit();
       } );
     } );
@@ -100,7 +100,7 @@ define( function( require ) {
      * @param {number} dt - in seconds
      */
     step: function( dt ) {
-      this.sceneViews[ this.blackBoxScreenModel.scene ].circuitConstructionKitModel.step( dt );
+      this.sceneViews[ this.blackBoxScreenModel.scene ].model.step( dt );
     }
   } );
 } );
