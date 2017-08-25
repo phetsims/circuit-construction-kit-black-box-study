@@ -29,7 +29,9 @@ define( function( require ) {
    * @constructor
    */
   function BlackBoxSceneModel( trueBlackBoxCircuitObject, tandem ) {
-    CircuitConstructionKitModel.call( this, tandem );
+    CircuitConstructionKitModel.call( this, tandem, {
+      revealing: false
+    } );
     var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
 
       // All of the circuit elements in the true black box should be non-interactive
@@ -52,11 +54,6 @@ define( function( require ) {
         trueBlackBoxCircuitStruct.vertices[ i ].insideTrueBlackBoxProperty.set( true );
       }
     }
-
-    // @public - true when the user is holding down the reveal button and the answer (inside the black box) is showing
-    this.revealingProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'revealingProperty' )
-    } );
 
     // @public - true if the user has created a circuit for comparison with the black box (1+ terminal connected)
     this.isRevealEnabledProperty = new BooleanProperty( false, {
