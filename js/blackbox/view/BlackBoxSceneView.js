@@ -44,7 +44,8 @@ define( function( require ) {
     CircuitConstructionKitScreenView.call( this, blackBoxSceneModel, tandem, {
       numberOfLeftBatteriesInToolbox: 0,
       toolboxOrientation: 'vertical',
-      showResetAllButton: true
+      showResetAllButton: true,
+      blackBoxStudy: true
     } );
 
     // Add 'Explore' and 'Test' radio buttons under the sensor toolbox

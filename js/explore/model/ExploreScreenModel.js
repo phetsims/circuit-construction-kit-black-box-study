@@ -17,7 +17,7 @@ define( function( require ) {
    * @constructor
    */
   function ExploreScreenModel( tandem ) {
-    CircuitConstructionKitModel.call( this, tandem );
+    CircuitConstructionKitModel.call( this, tandem, { blackBoxStudy: true } );
   }
 
   circuitConstructionKitBlackBoxStudy.register( 'ExploreScreenModel', ExploreScreenModel );

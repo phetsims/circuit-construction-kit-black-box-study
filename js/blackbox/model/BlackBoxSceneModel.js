@@ -24,13 +24,14 @@ define( function( require ) {
   var BooleanProperty = require( 'AXON/BooleanProperty' );
 
   /**
-   * @param {Object} trueBlackBoxCircuit - plain object for the circuit inside the black box (the true one, not the user-created one)
+   * @param {Object} trueBlackBoxCircuitObject - plain object for the circuit inside the black box (the true one, not the user-created one)
    * @param {Tandem} tandem
    * @constructor
    */
   function BlackBoxSceneModel( trueBlackBoxCircuitObject, tandem ) {
     CircuitConstructionKitModel.call( this, tandem, {
-      revealing: false
+      revealing: false,
+      blackBoxStudy: true
     } );
     var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
 
