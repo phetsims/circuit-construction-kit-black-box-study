@@ -65,9 +65,6 @@ define( function( require ) {
     // @public - or syntax highlighting and navigation only
     this.circuit = this.circuit || null;
 
-    // @public {Bounds2} - filled in by the BlackBoxSceneView after the black box node is created and positioned
-    this.blackBoxBounds = null;
-
     // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
     this.revealingProperty.lazyLink( function( revealing ) {
       self.modeProperty.set( revealing ? InteractionMode.EXPLORE : InteractionMode.TEST );
