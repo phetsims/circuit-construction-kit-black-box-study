@@ -143,8 +143,6 @@ define( function( require ) {
     this.circuitLayerNode.blackBoxNode = blackBoxNode;
     this.circuitLayerNode.mainLayer.addChild( whiteBoxNode );
 
-    this.unlinkBackgroundListener();
-
     // Update the layering of view objects when the mode changes
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], function( mode, isValueDepictionEnabled ) {
       var isTestMode = mode === InteractionMode.TEST;
