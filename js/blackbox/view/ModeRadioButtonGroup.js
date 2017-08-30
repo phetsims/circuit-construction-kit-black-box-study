@@ -10,10 +10,11 @@ define( function( require ) {
 
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var RadioButtonGroup = require( 'SUN/buttons/RadioButtonGroup' );
   var Text = require( 'SCENERY/nodes/Text' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
+  var RadioButtonGroup = require( 'SUN/buttons/RadioButtonGroup' );
 
   /**
    * @param {Property.<string>} modeProperty - property that indicates which mode the black box simulation is in
@@ -23,13 +24,13 @@ define( function( require ) {
   function ModeRadioButtonGroup( modeProperty, tandem ) {
     var textOptions = { fontSize: 18 };
     RadioButtonGroup.call( this, modeProperty, [ {
-      value: 'explore',
+      value: InteractionMode.EXPLORE,
 
       // TODO: i18n
       node: new Text( 'Explore', textOptions ),
       tandemName: 'investigateCircuitButton'
     }, {
-      value: 'test',
+      value: InteractionMode.TEST,
 
       // TODO: i18n
       node: new Text( 'Test', textOptions ),

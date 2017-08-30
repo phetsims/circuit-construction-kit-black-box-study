@@ -11,12 +11,13 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
-  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
-  var ScreenView = require( 'JOIST/ScreenView' );
   var Property = require( 'AXON/Property' );
+  var BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
+  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var inherit = require( 'PHET_CORE/inherit' );
+  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
 
   /**
    * @param {number} blackBoxWidth
@@ -37,7 +38,7 @@ define( function( require ) {
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], function( mode, revealing ) {
-      questionText.visible = !revealing && mode === 'explore';
+      questionText.visible = !revealing && mode === InteractionMode.EXPLORE;
     } );
 
     // TODO: i18n
@@ -46,7 +47,7 @@ define( function( require ) {
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
     blackBoxSceneModel.modeProperty.link( function( mode ) {
-      tryToText.visible = mode === 'test';
+      tryToText.visible = mode === InteractionMode.TEST;
     } );
 
     this.addChild( questionText );

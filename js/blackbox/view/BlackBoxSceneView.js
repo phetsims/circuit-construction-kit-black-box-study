@@ -10,22 +10,23 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var CircuitConstructionKitScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitConstructionKitScreenView' );
   var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
   var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
-  var ComboBox = require( 'SUN/ComboBox' );
+  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
+  var CircuitConstructionKitScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitConstructionKitScreenView' );
+  var inherit = require( 'PHET_CORE/inherit' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var ComboBox = require( 'SUN/ComboBox' );
   var CircuitConstructionKitCommonConstants =
     require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
-  var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
-  var WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
-  var RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var Color = require( 'SCENERY/util/Color' );
   var Property = require( 'AXON/Property' );
   var BlackBoxQueryParameters = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxQueryParameters' );
+  var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
+  var RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
+  var WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
+  var ScreenView = require( 'JOIST/ScreenView' );
+  var Color = require( 'SCENERY/util/Color' );
 
   // constants
   var FADED_COLOR = new Color( '#e3edfc' );
@@ -122,7 +123,7 @@ define( function( require ) {
       blackBoxNode.opacity = revealing ? 0.2 : 1.0;
     } );
     blackBoxSceneModel.modeProperty.link( function( mode ) {
-      blackBoxNode.visible = mode === 'explore';
+      blackBoxNode.visible = mode === InteractionMode.EXPLORE;
     } );
 
     var whiteBoxNode = new WhiteBoxNode( blackBoxWidth, blackBoxHeight, {
@@ -132,7 +133,7 @@ define( function( require ) {
       centerY: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 2
     } );
     blackBoxSceneModel.modeProperty.link( function( mode ) {
-      whiteBoxNode.visible = mode === 'test';
+      whiteBoxNode.visible = mode === InteractionMode.TEST;
     } );
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
@@ -146,7 +147,7 @@ define( function( require ) {
 
     // Update the layering of view objects when the mode changes
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], function( mode, isValueDepictionEnabled ) {
-      var isTestMode = mode === 'test';
+      var isTestMode = mode === InteractionMode.TEST;
 
       self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
                                   isTestMode ? FADED_COLOR :
@@ -180,7 +181,7 @@ define( function( require ) {
 
         // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
         // no need to move it inside the black box.
-        if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === 'test' ) {
+        if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === InteractionMode.TEST ) {
 
           // Find all the vertices that must be translated into the box, translating wires
           (function() {

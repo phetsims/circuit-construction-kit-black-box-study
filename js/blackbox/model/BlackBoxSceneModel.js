@@ -11,17 +11,18 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var inherit = require( 'PHET_CORE/inherit' );
+  var BooleanProperty = require( 'AXON/BooleanProperty' );
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  var Battery = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Battery' );
   var CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitConstructionKitModel' );
   var CircuitStruct = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitStruct' );
-  var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
-  var Battery = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Battery' );
-  var Switch = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Switch' );
-  var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
+  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/LightBulb' );
+  var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
+  var Switch = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Switch' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
+  var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * @param {Object} trueBlackBoxCircuitObject - plain object for the circuit inside the black box (the true one, not the user-created one)
@@ -69,7 +70,7 @@ define( function( require ) {
 
     // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
     this.revealingProperty.lazyLink( function( revealing ) {
-      self.modeProperty.set( revealing ? 'explore' : 'test' );
+      self.modeProperty.set( revealing ? InteractionMode.EXPLORE : InteractionMode.TEST );
     } );
 
     // Keep track of what the user has built inside the black box so it may be restored.
@@ -133,7 +134,7 @@ define( function( require ) {
 
     // Enable the reveal button if the user has done something in build mode.
     circuit.circuitChangedEmitter.addListener( function() {
-      var builtSomething = self.modeProperty.get() === 'test' && userBuiltSomething();
+      var builtSomething = self.modeProperty.get() === InteractionMode.TEST && userBuiltSomething();
       self.isRevealEnabledProperty.set( self.revealingProperty.get() || builtSomething );
     } );
 
@@ -176,8 +177,8 @@ define( function( require ) {
     // TODO: All of this logic must be re-read and re-evaluated.
     this.modeProperty.link( function( mode ) {
 
-      // When switching to 'test' mode, remove all of the black box circuitry and vice-versa
-      if ( mode === 'test' ) {
+      // When switching to InteractionMode.TEST mode, remove all of the black box circuitry and vice-versa
+      if ( mode === InteractionMode.TEST ) {
 
         removeBlackBoxContents( trueBlackBoxCircuitStruct );
 
@@ -197,7 +198,7 @@ define( function( require ) {
       }
       else {
 
-        // Switched to 'explore'. Move interior elements to userBlackBoxCircuit
+        // Switched to InteractionMode.EXPLORE. Move interior elements to userBlackBoxCircuit
         userBlackBoxCircuit.clear();
         circuit.vertices.forEach( function( v ) { if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {userBlackBoxCircuit.vertices.push( v );}} );
         circuit.circuitElements.forEach( function( circuitElement ) {
@@ -264,7 +265,7 @@ define( function( require ) {
      */
     reset: function() {
       CircuitConstructionKitModel.prototype.reset.call( this );
-      // @public - whether the user is in the 'explore' or 'test' mode
+      // @public - whether the user is in the InteractionMode.EXPLORE or InteractionMode.TEST mode
       this.revealingProperty.reset();
       this.isRevealEnabledProperty.reset();
       this.resetBlackBoxSceneModel();
