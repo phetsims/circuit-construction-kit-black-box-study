@@ -71,7 +71,7 @@ define( function( require ) {
     } );
 
     // Keep track of what the user has built inside the black box so it may be restored.
-    var userBlackBoxCircuit = new CircuitStruct( [], [], [], [], [], [] );
+    var userBlackBoxCircuit = new CircuitStruct();
     var circuit = this.circuit;
 
     var wireStubGroupTandem = tandem.createGroupTandem( 'wireStubs' );
