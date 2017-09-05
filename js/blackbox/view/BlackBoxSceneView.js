@@ -140,7 +140,6 @@ define( function( require ) {
     this.circuitLayerNode.mainLayer.addChild( blackBoxNode );
 
     // Store the black box node reference for help with layering
-    this.circuitLayerNode.blackBoxNode = blackBoxNode;
     this.circuitLayerNode.mainLayer.addChild( whiteBoxNode );
 
     // Update the layering of view objects when the mode changes
