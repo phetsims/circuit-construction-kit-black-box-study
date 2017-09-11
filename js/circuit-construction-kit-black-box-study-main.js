@@ -9,8 +9,8 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var ExploreScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/ExploreScreen' );
   var BlackBoxScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxScreen' );
+  var ExploreScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/ExploreScreen' );
   var Sim = require( 'JOIST/Sim' );
   var SimLauncher = require( 'JOIST/SimLauncher' );
   var Tandem = require( 'TANDEM/Tandem' );

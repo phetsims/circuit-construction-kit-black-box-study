@@ -10,11 +10,11 @@ define( function( require ) {
 
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var inherit = require( 'PHET_CORE/inherit' );
-  var Text = require( 'SCENERY/nodes/Text' );
+  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var PhetColorScheme = require( 'SCENERY_PHET/PhetColorScheme' );
   var RadioButtonGroup = require( 'SUN/buttons/RadioButtonGroup' );
+  var Text = require( 'SCENERY/nodes/Text' );
 
   /**
    * @param {Property.<string>} modeProperty - property that indicates which mode the black box simulation is in

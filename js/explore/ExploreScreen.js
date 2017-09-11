@@ -17,8 +17,8 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
   var CircuitConstructionKitCommonConstants =
     require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
-  var Property = require( 'AXON/Property' );
   var CCKIcon = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/CCKIcon' );
+  var Property = require( 'AXON/Property' );
 
   /**
    * @constructor

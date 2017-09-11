@@ -10,11 +10,11 @@ define( function( require ) {
 
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  var FontAwesomeNode = require( 'SUN/FontAwesomeNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var RoundMomentaryButton = require( 'SUN/buttons/RoundMomentaryButton' );
-  var VBox = require( 'SCENERY/nodes/VBox' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var FontAwesomeNode = require( 'SUN/FontAwesomeNode' );
+  var VBox = require( 'SCENERY/nodes/VBox' );
 
   // constants
   var LIGHT_GREEN = '#91e053';

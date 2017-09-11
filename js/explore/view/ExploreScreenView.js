@@ -10,8 +10,8 @@ define( function( require ) {
 
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
   var CircuitConstructionKitScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitConstructionKitScreenView' );
+  var inherit = require( 'PHET_CORE/inherit' );
 
   /**
    * @param {CircuitConstructionKitModel} circuitConstructionKitScreenModel
