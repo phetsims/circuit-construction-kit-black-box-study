@@ -18,11 +18,11 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Screen = require( 'JOIST/Screen' );
-  var CircuitConstructionKitCommonConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
+  var CCKCConstants =
+    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
 
   // constants
-  var BACKGROUND_COLOR = CircuitConstructionKitCommonConstants.BACKGROUND_COLOR;
+  var BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
 
   /**
    * @constructor

@@ -14,8 +14,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var CircuitConstructionKitCommonConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
+  var CCKCConstants =
+    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
 
   function WhiteBoxNode( width, height, options ) {
     Node.call( this, {
@@ -23,7 +23,7 @@ define( function( require ) {
         new Rectangle( 0, 0, width, height, 20, 20, {
           stroke: 'black',
           lineWidth: 3,
-          fill: CircuitConstructionKitCommonConstants.BACKGROUND_COLOR
+          fill: CCKCConstants.BACKGROUND_COLOR
         } )
       ]
     } );

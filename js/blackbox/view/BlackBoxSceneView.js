@@ -12,14 +12,14 @@ define( function( require ) {
   // modules
   var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var CircuitConstructionKitScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitConstructionKitScreenView' );
+  var CCKCScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKCScreenView' );
   var ComboBox = require( 'SUN/ComboBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
   var Text = require( 'SCENERY/nodes/Text' );
-  var CircuitConstructionKitCommonConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
+  var CCKCConstants =
+    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
   var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
   var BlackBoxQueryParameters = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxQueryParameters' );
   var Color = require( 'SCENERY/util/Color' );
@@ -30,7 +30,7 @@ define( function( require ) {
 
   // constants
   var FADED_COLOR = new Color( '#e3edfc' );
-  var SOLID_COLOR = CircuitConstructionKitCommonConstants.BACKGROUND_COLOR;
+  var SOLID_COLOR = CCKCConstants.BACKGROUND_COLOR;
 
   /**
    * @param {number} blackBoxWidth - the width of the black box in view coordinates
@@ -42,7 +42,7 @@ define( function( require ) {
    */
   function BlackBoxSceneView( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
     var self = this;
-    CircuitConstructionKitScreenView.call( this, blackBoxSceneModel, tandem, {
+    CCKCScreenView.call( this, blackBoxSceneModel, tandem, {
       numberOfLeftBatteriesInToolbox: 0,
       toolboxOrientation: 'vertical',
       showResetAllButton: true,
@@ -108,7 +108,7 @@ define( function( require ) {
       revealButton.right = modeRadioButtonGroup.right;
 
       sceneSelectionComboBox.centerX = visibleBounds.centerX;
-      sceneSelectionComboBox.top = visibleBounds.top + CircuitConstructionKitCommonConstants.VERTICAL_MARGIN;
+      sceneSelectionComboBox.top = visibleBounds.top + CCKCConstants.VERTICAL_MARGIN;
     } );
 
     var blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {
@@ -224,14 +224,14 @@ define( function( require ) {
 
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );
 
-  return inherit( CircuitConstructionKitScreenView, BlackBoxSceneView, {
+  return inherit( CCKCScreenView, BlackBoxSceneView, {
 
     /**
      * Reset the BlackBoxSceneView
      * @public
      */
     reset: function() {
-      CircuitConstructionKitScreenView.prototype.reset.call( this );
+      CCKCScreenView.prototype.reset.call( this );
       this.resetBlackBoxSceneView();
     }
   } );

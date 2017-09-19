@@ -10,7 +10,7 @@ define( function( require ) {
 
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var CircuitConstructionKitScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitConstructionKitScreenView' );
+  var CCKCScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKCScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
 
   /**
@@ -19,7 +19,7 @@ define( function( require ) {
    * @constructor
    */
   function ExploreScreenView( circuitConstructionKitScreenModel, tandem ) {
-    CircuitConstructionKitScreenView.call( this, circuitConstructionKitScreenModel, tandem, {
+    CCKCScreenView.call( this, circuitConstructionKitScreenModel, tandem, {
       numberOfLeftBatteriesInToolbox: 0, // Only show right-facing batteries.
       toolboxOrientation: 'vertical', // The toolbox should be vertical
       showResetAllButton: true, // The reset all button should be shown.
@@ -29,5 +29,5 @@ define( function( require ) {
 
   circuitConstructionKitBlackBoxStudy.register( 'ExploreScreenView', ExploreScreenView );
 
-  return inherit( CircuitConstructionKitScreenView, ExploreScreenView );
+  return inherit( CCKCScreenView, ExploreScreenView );
 } );

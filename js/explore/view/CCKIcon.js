@@ -13,8 +13,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Screen = require( 'JOIST/Screen' );
-  var CircuitConstructionKitCommonConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CircuitConstructionKitCommonConstants' );
+  var CCKCConstants =
+    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
   var CustomLightBulbNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CustomLightBulbNode' );
   var HBox = require( 'SCENERY/nodes/HBox' );
   var Image = require( 'SCENERY/nodes/Image' );
@@ -31,7 +31,7 @@ define( function( require ) {
   var batteryMipmap = require( 'mipmap!CIRCUIT_CONSTRUCTION_KIT_COMMON/battery.png' );
 
   // constants
-  var BACKGROUND_COLOR = CircuitConstructionKitCommonConstants.BACKGROUND_COLOR;
+  var BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
   var ELEMENT_WIDTH = 50;
 
   /**
@@ -50,7 +50,7 @@ define( function( require ) {
     var wireNode = new WireNode( null, null, wire, null, viewProperty, tandem.createTandem( 'wireIcon' ) );
 
     // Model element used to create the node
-    var resistor = new Resistor( new Vertex( 0, 0 ), new Vertex( CircuitConstructionKitCommonConstants.RESISTOR_LENGTH, 0 ), tandem.createTandem( 'resistor' ) );
+    var resistor = new Resistor( new Vertex( 0, 0 ), new Vertex( CCKCConstants.RESISTOR_LENGTH, 0 ), tandem.createTandem( 'resistor' ) );
 
     var resistorNode = new ResistorNode( null, null, resistor, null, viewProperty, tandem.createTandem( 'resistorIcon' ), {
       icon: true
