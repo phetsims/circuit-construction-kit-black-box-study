@@ -3,7 +3,7 @@
 /**
  * Query parameters used in sim-specific code.
  *
- * @author Chris Malley (PixelZoom, Inc.)
+ * @author Sam Reid
  */
 define( function( require ) {
   'use strict';
