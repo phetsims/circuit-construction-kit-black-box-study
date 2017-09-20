@@ -31,8 +31,8 @@ define( function( require ) {
   var WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
 
   // constants
-  var FADED_COLOR = new Color( '#e3edfc' );
-  var SOLID_COLOR = CCKCConstants.BACKGROUND_COLOR;
+  // var FADED_COLOR = new Color( '#e3edfc' );
+  // var SOLID_COLOR = CCKCConstants.BACKGROUND_COLOR;
 
   /**
    * @param {number} blackBoxWidth - the width of the black box in view coordinates
