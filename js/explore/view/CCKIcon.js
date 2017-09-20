@@ -13,6 +13,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Screen = require( 'JOIST/Screen' );
+  var Vector2 = require( 'DOT/Vector2' );
   var CCKCConstants =
     require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
   var CustomLightBulbNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CustomLightBulbNode' );
@@ -46,11 +47,11 @@ define( function( require ) {
 
     var viewProperty = new Property( 'lifelike' );
 
-    var wire = new Wire( new Vertex( 0, 0 ), new Vertex( 100, 0 ), new Property( 0 ), tandem.createTandem( 'wire' ) );
+    var wire = new Wire( new Vertex( new Vector2( 0, 0 ) ), new Vertex( new Vector2( 100, 0 ) ), new Property( 0 ), tandem.createTandem( 'wire' ) );
     var wireNode = new WireNode( null, null, wire, null, viewProperty, tandem.createTandem( 'wireIcon' ) );
 
     // Model element used to create the node
-    var resistor = new Resistor( new Vertex( 0, 0 ), new Vertex( CCKCConstants.RESISTOR_LENGTH, 0 ), tandem.createTandem( 'resistor' ) );
+    var resistor = new Resistor( new Vertex( Vector2.ZERO ), new Vertex( new Vector2( CCKCConstants.RESISTOR_LENGTH, 0 ) ), tandem.createTandem( 'resistor' ) );
 
     var resistorNode = new ResistorNode( null, null, resistor, null, viewProperty, tandem.createTandem( 'resistorIcon' ), {
       icon: true

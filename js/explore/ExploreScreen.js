@@ -14,10 +14,10 @@ define( function( require ) {
   var ExploreScreenModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/model/ExploreScreenModel' );
   var ExploreScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/ExploreScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
+  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var Screen = require( 'JOIST/Screen' );
   var CCKCConstants =
     require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
-  var CCKIcon = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/CCKIcon' );
   var Property = require( 'AXON/Property' );
 
   /**
@@ -28,7 +28,7 @@ define( function( require ) {
     var options = {
       name: 'Explore', //TODO i18n
       backgroundColorProperty: new Property( CCKCConstants.BACKGROUND_COLOR ),
-      homeScreenIcon: new CCKIcon( tandem.createTandem( 'icon' ) ),
+      homeScreenIcon: new Rectangle( 0, 0, 548, 373, { fill: 'red' } ),
       tandem: tandem
     };
 
