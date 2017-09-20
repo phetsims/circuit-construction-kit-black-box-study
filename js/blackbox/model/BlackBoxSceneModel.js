@@ -141,18 +141,18 @@ define( function( require ) {
      * @param {CircuitStruct} blackBoxCircuit
      */
     var removeBlackBoxContents = function( blackBoxCircuit ) {
-      circuit.circuitElements.removeAll( blackBoxCircuit.wires );
-      circuit.circuitElements.removeAll( blackBoxCircuit.lightBulbs );
-      circuit.circuitElements.removeAll( blackBoxCircuit.resistors );
-      circuit.circuitElements.removeAll( blackBoxCircuit.batteries );
+      // circuit.circuitElements.removeAll( blackBoxCircuit.wires );
+      // circuit.circuitElements.removeAll( blackBoxCircuit.lightBulbs );
+      // circuit.circuitElements.removeAll( blackBoxCircuit.resistors );
+      // circuit.circuitElements.removeAll( blackBoxCircuit.batteries );
 
       // Remove the vertices but not those on the black box interface
-      for ( var i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
-        var vertex = blackBoxCircuit.vertices[ i ];
-        if ( !vertex.blackBoxInterfaceProperty.get() ) {
-          circuit.vertices.remove( vertex );
-        }
-      }
+      // for ( var i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
+      //   var vertex = blackBoxCircuit.vertices[ i ];
+      //   if ( !vertex.blackBoxInterfaceProperty.get() ) {
+      //     circuit.vertices.remove( vertex );
+      //   }
+      // }
     };
 
     /**
@@ -161,14 +161,14 @@ define( function( require ) {
      */
     var addBlackBoxContents = function( blackBoxCircuit ) {
 
-      circuit.circuitElements.addAll( blackBoxCircuit.wires );
-      circuit.circuitElements.addAll( blackBoxCircuit.resistors );
-      circuit.circuitElements.addAll( blackBoxCircuit.batteries );
-      circuit.circuitElements.addAll( blackBoxCircuit.lightBulbs );
-
-      blackBoxCircuit.circuitElements.forEach( function( circuitElement ) {
-        circuitElement.moveToFrontEmitter.emit();
-      } );
+      // circuit.circuitElements.addAll( blackBoxCircuit.wires );
+      // circuit.circuitElements.addAll( blackBoxCircuit.resistors );
+      // circuit.circuitElements.addAll( blackBoxCircuit.batteries );
+      // circuit.circuitElements.addAll( blackBoxCircuit.lightBulbs );
+      //
+      // blackBoxCircuit.circuitElements.forEach( function( circuitElement ) {
+      //   circuitElement.moveToFrontEmitter.emit();
+      // } );
     };
 
     // Logic for changing the contents of the black box when the mode changes
