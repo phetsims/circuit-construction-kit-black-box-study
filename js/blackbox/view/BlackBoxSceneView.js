@@ -167,10 +167,10 @@ define( function( require ) {
     } );
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
-    this.circuitLayerNode.mainLayer.addChild( blackBoxNode );
+    this.circuitLayerNode.afterCircuitElementsLayer.addChild( blackBoxNode );
 
     // Store the black box node reference for help with layering
-    this.circuitLayerNode.mainLayer.addChild( whiteBoxNode );
+    this.circuitLayerNode.beforeCircuitElementsLayer.addChild( whiteBoxNode );
 
     // Update the layering of view objects when the mode changes
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], function( mode, isValueDepictionEnabled ) {
