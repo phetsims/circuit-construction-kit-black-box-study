@@ -21,6 +21,7 @@ define( function( require ) {
   var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/LightBulb' );
   var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   var Switch = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Switch' );
+  var Vector2 = require( 'DOT/Vector2' );
   var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
   var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
 
@@ -96,7 +97,7 @@ define( function( require ) {
           var dy = side === 'top' ? -extentLength :
                    side === 'bottom' ? +extentLength :
                    0;
-          var outerVertex = new Vertex( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy );
+          var outerVertex = new Vertex( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
           // outerVertex.attachable = true;
           outerVertex.blackBoxInterfaceProperty.set( true );
           outerVertex.draggableProperty.set( false );

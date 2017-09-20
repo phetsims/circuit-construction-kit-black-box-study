@@ -10,18 +10,20 @@ define( function( require ) {
   'use strict';
 
   // modules
+  var CCKCScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKCScreenView' );
   var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var CCKCScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKCScreenView' );
   var ComboBox = require( 'SUN/ComboBox' );
   var inherit = require( 'PHET_CORE/inherit' );
   var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
+  var Node = require( 'SCENERY/nodes/Node' );
   var Text = require( 'SCENERY/nodes/Text' );
   var CCKCConstants =
     require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
   var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
   var BlackBoxQueryParameters = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxQueryParameters' );
+  var CircuitElementToolFactory = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitElementToolFactory' );
   var Color = require( 'SCENERY/util/Color' );
   var Property = require( 'AXON/Property' );
   var RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
@@ -42,8 +44,36 @@ define( function( require ) {
    */
   function BlackBoxSceneView( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
     var self = this;
-    CCKCScreenView.call( this, blackBoxSceneModel, tandem, {
-      numberOfLeftBatteriesInToolbox: 0,
+
+    var circuitElementToolFactory = new CircuitElementToolFactory( blackBoxSceneModel.circuit, blackBoxSceneModel.showLabelsProperty, blackBoxSceneModel.viewTypeProperty, function( point ) {
+      return self.circuitLayerNode.globalToLocalPoint( point );
+    } );
+
+    var wireToolNode = circuitElementToolFactory.createWireToolNode( 20, tandem.createTandem( 'wireToolNode' ) );
+
+    // Tool nodes that appear on every screen. Pagination for the carousel, each page should begin with wire node
+    var circuitElementToolNodes = [
+
+      // This page is duplicated in the Lab Screen View
+      wireToolNode,
+      circuitElementToolFactory.createRightBatteryToolNode( 10, tandem.createTandem( 'rightBatteryToolNode' ) ),
+      circuitElementToolFactory.createLightBulbToolNode( 10, tandem.createTandem( 'lightBulbToolNode' ) ),
+      circuitElementToolFactory.createResistorToolNode( 10, tandem.createTandem( 'resistorToolNode' ) ),
+      circuitElementToolFactory.createSwitchToolNode( 5, tandem.createTandem( 'switchToolNode' ) ),
+
+      new Node( { children: [ wireToolNode ] } ), // Wire should appear at the top of each carousel page
+      circuitElementToolFactory.createDollarBillToolNode( 1, tandem.createTandem( 'dollarBillToolNode' ) ),
+      circuitElementToolFactory.createPaperClipToolNode( 1, tandem.createTandem( 'paperClipToolNode' ) ),
+      circuitElementToolFactory.createCoinToolNode( 1, tandem.createTandem( 'coinToolNode' ) ),
+      circuitElementToolFactory.createEraserToolNode( 1, tandem.createTandem( 'eraserToolNode' ) ),
+
+      new Node( { children: [ wireToolNode ] } ),// Wire should appear at the top of each carousel page
+      circuitElementToolFactory.createPencilToolNode( 1, tandem.createTandem( 'pencilToolNode' ) ),
+      circuitElementToolFactory.createHandToolNode( 1, tandem.createTandem( 'handToolNode' ) ),
+      circuitElementToolFactory.createDogToolNode( 1, tandem.createTandem( 'dogToolNode' ) )
+    ];
+
+    CCKCScreenView.call( this, blackBoxSceneModel, circuitElementToolNodes, tandem, {
       toolboxOrientation: 'vertical',
       showResetAllButton: true,
       blackBoxStudy: true
@@ -146,9 +176,9 @@ define( function( require ) {
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], function( mode, isValueDepictionEnabled ) {
       var isTestMode = mode === InteractionMode.TEST;
 
-      self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
-                                  isTestMode ? FADED_COLOR :
-                                  SOLID_COLOR;
+      // self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
+      //                             isTestMode ? FADED_COLOR :
+      //                             SOLID_COLOR;
       if ( isTestMode ) {
         self.circuitElementToolbox.moveToFront();
       }
@@ -158,14 +188,12 @@ define( function( require ) {
         // TODO: fix layering
       }
       whiteBoxNode.moveToBack();
-      self.moveBackgroundToBack();
     } );
 
     // @private - When reset, move the boxes in front of the black box circuit elements
     this.resetBlackBoxSceneView = function() {
       blackBoxNode.moveToFront();
       whiteBoxNode.moveToBack();
-      self.moveBackgroundToBack();
     };
 
     // When dropping an object in "build mode", its vertices should pop inside the black box, see #113
@@ -184,8 +212,8 @@ define( function( require ) {
           (function() {
             var vertices = blackBoxSceneModel.circuit.findAllConnectedVertices( vertex );
             var connectedToBlackBox = vertices.filter( function( v ) {
-                return v.blackBoxInterfaceProperty.get();
-              } ).length > 0;
+              return v.blackBoxInterfaceProperty.get();
+            } ).length > 0;
             if ( !connectedToBlackBox ) {
               for ( var i = 0; i < vertices.length; i++ ) {
                 var vertexInGroup = vertices[ i ];
@@ -203,8 +231,8 @@ define( function( require ) {
           (function() {
             var vertices = blackBoxSceneModel.circuit.findAllFixedVertices( vertex );
             var connectedToBlackBox = vertices.filter( function( v ) {
-                return v.blackBoxInterfaceProperty.get();
-              } ).length > 0;
+              return v.blackBoxInterfaceProperty.get();
+            } ).length > 0;
             if ( !connectedToBlackBox ) {
               for ( var i = 0; i < vertices.length; i++ ) {
                 var vertexInGroup = vertices[ i ];
@@ -219,7 +247,6 @@ define( function( require ) {
         }
       }, 0 );
     } );
-    this.moveBackgroundToBack();
   }
 
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );

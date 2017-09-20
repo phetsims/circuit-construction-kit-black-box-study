@@ -50,7 +50,6 @@ define( function( require ) {
       circuitElementToolFactory.createDogToolNode( 1, tandem.createTandem( 'dogToolNode' ) )
     ];
     CCKCScreenView.call( this, model, circuitElementToolNodes, tandem, {
-      numberOfLeftBatteriesInToolbox: 0, // Only show right-facing batteries.
       toolboxOrientation: 'vertical', // The toolbox should be vertical
       showResetAllButton: true, // The reset all button should be shown.
       blackBoxStudy: true

@@ -56,8 +56,6 @@ define( function( require ) {
     // Let the circuit elements move in front of the text
     tryToText.moveToBack();
     questionText.moveToBack();
-
-    this.moveBackgroundToBack();
   }
 
   circuitConstructionKitBlackBoxStudy.register( 'WarmUpSceneView', WarmUpSceneView );
