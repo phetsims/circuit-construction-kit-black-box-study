@@ -18,6 +18,11 @@
     "preload": [
       "../sherpa/lib/lz-string-1.4.4.js",
       "../sherpa/lib/Tween-r12.js"
-    ]
+    ],
+    "runnable": true,
+    "supportedBrands": [
+      "phet"
+    ],
+    "simulation": true
   }
 }
