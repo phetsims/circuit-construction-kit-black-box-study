@@ -20,9 +20,6 @@ define( function( require ) {
 
     // @public - indicates which scene is selected: warmup/scene0-scene14
     this.sceneProperty = new StringProperty( 'warmup' );
-
-    // TODO: Remove this declarator and use the Property API
-    Object.defineProperty( this, 'scene', this.sceneProperty.getDeclarator() );
   }
 
   circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenModel', BlackBoxScreenModel );

@@ -100,7 +100,7 @@ define( function( require ) {
      * @param {number} dt - in seconds
      */
     step: function( dt ) {
-      this.sceneViews[ this.blackBoxScreenModel.scene ].model.step( dt );
+      this.sceneViews[ this.blackBoxScreenModel.sceneProperty.value ].model.step( dt );
     }
   } );
 } );
