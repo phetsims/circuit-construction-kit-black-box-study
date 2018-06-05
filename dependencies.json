@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.0.8-dev.9 Fri Feb 03 2017 10:27:14 GMT-0700 (MST)",
+  "comment": "# circuit-construction-kit-black-box-study 1.0.8-phetiodev.9 Mon Jun 04 2018 21:40:01 GMT-0600 (MDT)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "HEAD"
@@ -17,12 +17,12 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "f6f39e3bdfc57c35ef7dc78149a4c36240c023bc",
+    "sha": "fb0c9ab8ed60e44eb2c082aa1c53549c4023a2e3",
     "branch": "1.0-phetio"
   },
   "circuit-construction-kit-common": {
     "sha": "738fc088a9f4da9772c645985cb32240eb261a56",
-    "branch": "circuit-construction-kit-black-box-study-1.0-phetio"
+    "branch": "HEAD"
   },
   "dot": {
     "sha": "2765eb4d9e836db1e467c9766c9f767f53659a95",
@@ -40,6 +40,14 @@
     "sha": "4222a05a927792580846b3bf9b1b53decf154943",
     "branch": "HEAD"
   },
+  "phet-io": {
+    "sha": "0b4fd8a7268f7087a6db6df20122b42150b4d9bb",
+    "branch": "HEAD"
+  },
+  "phet-io-website": {
+    "sha": "528402554ab49e7dd2eb5de3044cd90ab8100e8f",
+    "branch": "HEAD"
+  },
   "phetcommon": {
     "sha": "8df1bf7d38949062dd6bf08800a0eebdce838d98",
     "branch": "HEAD"
@@ -49,8 +57,8 @@
     "branch": "HEAD"
   },
   "scenery": {
-    "sha": "fb9d77c5c0c2d9dafddf87263c509829ef40e651",
-    "branch": "HEAD"
+    "sha": "d34cdd0b66b05e9ac2c4754342bd1e3738ba3444",
+    "branch": "circuit-construction-kit-black-box-study-1.0-phetio"
   },
   "scenery-phet": {
     "sha": "ef0d59dd8d1615ba4533f50b42467893e42bd2c4",
