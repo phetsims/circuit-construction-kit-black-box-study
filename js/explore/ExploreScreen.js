@@ -11,7 +11,7 @@ define( function( require ) {
 
   // modules
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var ExploreScreenModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/model/ExploreScreenModel' );
+  var ExploreModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/model/ExploreModel' );
   var ExploreScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/ExploreScreenView' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
@@ -34,7 +34,7 @@ define( function( require ) {
 
     Screen.call( this,
       function() {
-        return new ExploreScreenModel( tandem.createTandem( 'model' ) );
+        return new ExploreModel( tandem.createTandem( 'model' ) );
       },
       function( model ) {
         return new ExploreScreenView( model, tandem.createTandem( 'view' ) );

@@ -11,7 +11,7 @@ define( function( require ) {
 
   // modules
   var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
-  var BlackBoxScreenModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/BlackBoxScreenModel' );
+  var BlackBoxModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/BlackBoxModel' );
   var BlackBoxScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxScreenView' );
   var BooleanProperty = require( 'AXON/BooleanProperty' );
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
@@ -48,7 +48,7 @@ define( function( require ) {
 
     Screen.call( this,
       function() {
-        return new BlackBoxScreenModel( tandem.createTandem( 'model' ) );
+        return new BlackBoxModel( tandem.createTandem( 'model' ) );
       }, function( model ) {
         return new BlackBoxScreenView( model, tandem.createTandem( 'view' ) );
       },

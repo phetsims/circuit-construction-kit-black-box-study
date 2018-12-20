@@ -16,11 +16,11 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function ExploreScreenModel( tandem ) {
+  function ExploreModel( tandem ) {
     CircuitConstructionKitModel.call( this, tandem, { blackBoxStudy: true } );
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'ExploreScreenModel', ExploreScreenModel );
+  circuitConstructionKitBlackBoxStudy.register( 'ExploreModel', ExploreModel );
 
-  return inherit( CircuitConstructionKitModel, ExploreScreenModel );
+  return inherit( CircuitConstructionKitModel, ExploreModel );
 } );

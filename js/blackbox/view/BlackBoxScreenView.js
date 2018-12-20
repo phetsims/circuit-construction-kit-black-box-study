@@ -18,7 +18,7 @@ define( function( require ) {
   var WarmUpSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WarmUpSceneView' );
 
   /**
-   * @param {BlackBoxScreenModel} blackBoxScreenModel
+   * @param {BlackBoxModel} blackBoxScreenModel
    * @param {Tandem} tandem
    * @constructor
    */

@@ -16,13 +16,13 @@ define( function( require ) {
   /**
    * @constructor
    */
-  function BlackBoxScreenModel() {
+  function BlackBoxModel() {
 
     // @public - indicates which scene is selected: warmup/scene0-scene14
     this.sceneProperty = new StringProperty( 'warmup' );
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenModel', BlackBoxScreenModel );
+  circuitConstructionKitBlackBoxStudy.register( 'BlackBoxModel', BlackBoxModel );
 
-  return inherit( Object, BlackBoxScreenModel );
+  return inherit( Object, BlackBoxModel );
 } );
