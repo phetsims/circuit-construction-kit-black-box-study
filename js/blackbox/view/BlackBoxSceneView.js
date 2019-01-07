@@ -103,25 +103,18 @@ define( function( require ) {
     };
 
     // A different ComboBox instance appears in each BlackBoxSceneView
-    var elements = [ {
-
-      // TODO: i18n
-      node: new Text( 'Warm-up', comboBoxTextOptions ),
-      value: 'warmup',
-      options: {
+    var elements = [ ComboBox.createItem(
+      new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
+      'warmup', {
         tandemName: 'warmup'
-      }
-    } ];
+      } ) ];
     for ( var i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
-      elements.push( {
-
-        // TODO: i18n
-        node: new Text( 'Black Box ' + (i + 1), comboBoxTextOptions ),
-        value: 'scene' + i,
-        options: {
+      elements.push( ComboBox.createItem(
+        new Text( 'Black Box ' + ( i + 1 ), comboBoxTextOptions ), // TODO: i18n
+        'scene' + i, {
           tandemName: 'scene' + i
         }
-      } );
+      ) );
     }
     var sceneSelectionComboBox = new ComboBox( elements, sceneProperty, this, {
       tandem: tandem.createTandem( 'sceneSelectionComboBox' )
