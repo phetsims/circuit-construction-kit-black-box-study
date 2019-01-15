@@ -116,7 +116,11 @@ define( function( require ) {
         }
       ) );
     }
-    var sceneSelectionComboBox = new ComboBox( elements, sceneProperty, this, {
+    // create a node to keep track of combo box popup menu
+    var listParent = new Node();
+    this.addChild( listParent );
+
+    var sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
       tandem: tandem.createTandem( 'sceneSelectionComboBox' )
     } );
     this.addChild( sceneSelectionComboBox );
@@ -131,6 +135,8 @@ define( function( require ) {
 
       sceneSelectionComboBox.centerX = visibleBounds.centerX;
       sceneSelectionComboBox.top = visibleBounds.top + CCKCConstants.VERTICAL_MARGIN;
+      listParent.left = sceneSelectionComboBox.left;
+      listParent.top = sceneSelectionComboBox.bottom;
     } );
 
     var blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {
