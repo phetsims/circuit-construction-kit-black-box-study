@@ -121,6 +121,7 @@ define( function( require ) {
     this.addChild( listParent );
 
     var sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
+      cornerRadius: 6,
       tandem: tandem.createTandem( 'sceneSelectionComboBox' )
     } );
     this.addChild( sceneSelectionComboBox );
