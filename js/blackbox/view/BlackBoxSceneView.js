@@ -14,6 +14,7 @@ define( function( require ) {
   var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
   var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   var ComboBox = require( 'SUN/ComboBox' );
+  var ComboBoxItem = require( 'SUN/ComboBoxItem' );
   var inherit = require( 'PHET_CORE/inherit' );
   var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
   var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
@@ -103,13 +104,13 @@ define( function( require ) {
     };
 
     // A different ComboBox instance appears in each BlackBoxSceneView
-    var elements = [ ComboBox.createItem(
+    var elements = [ new ComboBoxItem(
       new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
       'warmup', {
         tandemName: 'warmup'
       } ) ];
     for ( var i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
-      elements.push( ComboBox.createItem(
+      elements.push( new ComboBoxItem(
         new Text( 'Black Box ' + ( i + 1 ), comboBoxTextOptions ), // TODO: i18n
         'scene' + i, {
           tandemName: 'scene' + i
@@ -121,6 +122,8 @@ define( function( require ) {
     this.addChild( listParent );
 
     var sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
+      xMargin: 12,
+      yMargin: 10,
       cornerRadius: 6,
       tandem: tandem.createTandem( 'sceneSelectionComboBox' )
     } );
