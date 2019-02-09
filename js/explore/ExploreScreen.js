@@ -6,43 +6,34 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var ExploreModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/model/ExploreModel' );
-  var ExploreScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/ExploreScreenView' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Screen = require( 'JOIST/Screen' );
-  var CCKCConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
-  var Property = require( 'AXON/Property' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const ExploreModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/model/ExploreModel' );
+  const ExploreScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/view/ExploreScreenView' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Screen = require( 'JOIST/Screen' );
+  const CCKCConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
+  const Property = require( 'AXON/Property' );
 
-  /**
-   * @constructor
-   */
-  function ExploreScreen( tandem ) {
+  class ExploreScreen extends Screen {
+    constructor( tandem ) {
 
-    var options = {
-      name: 'Explore', //TODO i18n
-      backgroundColorProperty: new Property( CCKCConstants.BACKGROUND_COLOR ),
-      homeScreenIcon: new Rectangle( 0, 0, 548, 373, { fill: 'red' } ),
-      tandem: tandem
-    };
+      const options = {
+        name: 'Explore', //TODO i18n
+        backgroundColorProperty: new Property( CCKCConstants.BACKGROUND_COLOR ),
+        homeScreenIcon: new Rectangle( 0, 0, 548, 373, { fill: 'red' } ),
+        tandem: tandem
+      };
 
-    Screen.call( this,
-      function() {
-        return new ExploreModel( tandem.createTandem( 'model' ) );
-      },
-      function( model ) {
-        return new ExploreScreenView( model, tandem.createTandem( 'view' ) );
-      },
-      options );
+      super(
+        () => new ExploreModel( tandem.createTandem( 'model' ) ),
+        model => new ExploreScreenView( model, tandem.createTandem( 'view' ) ),
+        options );
+    }
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'ExploreScreen', ExploreScreen );
-
-  return inherit( Screen, ExploreScreen );
+  return circuitConstructionKitBlackBoxStudy.register( 'ExploreScreen', ExploreScreen );
 } );

@@ -7,57 +7,60 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
-  var MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
-  var Property = require( 'AXON/Property' );
-  var ScreenView = require( 'JOIST/ScreenView' );
+  const BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const Circuit = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Circuit' );
+  const MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
+  const Property = require( 'AXON/Property' );
+  const ScreenView = require( 'JOIST/ScreenView' );
 
-  /**
-   * @param {number} blackBoxWidth
-   * @param {number} blackBoxHeight
-   * @param {BlackBoxSceneModel} blackBoxSceneModel
-   * @param {Property.<string>} sceneProperty - for switching screens
-   * @constructor
-   */
-  function WarmUpSceneView( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
-    BlackBoxSceneView.call( this, blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem );
-    var textOptions = {
-      fontSize: 34
-    };
+  // constants
+  const InteractionMode = Circuit.InteractionMode;
 
-    // TODO: i18n
-    var questionText = new MultiLineText( 'What circuit is\nin the black box?', _.extend( {
-      centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
-      top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
-    }, textOptions ) );
-    Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], function( mode, revealing ) {
-      questionText.visible = !revealing && mode === InteractionMode.EXPLORE;
-    } );
+  class WarmUpSceneView extends BlackBoxSceneView {
 
-    // TODO: i18n
-    var tryToText = new MultiLineText( 'Build a circuit that\nbehaves the same way.', _.extend( {
-      centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
-      top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
-    }, textOptions ) );
-    blackBoxSceneModel.modeProperty.link( function( mode ) {
-      tryToText.visible = mode === InteractionMode.TEST;
-    } );
+    /**
+     * @param {number} blackBoxWidth
+     * @param {number} blackBoxHeight
+     * @param {BlackBoxSceneModel} blackBoxSceneModel
+     * @param {Property.<string>} sceneProperty - for switching screens
+     */
+    constructor( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
+      super( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem );
+      const textOptions = {
+        fontSize: 34
+      };
 
-    this.addChild( questionText );
-    this.addChild( tryToText );
+      // TODO: i18n
+      const questionText = new MultiLineText( 'What circuit is\nin the black box?', _.extend( {
+        centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
+        top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
+      }, textOptions ) );
+      Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], ( mode, revealing ) => {
+        questionText.visible = !revealing && mode === InteractionMode.EXPLORE;
+      } );
 
-    // Let the circuit elements move in front of the text
-    tryToText.moveToBack();
-    questionText.moveToBack();
+      // TODO: i18n
+      const tryToText = new MultiLineText( 'Build a circuit that\nbehaves the same way.', _.extend( {
+        centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
+        top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
+      }, textOptions ) );
+      blackBoxSceneModel.modeProperty.link( mode => {
+        tryToText.visible = mode === InteractionMode.TEST;
+      } );
+
+      this.addChild( questionText );
+      this.addChild( tryToText );
+
+      // Let the circuit elements move in front of the text
+      tryToText.moveToBack();
+      questionText.moveToBack();
+    }
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'WarmUpSceneView', WarmUpSceneView );
-  return inherit( BlackBoxSceneView, WarmUpSceneView );
+  return circuitConstructionKitBlackBoxStudy.register( 'WarmUpSceneView', WarmUpSceneView );
 } );

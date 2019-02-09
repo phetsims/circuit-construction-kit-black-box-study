@@ -7,266 +7,265 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var Battery = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Battery' );
-  var BooleanProperty = require( 'AXON/BooleanProperty' );
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitConstructionKitModel' );
-  var CircuitStruct = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitStruct' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
-  var LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/LightBulb' );
-  var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
-  var Switch = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Switch' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
-  var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
+  const Battery = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Battery' );
+  const BooleanProperty = require( 'AXON/BooleanProperty' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitConstructionKitModel' );
+  const CircuitStruct = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitStruct' );
+  const Circuit = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Circuit' );
+  const LightBulb = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/LightBulb' );
+  const Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
+  const Switch = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Switch' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
+  const Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
 
-  /**
-   * @param {Object} trueBlackBoxCircuitObject - plain object for the circuit inside the black box (the true one, not the user-created one)
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function BlackBoxSceneModel( trueBlackBoxCircuitObject, tandem ) {
-    CircuitConstructionKitModel.call( this, tandem, {
-      revealing: false,
-      blackBoxStudy: true
-    } );
-    var trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
+  // constants
+  const InteractionMode = Circuit.InteractionMode;
 
-      // All of the circuit elements in the true black box should be non-interactive
-      interactive: false,
-      insideTrueBlackBox: true
-    } );
-
-    assert && assert( trueBlackBoxCircuitStruct instanceof CircuitStruct, 'circuit should be CircuitStruct' );
-    var self = this;
-
-    // When loading a black box circuit, none of the vertices should be draggable
-    // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
-    for ( var i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
-      trueBlackBoxCircuitStruct.vertices[ i ].draggableProperty.set( false );
-
-      if ( trueBlackBoxCircuitStruct.vertices[ i ].attachableProperty.get() ) {
-        trueBlackBoxCircuitStruct.vertices[ i ].blackBoxInterfaceProperty.set( true );
-      }
-      else {
-        trueBlackBoxCircuitStruct.vertices[ i ].insideTrueBlackBoxProperty.set( true );
-      }
-    }
-
-    // @public - true if the user has created a circuit for comparison with the black box (1+ terminal connected)
-    this.isRevealEnabledProperty = new BooleanProperty( false, {
-      tandem: tandem.createTandem( 'isRevealEnabledProperty' )
-    } );
-
-    // @public - or syntax highlighting and navigation only
-    this.circuit = this.circuit || null;
-
-    // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
-    this.revealingProperty.lazyLink( function( revealing ) {
-      self.modeProperty.set( revealing ? InteractionMode.EXPLORE : InteractionMode.TEST );
-    } );
-
-    // Keep track of what the user has built inside the black box so it may be restored.
-    var userBlackBoxCircuit = new CircuitStruct();
-    var circuit = this.circuit;
-
-    var wireStubGroupTandem = tandem.createGroupTandem( 'wireStubs' );
-    // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
-    var addWireStubs = function() {
-      for ( i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
-        var vertex = trueBlackBoxCircuitStruct.vertices[ i ];
-        if ( vertex.blackBoxInterfaceProperty.get() ) {
-          vertex.blackBoxInterfaceProperty.set( false );
-
-          // the center of the black box is approximately (508, 305).  Point the wires away from the box.
-          var side = vertex.positionProperty.value.x < 400 ? 'left' :
-                     vertex.positionProperty.value.x > 600 ? 'right' :
-                     vertex.positionProperty.value.y < 200 ? 'top' :
-                     'bottom';
-
-          var extentLength = 40;
-
-          var dx = side === 'left' ? -extentLength :
-                   side === 'right' ? +extentLength :
-                   0;
-          var dy = side === 'top' ? -extentLength :
-                   side === 'bottom' ? +extentLength :
-                   0;
-          var outerVertex = new Vertex( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
-          // outerVertex.attachable = true;
-          outerVertex.blackBoxInterfaceProperty.set( true );
-          outerVertex.draggableProperty.set( false );
-          outerVertex.outerWireStub = true;
-          vertex.blackBoxInterfaceProperty.set( true );
-
-          var w = new Wire( vertex, outerVertex, self.circuit.wireResistivityProperty, wireStubGroupTandem.createNextTandem(), {
-            wireStub: true,
-            interactive: false
-          } );
-          circuit.circuitElements.push( w );
-        }
-      }
-    };
-
-    addWireStubs();
+  class BlackBoxSceneModel extends CircuitConstructionKitModel {
 
     /**
-     * Check whether the user built (at least part of) their own black box circuit, which enables the reveal button.
-     * @returns {boolean}
+     * @param {Object} trueBlackBoxCircuitObject - plain object for the circuit inside the black box (the true one, not the user-created one)
+     * @param {Tandem} tandem
      */
-    var userBuiltSomething = function() {
-      var count = 0;
-      circuit.circuitElements.forEach( function( element ) {
-        var isConnectedToBlackBoxInterface = element.startVertexProperty.get().blackBoxInterfaceProperty.get() || element.endVertexProperty.get().blackBoxInterfaceProperty.get();
-        if ( element.interactiveProperty.get() && isConnectedToBlackBoxInterface ) {
-          count++;
-        }
+    constructor( trueBlackBoxCircuitObject, tandem ) {
+      super( tandem, {
+        revealing: false,
+        blackBoxStudy: true
       } );
-      return count > 0;
-    };
+      const trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
 
-    // Enable the reveal button if the user has done something in build mode.
-    circuit.circuitChangedEmitter.addListener( function() {
-      var builtSomething = self.modeProperty.get() === InteractionMode.TEST && userBuiltSomething();
-      self.isRevealEnabledProperty.set( self.revealingProperty.get() || builtSomething );
-    } );
+        // All of the circuit elements in the true black box should be non-interactive
+        interactive: false,
+        insideTrueBlackBox: true
+      } );
 
-    /**
-     * Remove the true black box contents or user-created black box contents
-     * @param {CircuitStruct} blackBoxCircuit
-     */
-    var removeBlackBoxContents = function( blackBoxCircuit ) {
-      // circuit.circuitElements.removeAll( blackBoxCircuit.wires );
-      // circuit.circuitElements.removeAll( blackBoxCircuit.lightBulbs );
-      // circuit.circuitElements.removeAll( blackBoxCircuit.resistors );
-      // circuit.circuitElements.removeAll( blackBoxCircuit.batteries );
+      assert && assert( trueBlackBoxCircuitStruct instanceof CircuitStruct, 'circuit should be CircuitStruct' );
 
-      // Remove the vertices but not those on the black box interface
-      // for ( var i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
-      //   var vertex = blackBoxCircuit.vertices[ i ];
-      //   if ( !vertex.blackBoxInterfaceProperty.get() ) {
-      //     circuit.vertices.remove( vertex );
-      //   }
-      // }
-    };
+      // When loading a black box circuit, none of the vertices should be draggable
+      // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
+      for ( let i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
+        trueBlackBoxCircuitStruct.vertices[ i ].draggableProperty.set( false );
 
-    /**
-     * Add the true black box contents or user-created black box contents
-     * @param {CircuitStruct} blackBoxCircuit
-     */
-    var addBlackBoxContents = function( blackBoxCircuit ) {
-
-      // circuit.circuitElements.addAll( blackBoxCircuit.wires );
-      // circuit.circuitElements.addAll( blackBoxCircuit.resistors );
-      // circuit.circuitElements.addAll( blackBoxCircuit.batteries );
-      // circuit.circuitElements.addAll( blackBoxCircuit.lightBulbs );
-      //
-      // blackBoxCircuit.circuitElements.forEach( function( circuitElement ) {
-      //   circuitElement.moveToFrontEmitter.emit();
-      // } );
-    };
-
-    // Logic for changing the contents of the black box when the mode changes
-    // TODO: All of this logic must be re-read and re-evaluated.
-    this.modeProperty.link( function( mode ) {
-
-      // When switching to InteractionMode.TEST mode, remove all of the black box circuitry and vice-versa
-      if ( mode === InteractionMode.TEST ) {
-
-        removeBlackBoxContents( trueBlackBoxCircuitStruct );
-
-        // Any draggable vertices that remain should be made unattachable and undraggable, so the user cannot update the
-        // circuit outside the box
-        circuit.vertices.forEach( function( vertex ) {
-          if ( !vertex.blackBoxInterfaceProperty.get() ) {
-            vertex.attachableProperty.set( false );
-            vertex.draggableProperty.set( false );
-            vertex.interactiveProperty.set( false );
-          }
-        } );
-        circuit.circuitElements.forEach( function( circuitElement ) {
-          circuitElement.interactiveProperty.set( false );
-        } );
-        addBlackBoxContents( userBlackBoxCircuit );
+        if ( trueBlackBoxCircuitStruct.vertices[ i ].attachableProperty.get() ) {
+          trueBlackBoxCircuitStruct.vertices[ i ].blackBoxInterfaceProperty.set( true );
+        }
+        else {
+          trueBlackBoxCircuitStruct.vertices[ i ].insideTrueBlackBoxProperty.set( true );
+        }
       }
-      else {
 
-        // Switched to InteractionMode.EXPLORE. Move interior elements to userBlackBoxCircuit
-        userBlackBoxCircuit.clear();
-        circuit.vertices.forEach( function( v ) { if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {userBlackBoxCircuit.vertices.push( v );}} );
-        circuit.circuitElements.forEach( function( circuitElement ) {
-          if ( circuitElement.interactiveProperty.get() ) {
+      // @public - true if the user has created a circuit for comparison with the black box (1+ terminal connected)
+      this.isRevealEnabledProperty = new BooleanProperty( false, {
+        tandem: tandem.createTandem( 'isRevealEnabledProperty' )
+      } );
 
-            // TODO: abstraction
-            if ( circuitElement instanceof Wire ) {
-              userBlackBoxCircuit.wires.push( circuitElement );
-            }
-            else if ( circuitElement instanceof Battery ) {
-              userBlackBoxCircuit.batteries.push( circuitElement );
-            }
-            else if ( circuitElement instanceof LightBulb ) {
-              userBlackBoxCircuit.lightBulbs.push( circuitElement );
-            }
-            else if ( circuitElement instanceof Resistor ) {
-              userBlackBoxCircuit.resistors.push( circuitElement );
-            }
-            else if ( circuitElement instanceof Switch ) {
-              userBlackBoxCircuit.switches.push( circuitElement );
-            }
+      // @public - or syntax highlighting and navigation only
+      this.circuit = this.circuit || null;
+
+      // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
+      this.revealingProperty.lazyLink( revealing => this.modeProperty.set( revealing ? InteractionMode.EXPLORE : InteractionMode.TEST ) );
+
+      // Keep track of what the user has built inside the black box so it may be restored.
+      const userBlackBoxCircuit = new CircuitStruct();
+      const circuit = this.circuit;
+
+      const wireStubGroupTandem = tandem.createGroupTandem( 'wireStubs' );
+      // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
+      const addWireStubs = () => {
+        for ( let i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
+          const vertex = trueBlackBoxCircuitStruct.vertices[ i ];
+          if ( vertex.blackBoxInterfaceProperty.get() ) {
+            vertex.blackBoxInterfaceProperty.set( false );
+
+            // the center of the black box is approximately (508, 305).  Point the wires away from the box.
+            const side = vertex.positionProperty.value.x < 400 ? 'left' :
+                         vertex.positionProperty.value.x > 600 ? 'right' :
+                         vertex.positionProperty.value.y < 200 ? 'top' :
+                         'bottom';
+
+            const extentLength = 40;
+
+            const dx = side === 'left' ? -extentLength :
+                       side === 'right' ? +extentLength :
+                       0;
+            const dy = side === 'top' ? -extentLength :
+                       side === 'bottom' ? +extentLength :
+                       0;
+            const outerVertex = new Vertex( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
+            // outerVertex.attachable = true;
+            outerVertex.blackBoxInterfaceProperty.set( true );
+            outerVertex.draggableProperty.set( false );
+            outerVertex.outerWireStub = true;
+            vertex.blackBoxInterfaceProperty.set( true );
+
+            const w = new Wire( vertex, outerVertex, this.circuit.wireResistivityProperty, wireStubGroupTandem.createNextTandem(), {
+              wireStub: true,
+              interactive: false
+            } );
+            circuit.circuitElements.push( w );
           }
-        } );
-        removeBlackBoxContents( userBlackBoxCircuit );
+        }
+      };
 
-        // Any attachable vertices outside the box should become attachable and draggable
-        circuit.vertices.forEach( function( vertex ) {
-          if ( !vertex.blackBoxInterfaceProperty.get() ) {
-            vertex.draggableProperty.set( true );
-            vertex.attachableProperty.set( true );
-            vertex.interactiveProperty.set( true );
-          }
-        } );
-        circuit.circuitElements.forEach( function( circuitElement ) {
-          if ( circuitElement.wireStub === true ) {
-            // no nop, wire stubs remain non-interactive
-          }
-          else {
-            circuitElement.interactiveProperty.set( true );
-          }
-        } );
-
-        addBlackBoxContents( trueBlackBoxCircuitStruct );
-      }
-      circuit.solve();
-    } );
-
-    // @private - called by reset
-    this.resetBlackBoxSceneModel = function() {
       addWireStubs();
-      addBlackBoxContents( trueBlackBoxCircuitStruct );
-      userBlackBoxCircuit.clear();
-    };
-  }
 
-  circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneModel', BlackBoxSceneModel );
+      /**
+       * Check whether the user built (at least part of) their own black box circuit, which enables the reveal button.
+       * @returns {boolean}
+       */
+      const userBuiltSomething = () => {
+        let count = 0;
+        circuit.circuitElements.forEach( element => {
+          const isConnectedToBlackBoxInterface = element.startVertexProperty.get().blackBoxInterfaceProperty.get() || element.endVertexProperty.get().blackBoxInterfaceProperty.get();
+          if ( element.interactiveProperty.get() && isConnectedToBlackBoxInterface ) {
+            count++;
+          }
+        } );
+        return count > 0;
+      };
 
-  return inherit( CircuitConstructionKitModel, BlackBoxSceneModel, {
+      // Enable the reveal button if the user has done something in build mode.
+      circuit.circuitChangedEmitter.addListener( () => {
+        const builtSomething = this.modeProperty.get() === InteractionMode.TEST && userBuiltSomething();
+        this.isRevealEnabledProperty.set( this.revealingProperty.get() || builtSomething );
+      } );
+
+      /**
+       * Remove the true black box contents or user-created black box contents
+       * @param {CircuitStruct} blackBoxCircuit
+       */
+      const removeBlackBoxContents = blackBoxCircuit => {
+        // circuit.circuitElements.removeAll( blackBoxCircuit.wires );
+        // circuit.circuitElements.removeAll( blackBoxCircuit.lightBulbs );
+        // circuit.circuitElements.removeAll( blackBoxCircuit.resistors );
+        // circuit.circuitElements.removeAll( blackBoxCircuit.batteries );
+
+        // Remove the vertices but not those on the black box interface
+        // for ( const i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
+        //   const vertex = blackBoxCircuit.vertices[ i ];
+        //   if ( !vertex.blackBoxInterfaceProperty.get() ) {
+        //     circuit.vertices.remove( vertex );
+        //   }
+        // }
+      };
+
+      /**
+       * Add the true black box contents or user-created black box contents
+       * @param {CircuitStruct} blackBoxCircuit
+       */
+      const addBlackBoxContents = blackBoxCircuit => {
+
+        // circuit.circuitElements.addAll( blackBoxCircuit.wires );
+        // circuit.circuitElements.addAll( blackBoxCircuit.resistors );
+        // circuit.circuitElements.addAll( blackBoxCircuit.batteries );
+        // circuit.circuitElements.addAll( blackBoxCircuit.lightBulbs );
+        //
+        // blackBoxCircuit.circuitElements.forEach( function( circuitElement ) {
+        //   circuitElement.moveToFrontEmitter.emit();
+        // } );
+      };
+
+      // Logic for changing the contents of the black box when the mode changes
+      // TODO: All of this logic must be re-read and re-evaluated.
+      this.modeProperty.link( mode => {
+
+        // When switching to InteractionMode.TEST mode, remove all of the black box circuitry and vice-versa
+        if ( mode === InteractionMode.TEST ) {
+
+          removeBlackBoxContents( trueBlackBoxCircuitStruct );
+
+          // Any draggable vertices that remain should be made unattachable and undraggable, so the user cannot update the
+          // circuit outside the box
+          circuit.vertices.forEach( vertex => {
+            if ( !vertex.blackBoxInterfaceProperty.get() ) {
+              vertex.attachableProperty.set( false );
+              vertex.draggableProperty.set( false );
+              vertex.interactiveProperty.set( false );
+            }
+          } );
+          circuit.circuitElements.forEach( circuitElement => circuitElement.interactiveProperty.set( false ) );
+          addBlackBoxContents( userBlackBoxCircuit );
+        }
+        else {
+
+          // Switched to InteractionMode.EXPLORE. Move interior elements to userBlackBoxCircuit
+          userBlackBoxCircuit.clear();
+          circuit.vertices.forEach( v => {
+            if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {
+              userBlackBoxCircuit.vertices.push( v );
+            }
+          } );
+          circuit.circuitElements.forEach( circuitElement => {
+            if ( circuitElement.interactiveProperty.get() ) {
+
+              // TODO: abstraction
+              if ( circuitElement instanceof Wire ) {
+                userBlackBoxCircuit.wires.push( circuitElement );
+              }
+              else if ( circuitElement instanceof Battery ) {
+                userBlackBoxCircuit.batteries.push( circuitElement );
+              }
+              else if ( circuitElement instanceof LightBulb ) {
+                userBlackBoxCircuit.lightBulbs.push( circuitElement );
+              }
+              else if ( circuitElement instanceof Resistor ) {
+                userBlackBoxCircuit.resistors.push( circuitElement );
+              }
+              else if ( circuitElement instanceof Switch ) {
+                userBlackBoxCircuit.switches.push( circuitElement );
+              }
+            }
+          } );
+          removeBlackBoxContents( userBlackBoxCircuit );
+
+          // Any attachable vertices outside the box should become attachable and draggable
+          circuit.vertices.forEach( vertex => {
+            if ( !vertex.blackBoxInterfaceProperty.get() ) {
+              vertex.draggableProperty.set( true );
+              vertex.attachableProperty.set( true );
+              vertex.interactiveProperty.set( true );
+            }
+          } );
+          circuit.circuitElements.forEach( circuitElement => {
+            if ( circuitElement.wireStub === true ) {
+              // no nop, wire stubs remain non-interactive
+            }
+            else {
+              circuitElement.interactiveProperty.set( true );
+            }
+          } );
+
+          addBlackBoxContents( trueBlackBoxCircuitStruct );
+        }
+        circuit.solve();
+      } );
+
+      // @private - called by reset
+      this.resetBlackBoxSceneModel = () => {
+        addWireStubs();
+        addBlackBoxContents( trueBlackBoxCircuitStruct );
+        userBlackBoxCircuit.clear();
+      };
+    }
 
     /**
      * Reset the model.
      * @overrides
      * @public
      */
-    reset: function() {
-      CircuitConstructionKitModel.prototype.reset.call( this );
-      // @public - whether the user is in the InteractionMode.EXPLORE or InteractionMode.TEST mode
+    reset() {
+      super.reset();
       this.revealingProperty.reset();
       this.isRevealEnabledProperty.reset();
       this.resetBlackBoxSceneModel();
     }
-  } );
+  }
+
+  return circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneModel', BlackBoxSceneModel );
 } );

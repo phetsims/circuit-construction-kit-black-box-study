@@ -5,23 +5,23 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BlackBoxScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxScreen' );
-  var ExploreScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/ExploreScreen' );
-  var Sim = require( 'JOIST/Sim' );
-  var SimLauncher = require( 'JOIST/SimLauncher' );
-  var Tandem = require( 'TANDEM/Tandem' );
+  const BlackBoxScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxScreen' );
+  const ExploreScreen = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/explore/ExploreScreen' );
+  const Sim = require( 'JOIST/Sim' );
+  const SimLauncher = require( 'JOIST/SimLauncher' );
+  const Tandem = require( 'TANDEM/Tandem' );
 
   // constants
-  var TANDEM = Tandem.rootTandem;
+  const TANDEM = Tandem.rootTandem;
 
   // strings
-  var circuitConstructionKitBlackBoxStudyTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuit-construction-kit-black-box-study.title' );
+  const circuitConstructionKitBlackBoxStudyTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuit-construction-kit-black-box-study.title' );
 
-  var simOptions = {
+  const simOptions = {
     credits: {
       leadDesign: 'Amy Rouinfar',
       softwareDevelopment: 'Sam Reid',
@@ -35,8 +35,8 @@ define( function( require ) {
   // algorithm.  In order to load the classes into an accessible namespace, the *-config.js and *-main.js are loaded
   // however, when running the unit tests we don't also want to launch the simulation.
   if ( !window.circuitConstructionKitTestSuite ) {
-    SimLauncher.launch( function() {
-      var sim = new Sim( circuitConstructionKitBlackBoxStudyTitleString, [
+    SimLauncher.launch( () => {
+      const sim = new Sim( circuitConstructionKitBlackBoxStudyTitleString, [
         new ExploreScreen( TANDEM.createTandem( 'exploreScreen' ) ),
         new BlackBoxScreen( TANDEM.createTandem( 'blackBoxScreen' ) )
       ], simOptions );

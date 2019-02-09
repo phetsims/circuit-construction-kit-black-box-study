@@ -5,102 +5,97 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var BlackBoxSceneModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/BlackBoxSceneModel' );
-  var BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
-  var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var WarmUpSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WarmUpSceneView' );
+  const BlackBoxSceneModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/BlackBoxSceneModel' );
+  const BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
+  const ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const ScreenView = require( 'JOIST/ScreenView' );
+  const WarmUpSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WarmUpSceneView' );
 
-  /**
-   * @param {BlackBoxModel} blackBoxScreenModel
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function BlackBoxScreenView( blackBoxScreenModel, tandem ) {
-    ScreenView.call( this );
-    var self = this;
+  class BlackBoxScreenView extends ScreenView {
 
-    // @private - the model
-    this.blackBoxScreenModel = blackBoxScreenModel;
+    /**
+     * @param {BlackBoxModel} blackBoxScreenModel
+     * @param {Tandem} tandem
+     */
+    constructor( blackBoxScreenModel, tandem ) {
+      super();
 
-    // @private - the scene views which will be populated when selected
-    this.sceneViews = {};
+      // @private - the model
+      this.blackBoxScreenModel = blackBoxScreenModel;
 
-    blackBoxScreenModel.sceneProperty.link( function( scene ) {
+      // @private - the scene views which will be populated when selected
+      this.sceneViews = {};
 
-      // Create the scene if it did not already exist
-      if ( !self.sceneViews[ scene ] ) {
+      blackBoxScreenModel.sceneProperty.link( scene => {
 
-        // Use the same dimensions for every black box so the size doesn't indicate what could be inside, in view
-        // coordinates
-        var blackBoxWidth = 250;
-        var blackBoxHeight = 250;
+        // Create the scene if it did not already exist
+        if ( !this.sceneViews[ scene ] ) {
 
-        if ( scene === 'warmup' ) {
-          self.sceneViews[ scene ] = new WarmUpSceneView(
-            blackBoxWidth,
-            blackBoxHeight,
-            new BlackBoxSceneModel( ChallengeSet.warmupCircuitStateObject, tandem.createTandem( scene + 'Model' ) ),
-            blackBoxScreenModel.sceneProperty,
-            tandem.createTandem( scene + 'SceneView' )
-          );
+          // Use the same dimensions for every black box so the size doesn't indicate what could be inside, in view
+          // coordinates
+          const blackBoxWidth = 250;
+          const blackBoxHeight = 250;
+
+          if ( scene === 'warmup' ) {
+            this.sceneViews[ scene ] = new WarmUpSceneView(
+              blackBoxWidth,
+              blackBoxHeight,
+              new BlackBoxSceneModel( ChallengeSet.warmupCircuitStateObject, tandem.createTandem( scene + 'Model' ) ),
+              blackBoxScreenModel.sceneProperty,
+              tandem.createTandem( scene + 'SceneView' )
+            );
+          }
+          else if ( scene.indexOf( 'scene' ) === 0 ) {
+            const index = parseInt( scene.substring( 'scene'.length ), 10 );
+            this.sceneViews[ scene ] = new BlackBoxSceneView(
+              blackBoxWidth,
+              blackBoxHeight,
+              new BlackBoxSceneModel( ChallengeSet.challengeArray[ index ], tandem.createTandem( scene + 'Model' ) ),
+              blackBoxScreenModel.sceneProperty,
+              tandem.createTandem( scene + 'SceneView' )
+            );
+          }
+          else {
+            assert && assert( false, 'no model found' );
+          }
         }
-        else if ( scene.indexOf( 'scene' ) === 0 ) {
-          var index = parseInt( scene.substring( 'scene'.length ), 10 );
-          self.sceneViews[ scene ] = new BlackBoxSceneView(
-            blackBoxWidth,
-            blackBoxHeight,
-            new BlackBoxSceneModel( ChallengeSet.challengeArray[ index ], tandem.createTandem( scene + 'Model' ) ),
-            blackBoxScreenModel.sceneProperty,
-            tandem.createTandem( scene + 'SceneView' )
-          );
-        }
-        else {
-          assert && assert( false, 'no model found' );
-        }
-      }
 
-      // Update layout when the scene changes
-      self.updateAllSceneLayouts && self.updateAllSceneLayouts();
+        // Update layout when the scene changes
+        this.updateAllSceneLayouts && this.updateAllSceneLayouts();
 
-      // Show the selected scene
-      var sceneView = self.sceneViews[ scene ];
-      self.children = [ sceneView ];
+        // Show the selected scene
+        const sceneView = this.sceneViews[ scene ];
+        this.children = [ sceneView ];
 
-      // Fix the vertex layering.
-      sceneView.model.circuit.vertices.forEach( function( vertex ) {
-        vertex.relayerEmitter.emit();
+        // Fix the vertex layering.
+        sceneView.model.circuit.vertices.forEach( vertex => vertex.relayerEmitter.emit() );
       } );
-    } );
 
-    this.visibleBoundsProperty.link( function( visibleBounds ) {
+      this.visibleBoundsProperty.link( visibleBounds => {
 
-      // TODO: it seems odd to change this function each time the bounds change.  Perhaps factor out into a single function.
-      self.updateAllSceneLayouts = function() {
-        _.keys( self.sceneViews ).forEach( function( key ) {
-          self.sceneViews[ key ].visibleBoundsProperty.set( visibleBounds.copy() );
-        } );
-      };
-      self.updateAllSceneLayouts();
-    } );
-  }
-
-  circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenView', BlackBoxScreenView );
-
-  return inherit( ScreenView, BlackBoxScreenView, {
+        // TODO: it seems odd to change this function each time the bounds change.  Perhaps factor out into a single function.
+        this.updateAllSceneLayouts = () => {
+          _.keys( this.sceneViews ).forEach(
+            key => this.sceneViews[ key ].visibleBoundsProperty.set( visibleBounds.copy() )
+          );
+        };
+        this.updateAllSceneLayouts();
+      } );
+    }
 
     /**
      * When the model clock ticks in Joist, send the clock tick to the selected scene.
      * @param {number} dt - in seconds
      */
-    step: function( dt ) {
+    step( dt ) {
       this.sceneViews[ this.blackBoxScreenModel.sceneProperty.value ].model.step( dt );
     }
-  } );
+  }
+
+  return circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenView', BlackBoxScreenView );
 } );

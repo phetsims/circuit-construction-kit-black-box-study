@@ -6,16 +6,16 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
 
   // constants
-  var resistivity = 1E-4;
+  const resistivity = 1E-4;
 
-  var warmupCircuitStateObject = {
+  const warmupCircuitStateObject = {
     wires: [
       {
         resistivity: resistivity,
@@ -63,7 +63,7 @@ define( function( require ) {
       }
     ]
   };
-  var challengeArray = [
+  const challengeArray = [
 
     // Black Box 1
     {
@@ -1394,7 +1394,7 @@ define( function( require ) {
       ]
     } ];
 
-  var ChallengeSet = {
+  const ChallengeSet = {
     warmupCircuitStateObject: warmupCircuitStateObject,
     challengeArray: challengeArray
   };

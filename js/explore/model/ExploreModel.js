@@ -5,22 +5,18 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitConstructionKitModel' );
-  var inherit = require( 'PHET_CORE/inherit' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitConstructionKitModel' );
 
-  /**
-   * @constructor
-   */
-  function ExploreModel( tandem ) {
-    CircuitConstructionKitModel.call( this, tandem, { blackBoxStudy: true } );
+  class ExploreModel extends CircuitConstructionKitModel {
+    constructor( tandem ) {
+      super( tandem, { blackBoxStudy: true } );
+    }
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'ExploreModel', ExploreModel );
-
-  return inherit( CircuitConstructionKitModel, ExploreModel );
+  return circuitConstructionKitBlackBoxStudy.register( 'ExploreModel', ExploreModel );
 } );

@@ -5,24 +5,20 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var StringProperty = require( 'AXON/StringProperty' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const StringProperty = require( 'AXON/StringProperty' );
 
-  /**
-   * @constructor
-   */
-  function BlackBoxModel() {
+  class BlackBoxModel {
+    constructor() {
 
-    // @public - indicates which scene is selected: warmup/scene0-scene14
-    this.sceneProperty = new StringProperty( 'warmup' );
+      // @public - indicates which scene is selected: warmup/scene0-scene14
+      this.sceneProperty = new StringProperty( 'warmup' );
+    }
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'BlackBoxModel', BlackBoxModel );
-
-  return inherit( Object, BlackBoxModel );
+  return circuitConstructionKitBlackBoxStudy.register( 'BlackBoxModel', BlackBoxModel );
 } );

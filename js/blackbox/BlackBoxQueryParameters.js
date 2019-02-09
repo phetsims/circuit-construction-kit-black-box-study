@@ -5,13 +5,13 @@
  *
  * @author Sam Reid
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
 
-  var BlackBoxQueryParameters = QueryStringMachine.getAll( {
+  const BlackBoxQueryParameters = QueryStringMachine.getAll( {
 
     // Determines whether the black box reveal buttons will be shown.
     showRevealButton: { type: 'boolean', defaultValue: true }

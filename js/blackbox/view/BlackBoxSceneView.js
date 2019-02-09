@@ -6,262 +6,255 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var CCKCScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKCScreenView' );
-  var ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var ComboBox = require( 'SUN/ComboBox' );
-  var ComboBoxItem = require( 'SUN/ComboBoxItem' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var InteractionMode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/InteractionMode' );
-  var ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
-  var Node = require( 'SCENERY/nodes/Node' );
-  var Text = require( 'SCENERY/nodes/Text' );
-  var CCKCConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
-  var BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
-  var BlackBoxQueryParameters = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxQueryParameters' );
-  var CircuitElementToolFactory = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitElementToolFactory' );
-  var Property = require( 'AXON/Property' );
-  var RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
-  var ScreenView = require( 'JOIST/ScreenView' );
-  var WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
+  const CCKCScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CCKCScreenView' );
+  const ChallengeSet = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/ChallengeSet' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const ComboBox = require( 'SUN/ComboBox' );
+  const ComboBoxItem = require( 'SUN/ComboBoxItem' );
+  const Circuit = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Circuit' );
+  const ModeRadioButtonGroup = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/ModeRadioButtonGroup' );
+  const Node = require( 'SCENERY/nodes/Node' );
+  const Text = require( 'SCENERY/nodes/Text' );
+  const CCKCConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
+  const BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
+  const BlackBoxQueryParameters = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/BlackBoxQueryParameters' );
+  const CircuitElementToolFactory = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CircuitElementToolFactory' );
+  const Property = require( 'AXON/Property' );
+  const RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
+  const ScreenView = require( 'JOIST/ScreenView' );
+  const WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
 
   // constants
-  // var FADED_COLOR = new Color( '#e3edfc' );
-  // var SOLID_COLOR = CCKCConstants.BACKGROUND_COLOR;
+  const InteractionMode = Circuit.InteractionMode;
 
-  /**
-   * @param {number} blackBoxWidth - the width of the black box in view coordinates
-   * @param {number} blackBoxHeight - the height of the black box in view coordinates
-   * @param {BlackBoxSceneModel} blackBoxSceneModel - the model for the scene to display
-   * @param {Property.<string>} sceneProperty - for switching screens
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function BlackBoxSceneView( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
-    var self = this;
+  // constants
+  // const FADED_COLOR = new Color( '#e3edfc' );
+  // const SOLID_COLOR = CCKCConstants.BACKGROUND_COLOR;
 
-    var circuitElementToolFactory = new CircuitElementToolFactory( blackBoxSceneModel.circuit, blackBoxSceneModel.showLabelsProperty, blackBoxSceneModel.viewTypeProperty, function( point ) {
-      return self.circuitLayerNode.globalToLocalPoint( point );
-    } );
+  class BlackBoxSceneView extends CCKCScreenView {
+    /**
+     * @param {number} blackBoxWidth - the width of the black box in view coordinates
+     * @param {number} blackBoxHeight - the height of the black box in view coordinates
+     * @param {BlackBoxSceneModel} blackBoxSceneModel - the model for the scene to display
+     * @param {Property.<string>} sceneProperty - for switching screens
+     * @param {Tandem} tandem
+     */
+    constructor( blackBoxWidth, blackBoxHeight, blackBoxSceneModel, sceneProperty, tandem ) {
 
-    var wireToolNode = circuitElementToolFactory.createWireToolNode( 25, tandem.createTandem( 'wireToolNode' ) );
+      const circuitElementToolFactory = new CircuitElementToolFactory( blackBoxSceneModel.circuit, blackBoxSceneModel.showLabelsProperty, blackBoxSceneModel.viewTypeProperty,
+        point => this.circuitLayerNode.globalToLocalPoint( point ) );
 
-    // Tool nodes that appear on every screen. Pagination for the carousel, each page should begin with wire node
-    var circuitElementToolNodes = [
+      const wireToolNode = circuitElementToolFactory.createWireToolNode( 25, tandem.createTandem( 'wireToolNode' ) );
 
-      // This page is duplicated in the Lab Screen View
-      wireToolNode,
-      circuitElementToolFactory.createRightBatteryToolNode( 10, tandem.createTandem( 'rightBatteryToolNode' ) ),
-      circuitElementToolFactory.createLightBulbToolNode( 10, tandem.createTandem( 'lightBulbToolNode' ) ),
-      circuitElementToolFactory.createResistorToolNode( 10, tandem.createTandem( 'resistorToolNode' ) ),
-      circuitElementToolFactory.createSwitchToolNode( 5, tandem.createTandem( 'switchToolNode' ) ),
+      // Tool nodes that appear on every screen. Pagination for the carousel, each page should begin with wire node
+      const circuitElementToolNodes = [
 
-      new Node( { children: [ wireToolNode ] } ), // Wire should appear at the top of each carousel page
-      circuitElementToolFactory.createDollarBillToolNode( 1, tandem.createTandem( 'dollarBillToolNode' ) ),
-      circuitElementToolFactory.createPaperClipToolNode( 1, tandem.createTandem( 'paperClipToolNode' ) ),
-      circuitElementToolFactory.createCoinToolNode( 1, tandem.createTandem( 'coinToolNode' ) ),
-      circuitElementToolFactory.createEraserToolNode( 1, tandem.createTandem( 'eraserToolNode' ) ),
+        // This page is duplicated in the Lab Screen View
+        wireToolNode,
+        circuitElementToolFactory.createRightBatteryToolNode( 10, tandem.createTandem( 'rightBatteryToolNode' ) ),
+        circuitElementToolFactory.createLightBulbToolNode( 10, tandem.createTandem( 'lightBulbToolNode' ) ),
+        circuitElementToolFactory.createResistorToolNode( 10, tandem.createTandem( 'resistorToolNode' ) ),
+        circuitElementToolFactory.createSwitchToolNode( 5, tandem.createTandem( 'switchToolNode' ) ),
 
-      new Node( { children: [ wireToolNode ] } ),// Wire should appear at the top of each carousel page
-      circuitElementToolFactory.createPencilToolNode( 1, tandem.createTandem( 'pencilToolNode' ) ),
-      circuitElementToolFactory.createHandToolNode( 1, tandem.createTandem( 'handToolNode' ) ),
-      circuitElementToolFactory.createDogToolNode( 1, tandem.createTandem( 'dogToolNode' ) )
-    ];
+        new Node( { children: [ wireToolNode ] } ), // Wire should appear at the top of each carousel page
+        circuitElementToolFactory.createDollarBillToolNode( 1, tandem.createTandem( 'dollarBillToolNode' ) ),
+        circuitElementToolFactory.createPaperClipToolNode( 1, tandem.createTandem( 'paperClipToolNode' ) ),
+        circuitElementToolFactory.createCoinToolNode( 1, tandem.createTandem( 'coinToolNode' ) ),
+        circuitElementToolFactory.createEraserToolNode( 1, tandem.createTandem( 'eraserToolNode' ) ),
 
-    CCKCScreenView.call( this, blackBoxSceneModel, circuitElementToolNodes, tandem, {
-      toolboxOrientation: 'vertical',
-      showResetAllButton: true,
-      blackBoxStudy: true
-    } );
+        new Node( { children: [ wireToolNode ] } ),// Wire should appear at the top of each carousel page
+        circuitElementToolFactory.createPencilToolNode( 1, tandem.createTandem( 'pencilToolNode' ) ),
+        circuitElementToolFactory.createHandToolNode( 1, tandem.createTandem( 'handToolNode' ) ),
+        circuitElementToolFactory.createDogToolNode( 1, tandem.createTandem( 'dogToolNode' ) )
+      ];
 
-    // Add 'Explore' and 'Test' radio buttons under the sensor toolbox
-    var modeRadioButtonGroup = new ModeRadioButtonGroup( blackBoxSceneModel.modeProperty, tandem.createTandem( 'modeRadioButtonGroup' ) );
-    this.addChild( modeRadioButtonGroup );
+      super( blackBoxSceneModel, circuitElementToolNodes, tandem, {
+        toolboxOrientation: 'vertical',
+        showResetAllButton: true,
+        blackBoxStudy: true
+      } );
 
-    var revealButton = new RevealButton(
-      blackBoxSceneModel.revealingProperty,
-      blackBoxSceneModel.isRevealEnabledProperty,
-      tandem.createTandem( 'revealButton' )
-    );
+      // Add 'Explore' and 'Test' radio buttons under the sensor toolbox
+      const modeRadioButtonGroup = new ModeRadioButtonGroup( blackBoxSceneModel.modeProperty, tandem.createTandem( 'modeRadioButtonGroup' ) );
+      this.addChild( modeRadioButtonGroup );
 
-    // The reveal button can be hidden with a sim-specific query parameter
-    if ( BlackBoxQueryParameters.showRevealButton ) {
-      this.addChild( revealButton );
-    }
+      const revealButton = new RevealButton(
+        blackBoxSceneModel.revealingProperty,
+        blackBoxSceneModel.isRevealEnabledProperty,
+        tandem.createTandem( 'revealButton' )
+      );
 
-    // Circuit components and ammeter/voltmeter should be in front of these controls
-    modeRadioButtonGroup.moveToBack();
-    revealButton.moveToBack();
-
-    // Options for Text instances that will appear in the ComboBox
-    var comboBoxTextOptions = {
-      fontSize: 16
-    };
-
-    // A different ComboBox instance appears in each BlackBoxSceneView
-    var elements = [ new ComboBoxItem(
-      new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
-      'warmup', {
-        tandemName: 'warmup'
-      } ) ];
-    for ( var i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
-      elements.push( new ComboBoxItem(
-        new Text( 'Black Box ' + ( i + 1 ), comboBoxTextOptions ), // TODO: i18n
-        'scene' + i, {
-          tandemName: 'scene' + i
-        }
-      ) );
-    }
-    // create a node to keep track of combo box popup menu
-    var listParent = new Node();
-    this.addChild( listParent );
-
-    var sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
-      xMargin: 12,
-      yMargin: 10,
-      cornerRadius: 6,
-      tandem: tandem.createTandem( 'sceneSelectionComboBox' )
-    } );
-    this.addChild( sceneSelectionComboBox );
-
-    // Layout when the screen view size changed
-    this.visibleBoundsProperty.link( function( visibleBounds ) {
-      modeRadioButtonGroup.top = self.sensorToolbox.bottom + 20;
-      modeRadioButtonGroup.right = self.sensorToolbox.right;
-
-      revealButton.top = modeRadioButtonGroup.bottom + 10;
-      revealButton.right = modeRadioButtonGroup.right;
-
-      sceneSelectionComboBox.centerX = visibleBounds.centerX;
-      sceneSelectionComboBox.top = visibleBounds.top + CCKCConstants.VERTICAL_MARGIN;
-      listParent.left = sceneSelectionComboBox.left;
-      listParent.top = sceneSelectionComboBox.bottom;
-    } );
-
-    var blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {
-
-      // Assumes the default layout bounds are used
-      center: ScreenView.DEFAULT_LAYOUT_BOUNDS.center
-    } );
-
-    // Expand the black box bounds so all of the black box vertices are inside the bounds, see #128
-    blackBoxSceneModel.blackBoxBounds = blackBoxNode.bounds.dilated( 7 );
-    blackBoxSceneModel.revealingProperty.link( function( revealing ) {
-      blackBoxNode.opacity = revealing ? 0.2 : 1.0;
-    } );
-    blackBoxSceneModel.modeProperty.link( function( mode ) {
-      blackBoxNode.visible = mode === InteractionMode.EXPLORE;
-    } );
-
-    var whiteBoxNode = new WhiteBoxNode( blackBoxWidth, blackBoxHeight, {
-
-      // Assumes the default layout bounds are used
-      centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
-      centerY: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 2
-    } );
-    blackBoxSceneModel.modeProperty.link( function( mode ) {
-      whiteBoxNode.visible = mode === InteractionMode.TEST;
-    } );
-
-    // Interleave the black/white box node in the nodes, so things may go in front of it.
-    this.circuitLayerNode.afterCircuitElementsLayer.addChild( blackBoxNode );
-
-    // Store the black box node reference for help with layering
-    this.circuitLayerNode.beforeCircuitElementsLayer.addChild( whiteBoxNode );
-
-    // Update the layering of view objects when the mode changes
-    Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], function( mode, isValueDepictionEnabled ) {
-      var isTestMode = mode === InteractionMode.TEST;
-
-      // self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
-      //                             isTestMode ? FADED_COLOR :
-      //                             SOLID_COLOR;
-      if ( isTestMode ) {
-        self.circuitElementToolbox.moveToFront();
+      // The reveal button can be hidden with a sim-specific query parameter
+      if ( BlackBoxQueryParameters.showRevealButton ) {
+        this.addChild( revealButton );
       }
-      else {
 
-        // investigate mode - move black box circuit elements to the back so they won't appear in front of the black box
-        // TODO: fix layering
+      // Circuit components and ammeter/voltmeter should be in front of these controls
+      modeRadioButtonGroup.moveToBack();
+      revealButton.moveToBack();
+
+      // Options for Text instances that will appear in the ComboBox
+      const comboBoxTextOptions = {
+        fontSize: 16
+      };
+
+      // A different ComboBox instance appears in each BlackBoxSceneView
+      const elements = [ new ComboBoxItem(
+        new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
+        'warmup', {
+          tandemName: 'warmup'
+        } ) ];
+      for ( let i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
+        elements.push( new ComboBoxItem(
+          new Text( 'Black Box ' + ( i + 1 ), comboBoxTextOptions ), // TODO: i18n
+          'scene' + i, {
+            tandemName: 'scene' + i
+          }
+        ) );
       }
-      whiteBoxNode.moveToBack();
-    } );
+      // create a node to keep track of combo box popup menu
+      const listParent = new Node();
+      this.addChild( listParent );
 
-    // @private - When reset, move the boxes in front of the black box circuit elements
-    this.resetBlackBoxSceneView = function() {
-      blackBoxNode.moveToFront();
-      whiteBoxNode.moveToBack();
-    };
+      const sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
+        xMargin: 12,
+        yMargin: 10,
+        cornerRadius: 6,
+        tandem: tandem.createTandem( 'sceneSelectionComboBox' )
+      } );
+      this.addChild( sceneSelectionComboBox );
 
-    // When dropping an object in "build mode", its vertices should pop inside the black box, see #113
-    // TODO: Let's move this to the model, and make the blackBoxNodeBounds available there.
-    blackBoxSceneModel.circuit.vertexDroppedEmitter.addListener( function( vertex ) {
+      // Layout when the screen view size changed
+      this.visibleBoundsProperty.link( visibleBounds => {
+        modeRadioButtonGroup.top = this.sensorToolbox.bottom + 20;
+        modeRadioButtonGroup.right = this.sensorToolbox.right;
 
-      // Allow the wire drag event to complete so that the wire won't think it was released near another target
-      // and attach to it, see #173
-      setTimeout( function() {
+        revealButton.top = modeRadioButtonGroup.bottom + 10;
+        revealButton.right = modeRadioButtonGroup.right;
 
-        // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
-        // no need to move it inside the black box.
-        if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === InteractionMode.TEST ) {
+        sceneSelectionComboBox.centerX = visibleBounds.centerX;
+        sceneSelectionComboBox.top = visibleBounds.top + CCKCConstants.VERTICAL_MARGIN;
+        listParent.left = sceneSelectionComboBox.left;
+        listParent.top = sceneSelectionComboBox.bottom;
+      } );
 
-          // Find all the vertices that must be translated into the box, translating wires
-          (function() {
-            var vertices = blackBoxSceneModel.circuit.findAllConnectedVertices( vertex );
-            var connectedToBlackBox = vertices.filter( function( v ) {
-              return v.blackBoxInterfaceProperty.get();
-            } ).length > 0;
-            if ( !connectedToBlackBox ) {
-              for ( var i = 0; i < vertices.length; i++ ) {
-                var vertexInGroup = vertices[ i ];
+      const blackBoxNode = new BlackBoxNode( blackBoxWidth, blackBoxHeight, blackBoxSceneModel.revealingProperty, {
 
-                var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
-                var delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
+        // Assumes the default layout bounds are used
+        center: ScreenView.DEFAULT_LAYOUT_BOUNDS.center
+      } );
 
-                self.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
-              }
-            }
-          })();
+      // Expand the black box bounds so all of the black box vertices are inside the bounds, see #128
+      blackBoxSceneModel.blackBoxBounds = blackBoxNode.bounds.dilated( 7 );
+      blackBoxSceneModel.revealingProperty.link( revealing => {
+        blackBoxNode.opacity = revealing ? 0.2 : 1.0;
+      } );
+      blackBoxSceneModel.modeProperty.link( mode => {
+        blackBoxNode.visible = mode === InteractionMode.EXPLORE;
+      } );
 
-          // Find all the vertices that must be translated into the box, shrinking wires
-          // TODO: Factor out
-          (function() {
-            var vertices = blackBoxSceneModel.circuit.findAllFixedVertices( vertex );
-            var connectedToBlackBox = vertices.filter( function( v ) {
-              return v.blackBoxInterfaceProperty.get();
-            } ).length > 0;
-            if ( !connectedToBlackBox ) {
-              for ( var i = 0; i < vertices.length; i++ ) {
-                var vertexInGroup = vertices[ i ];
+      const whiteBoxNode = new WhiteBoxNode( blackBoxWidth, blackBoxHeight, {
 
-                var closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
-                var delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
+        // Assumes the default layout bounds are used
+        centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
+        centerY: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 2
+      } );
+      blackBoxSceneModel.modeProperty.link( mode => {
+        whiteBoxNode.visible = mode === InteractionMode.TEST;
+      } );
 
-                self.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
-              }
-            }
-          })();
+      // Interleave the black/white box node in the nodes, so things may go in front of it.
+      this.circuitLayerNode.afterCircuitElementsLayer.addChild( blackBoxNode );
+
+      // Store the black box node reference for help with layering
+      this.circuitLayerNode.beforeCircuitElementsLayer.addChild( whiteBoxNode );
+
+      // Update the layering of view objects when the mode changes
+      Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], ( mode, isValueDepictionEnabled ) => {
+        const isTestMode = mode === InteractionMode.TEST;
+
+        // self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
+        //                             isTestMode ? FADED_COLOR :
+        //                             SOLID_COLOR;
+        if ( isTestMode ) {
+          this.circuitElementToolbox.moveToFront();
         }
-      }, 0 );
-    } );
-  }
+        else {
 
-  circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );
+          // investigate mode - move black box circuit elements to the back so they won't appear in front of the black box
+          // TODO: fix layering
+        }
+        whiteBoxNode.moveToBack();
+      } );
 
-  return inherit( CCKCScreenView, BlackBoxSceneView, {
+      // @private - When reset, move the boxes in front of the black box circuit elements
+      this.resetBlackBoxSceneView = () => {
+        blackBoxNode.moveToFront();
+        whiteBoxNode.moveToBack();
+      };
+
+      // When dropping an object in "build mode", its vertices should pop inside the black box, see #113
+      // TODO: Let's move this to the model, and make the blackBoxNodeBounds available there.
+      blackBoxSceneModel.circuit.vertexDroppedEmitter.addListener( vertex => {
+
+        // Allow the wire drag event to complete so that the wire won't think it was released near another target
+        // and attach to it, see #173
+        setTimeout( () => {
+
+          // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
+          // no need to move it inside the black box.
+          if ( blackBoxSceneModel.circuit.vertices.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === InteractionMode.TEST ) {
+
+            // Find all the vertices that must be translated into the box, translating wires
+            ( () => {
+              const vertices = blackBoxSceneModel.circuit.findAllConnectedVertices( vertex );
+              const connectedToBlackBox = vertices.filter( v => v.blackBoxInterfaceProperty.get() ).length > 0;
+              if ( !connectedToBlackBox ) {
+                for ( let i = 0; i < vertices.length; i++ ) {
+                  const vertexInGroup = vertices[ i ];
+
+                  const closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
+                  const delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
+
+                  this.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
+                }
+              }
+            } )();
+
+            // Find all the vertices that must be translated into the box, shrinking wires
+            // TODO: Factor out
+            ( () => {
+              const vertices = blackBoxSceneModel.circuit.findAllFixedVertices( vertex );
+              const connectedToBlackBox = vertices.filter( v => v.blackBoxInterfaceProperty.get() ).length > 0;
+              if ( !connectedToBlackBox ) {
+                for ( let i = 0; i < vertices.length; i++ ) {
+                  const vertexInGroup = vertices[ i ];
+
+                  const closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
+                  const delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
+
+                  this.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
+                }
+              }
+            } )();
+          }
+        }, 0 );
+      } );
+    }
 
     /**
      * Reset the BlackBoxSceneView
      * @public
      */
-    reset: function() {
-      CCKCScreenView.prototype.reset.call( this );
+    reset() {
+      super.reset();
       this.resetBlackBoxSceneView();
     }
-  } );
+  }
+
+  return circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );
 } );

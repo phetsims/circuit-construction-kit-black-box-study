@@ -5,87 +5,85 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( function( require ) {
+define( require => {
   'use strict';
 
   // modules
-  var circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  var inherit = require( 'PHET_CORE/inherit' );
-  var Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  var Screen = require( 'JOIST/Screen' );
-  var Vector2 = require( 'DOT/Vector2' );
-  var CCKCConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
-  var CustomLightBulbNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CustomLightBulbNode' );
-  var HBox = require( 'SCENERY/nodes/HBox' );
-  var Image = require( 'SCENERY/nodes/Image' );
-  var NumberProperty = require( 'AXON/NumberProperty' );
-  var Property = require( 'AXON/Property' );
-  var Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
-  var ResistorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ResistorNode' );
-  var VBox = require( 'SCENERY/nodes/VBox' );
-  var Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
-  var Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
-  var WireNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/WireNode' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
+  const Screen = require( 'JOIST/Screen' );
+  const Vector2 = require( 'DOT/Vector2' );
+  const CCKCConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
+  const CustomLightBulbNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CustomLightBulbNode' );
+  const HBox = require( 'SCENERY/nodes/HBox' );
+  const Image = require( 'SCENERY/nodes/Image' );
+  const NumberProperty = require( 'AXON/NumberProperty' );
+  const Property = require( 'AXON/Property' );
+  const Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
+  const ResistorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ResistorNode' );
+  const VBox = require( 'SCENERY/nodes/VBox' );
+  const Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
+  const Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
+  const WireNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/WireNode' );
 
   // images
-  var batteryMipmap = require( 'mipmap!CIRCUIT_CONSTRUCTION_KIT_COMMON/battery.png' );
+  const batteryMipmap = require( 'mipmap!CIRCUIT_CONSTRUCTION_KIT_COMMON/battery.png' );
 
   // constants
-  var BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
-  var ELEMENT_WIDTH = 50;
+  const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
+  const ELEMENT_WIDTH = 50;
 
-  /**
-   * @param {Tandem} tandem
-   * @constructor
-   */
-  function CCKIcon( tandem ) {
+  class CCKIcon extends Rectangle {
 
-    Rectangle.call( this, 0, 0, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.width, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.height, {
-      fill: BACKGROUND_COLOR
-    } );
+    /**
+     * @param {Tandem} tandem
+     */
+    constructor( tandem ) {
 
-    var viewProperty = new Property( 'lifelike' );
+      super( 0, 0, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.width, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.height, {
+        fill: BACKGROUND_COLOR
+      } );
 
-    var wire = new Wire( new Vertex( new Vector2( 0, 0 ) ), new Vertex( new Vector2( 100, 0 ) ), new Property( 0 ), tandem.createTandem( 'wire' ) );
-    var wireNode = new WireNode( null, null, wire, null, viewProperty, tandem.createTandem( 'wireIcon' ) );
+      const viewProperty = new Property( 'lifelike' );
 
-    // Model element used to create the node
-    var resistor = new Resistor( new Vertex( Vector2.ZERO ), new Vertex( new Vector2( CCKCConstants.RESISTOR_LENGTH, 0 ) ), tandem.createTandem( 'resistor' ) );
+      const wire = new Wire( new Vertex( new Vector2( 0, 0 ) ), new Vertex( new Vector2( 100, 0 ) ), new Property( 0 ), tandem.createTandem( 'wire' ) );
+      const wireNode = new WireNode( null, null, wire, null, viewProperty, tandem.createTandem( 'wireIcon' ) );
 
-    var resistorNode = new ResistorNode( null, null, resistor, null, viewProperty, tandem.createTandem( 'resistorIcon' ), {
-      icon: true
-    } );
+      // Model element used to create the node
+      const resistor = new Resistor( new Vertex( Vector2.ZERO ), new Vertex( new Vector2( CCKCConstants.RESISTOR_LENGTH, 0 ) ), tandem.createTandem( 'resistor' ) );
 
-    var batteryNode = new Image( batteryMipmap );
+      const resistorNode = new ResistorNode( null, null, resistor, null, viewProperty, tandem.createTandem( 'resistorIcon' ), {
+        icon: true
+      } );
 
-    var lightBulbNode = new CustomLightBulbNode( new NumberProperty( 0 ) );
+      const batteryNode = new Image( batteryMipmap );
 
-    // icons should not be discoverable by assistive technology, and should not be focusable
-    var a11yIconOptions = {
-      tagName: null,
-      focusable: false
-    };
+      const lightBulbNode = new CustomLightBulbNode( new NumberProperty( 0 ) );
 
-    resistorNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / resistorNode.width * 0.75 } ) );
-    wireNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / wireNode.width * 0.7 } ) );
-    batteryNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / batteryNode.width } ) );
-    lightBulbNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / lightBulbNode.width / 2 } ) );
-    var vBox = new VBox( {
-      spacing: 20,
-      children: [ new HBox( { spacing: 20, children: [ wireNode, resistorNode ] } ), new HBox( {
+      // icons should not be discoverable by assistive technology, and should not be focusable
+      const a11yIconOptions = {
+        tagName: null,
+        focusable: false
+      };
+
+      resistorNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / resistorNode.width * 0.75 } ) );
+      wireNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / wireNode.width * 0.7 } ) );
+      batteryNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / batteryNode.width } ) );
+      lightBulbNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / lightBulbNode.width / 2 } ) );
+      const vBox = new VBox( {
         spacing: 20,
-        children: [ batteryNode, lightBulbNode ]
-      } ) ]
-    } );
-    vBox.mutate( {
-      scale: this.height / vBox.height * 0.8,
-      center: this.center
-    } );
-    this.addChild( vBox );
+        children: [ new HBox( { spacing: 20, children: [ wireNode, resistorNode ] } ), new HBox( {
+          spacing: 20,
+          children: [ batteryNode, lightBulbNode ]
+        } ) ]
+      } );
+      vBox.mutate( {
+        scale: this.height / vBox.height * 0.8,
+        center: this.center
+      } );
+      this.addChild( vBox );
+    }
   }
 
-  circuitConstructionKitBlackBoxStudy.register( 'CCKIcon', CCKIcon );
-
-  return inherit( Rectangle, CCKIcon );
+  return circuitConstructionKitBlackBoxStudy.register( 'CCKIcon', CCKIcon );
 } );
