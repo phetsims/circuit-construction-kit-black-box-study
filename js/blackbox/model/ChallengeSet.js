@@ -1,4 +1,4 @@
-// Copyright 2016-2017, University of Colorado Boulder
+// Copyright 2016-2019, University of Colorado Boulder
 
 /**
  * Challenges that appear in the combo box for the black box circuits.  See https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/41#issuecomment-280704297

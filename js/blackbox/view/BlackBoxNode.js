@@ -1,4 +1,4 @@
-// Copyright 2016-2017, University of Colorado Boulder
+// Copyright 2016-2019, University of Colorado Boulder
 
 /**
  * The node that shows the black round rectangle with a question mark.
