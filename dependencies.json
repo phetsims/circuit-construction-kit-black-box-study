@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.0.13-phetio Tue Nov 06 2018 13:16:49 GMT-0700 (MST)",
+  "comment": "# circuit-construction-kit-black-box-study 1.0.13-phetio Fri Mar 08 2019 12:53:09 GMT-0500 (EST)",
   "assert": {
     "sha": "845be6b591cb746b0b05b7023208aef2e49a8855",
     "branch": "HEAD"
@@ -9,15 +9,15 @@
     "branch": "HEAD"
   },
   "brand": {
-    "sha": "880a18ded11185580cf5950e568931cf0df4eb87",
-    "branch": "HEAD"
+    "sha": "bb6ba123ed38933cabb369750b2cec961a7efda4",
+    "branch": "circuit-construction-kit-black-box-study-1.0-phetio"
   },
   "chipper": {
     "sha": "1d395e67b38858963ce59304223fad223badc2ee",
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "53032eb79fa6f88727d2da10658079f7865059c7",
+    "sha": "32c141a1f82c496bcd05f32196fdec6eabc2b17c",
     "branch": "1.0-phetio"
   },
   "circuit-construction-kit-common": {
@@ -29,8 +29,8 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "ef7e818026ee3c88460a6ed9c93f67cc6de8f9ac",
-    "branch": "HEAD"
+    "sha": "1321e54cebf0864749d573f9468411d80e1cac01",
+    "branch": "circuit-construction-kit-black-box-study-1.0-phetio"
   },
   "kite": {
     "sha": "48cb255e5fba37c5b3f2f127a13656ea8b760d34",
