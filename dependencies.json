@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.1.9 Tue Mar 19 2019 15:02:58 GMT-0400 (EDT)",
+  "comment": "# circuit-construction-kit-black-box-study 1.1.9-phetio Tue Mar 19 2019 16:00:47 GMT-0400 (EDT)",
   "assert": {
     "sha": "a707328cc11048787a807714496af23e0bd25be1",
     "branch": "HEAD"
@@ -10,14 +10,14 @@
   },
   "brand": {
     "sha": "65b2318a7af92e66b46b28724877cf32e0232fa8",
-    "branch": "circuit-construction-kit-black-box-study-1.1-phetio"
-  },
-  "chipper": {
-    "sha": "31efe5e5813eeacef7b37ca156b768c2a2f1a792",
     "branch": "HEAD"
   },
+  "chipper": {
+    "sha": "4d384a861951d620c6e2b68253d00c68034b8e8e",
+    "branch": "circuit-construction-kit-black-box-study-1.1-phetio"
+  },
   "circuit-construction-kit-black-box-study": {
-    "sha": "5b5ff9b5cab63ffba31bb9e3536ef2be61e67e74",
+    "sha": "8bc3b1f8c13c11f70fc2fce4f48135f580dfa3a3",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
@@ -30,7 +30,7 @@
   },
   "joist": {
     "sha": "217c164ef401a194e20d35d0a3470260e9cf3ace",
-    "branch": "circuit-construction-kit-black-box-study-1.1-phetio"
+    "branch": "HEAD"
   },
   "kite": {
     "sha": "f4c67cff6e24693f66b58fcea16069be3dbd8e88",
@@ -50,6 +50,10 @@
   },
   "phetcommon": {
     "sha": "3003d4289a73cd5938dc386c1643afc87891af19",
+    "branch": "HEAD"
+  },
+  "phetmarks": {
+    "sha": "3a5691551b8be942d4b0534c82e86701882529f9",
     "branch": "HEAD"
   },
   "query-string-machine": {
@@ -75,9 +79,5 @@
   "tandem": {
     "sha": "4ac1125441b04a890088f9704314879aba5dead0",
     "branch": "HEAD"
-  },
-  "phetmarks": {
-    "branch": "master",
-    "sha": "3a5691551b8be942d4b0534c82e86701882529f9"
   }
 }
