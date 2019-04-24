@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.1.11-phetiorc.1 Thu Apr 18 2019 08:47:05 GMT-0800 (Alaskan Daylight Time)",
+  "comment": "# circuit-construction-kit-black-box-study 1.1.11-phetio Wed Apr 24 2019 14:59:37 GMT-0800 (Alaskan Daylight Time)",
   "assert": {
     "sha": "a707328cc11048787a807714496af23e0bd25be1",
     "branch": "HEAD"
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "b311552f7707f3a4e306f125f459536e2b6a5a6a",
+    "sha": "6917516b906e923c2d48af7fc050805f139c54e1",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
