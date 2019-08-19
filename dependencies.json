@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.1.12-phetio Mon Aug 05 2019 15:03:52 GMT-0600 (Mountain Daylight Time)",
+  "comment": "# circuit-construction-kit-black-box-study 1.1.12-phetio Mon Aug 19 2019 13:05:41 GMT-0600 (Mountain Daylight Time)",
   "assert": {
     "sha": "a707328cc11048787a807714496af23e0bd25be1",
     "branch": "HEAD"
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "6a3ed0cc6e05c8997dce66fb2817d8467a6f5ca3",
+    "sha": "5ebba700fa13dfd9ceb8dbe28da9ef5a7a7573a0",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
@@ -29,8 +29,8 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "217c164ef401a194e20d35d0a3470260e9cf3ace",
-    "branch": "HEAD"
+    "sha": "afe2a1a3d592da28a42fa3f0afb21c0c0592f62c",
+    "branch": "circuit-construction-kit-black-box-study-1.1-phetio"
   },
   "kite": {
     "sha": "f4c67cff6e24693f66b58fcea16069be3dbd8e88",
@@ -65,8 +65,8 @@
     "branch": "HEAD"
   },
   "scenery-phet": {
-    "sha": "46054fe3e33b136fb80c97c2d536a5bd5f226919",
-    "branch": "HEAD"
+    "sha": "214321d6b1cdc1bc890cd6b614c1294a3cc34cdd",
+    "branch": "circuit-construction-kit-black-box-study-1.1-phetio"
   },
   "sherpa": {
     "sha": "985665662c9862d5b38583a715896029b46feb44",
