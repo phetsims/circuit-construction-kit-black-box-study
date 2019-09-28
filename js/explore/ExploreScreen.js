@@ -25,7 +25,8 @@ define( require => {
         name: 'Explore', //TODO i18n
         backgroundColorProperty: new Property( CCKCConstants.BACKGROUND_COLOR ),
         homeScreenIcon: new Rectangle( 0, 0, 548, 373, { fill: 'red' } ),
-        tandem: tandem
+        tandem: tandem,
+        maxDT: CCKCConstants.MAX_DT
       };
 
       super(

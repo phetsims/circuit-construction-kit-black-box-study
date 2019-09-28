@@ -41,7 +41,8 @@ define( require => {
       const options = {
         name: 'Black Box', //TODO i18n
         homeScreenIcon: icon,
-        tandem: tandem
+        tandem: tandem,
+        maxDT: CCKCConstants.MAX_DT
       };
 
       super(
