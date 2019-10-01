@@ -243,7 +243,7 @@ define( require => {
 
           addBlackBoxContents( trueBlackBoxCircuitStruct );
         }
-        circuit.solve();
+        circuit.markDirty();
       } );
 
       // @private - called by reset
