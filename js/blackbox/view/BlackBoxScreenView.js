@@ -73,7 +73,7 @@ define( require => {
         this.children = [ sceneView ];
 
         // Fix the vertex layering.
-        sceneView.model.circuit.vertices.forEach( vertex => vertex.relayerEmitter.emit() );
+        sceneView.model.circuit.vertexGroup.forEach( vertex => vertex.relayerEmitter.emit() );
       } );
 
       this.visibleBoundsProperty.link( visibleBounds => {

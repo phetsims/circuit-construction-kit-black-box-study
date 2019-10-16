@@ -38,7 +38,7 @@ define( require => {
         revealing: false,
         blackBoxStudy: true
       } );
-      const trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
+      const trueBlackBoxCircuitStruct = CircuitStruct.fromStateObject( this.circuit, trueBlackBoxCircuitObject, this.circuit.wireResistivityProperty, tandem.createTandem( 'circuitStruct' ), {
 
         // All of the circuit elements in the true black box should be non-interactive
         interactive: false,
@@ -72,7 +72,7 @@ define( require => {
       this.revealingProperty.lazyLink( revealing => this.modeProperty.set( revealing ? InteractionMode.EXPLORE : InteractionMode.TEST ) );
 
       // Keep track of what the user has built inside the black box so it may be restored.
-      const userBlackBoxCircuit = new CircuitStruct();
+      const userBlackBoxCircuitStruct = new CircuitStruct();
       const circuit = this.circuit;
 
       const wireStubGroupTandem = tandem.createGroupTandem( 'wireStubs' );
@@ -97,7 +97,8 @@ define( require => {
             const dy = side === 'top' ? -extentLength :
                        side === 'bottom' ? +extentLength :
                        0;
-            const outerVertex = new Vertex( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
+            const outerVertex = this.circuit.vertexGroup.createNextMember( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
+            // const outerVertex = new Vertex( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
             // outerVertex.attachable = true;
             outerVertex.blackBoxInterfaceProperty.set( true );
             outerVertex.draggableProperty.set( false );
@@ -148,7 +149,7 @@ define( require => {
 
         // Remove the vertices but not those on the black box interface
         // for ( const i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
-        //   const vertex = blackBoxCircuit.vertices[ i ];
+        //   const vertex = blackBoxCircuit.vertexGroup.get(i);
         //   if ( !vertex.blackBoxInterfaceProperty.get() ) {
         //     circuit.vertices.remove( vertex );
         //   }
@@ -182,7 +183,7 @@ define( require => {
 
           // Any draggable vertices that remain should be made unattachable and undraggable, so the user cannot update the
           // circuit outside the box
-          circuit.vertices.forEach( vertex => {
+          circuit.vertexGroup.forEach( vertex => {
             if ( !vertex.blackBoxInterfaceProperty.get() ) {
               vertex.attachableProperty.set( false );
               vertex.draggableProperty.set( false );
@@ -190,15 +191,15 @@ define( require => {
             }
           } );
           circuit.circuitElements.forEach( circuitElement => circuitElement.interactiveProperty.set( false ) );
-          addBlackBoxContents( userBlackBoxCircuit );
+          addBlackBoxContents( userBlackBoxCircuitStruct );
         }
         else {
 
           // Switched to InteractionMode.EXPLORE. Move interior elements to userBlackBoxCircuit
-          userBlackBoxCircuit.clear();
-          circuit.vertices.forEach( v => {
+          userBlackBoxCircuitStruct.clear();
+          circuit.vertexGroup.forEach( v => {
             if ( v.interactiveProperty.get() && v.draggableProperty.get() ) {
-              userBlackBoxCircuit.vertices.push( v );
+              userBlackBoxCircuitStruct.vertices.push( v );
             }
           } );
           circuit.circuitElements.forEach( circuitElement => {
@@ -206,26 +207,26 @@ define( require => {
 
               // TODO: abstraction
               if ( circuitElement instanceof Wire ) {
-                userBlackBoxCircuit.wires.push( circuitElement );
+                userBlackBoxCircuitStruct.wires.push( circuitElement );
               }
               else if ( circuitElement instanceof Battery ) {
-                userBlackBoxCircuit.batteries.push( circuitElement );
+                userBlackBoxCircuitStruct.batteries.push( circuitElement );
               }
               else if ( circuitElement instanceof LightBulb ) {
-                userBlackBoxCircuit.lightBulbs.push( circuitElement );
+                userBlackBoxCircuitStruct.lightBulbs.push( circuitElement );
               }
               else if ( circuitElement instanceof Resistor ) {
-                userBlackBoxCircuit.resistors.push( circuitElement );
+                userBlackBoxCircuitStruct.resistors.push( circuitElement );
               }
               else if ( circuitElement instanceof Switch ) {
-                userBlackBoxCircuit.switches.push( circuitElement );
+                userBlackBoxCircuitStruct.switches.push( circuitElement );
               }
             }
           } );
-          removeBlackBoxContents( userBlackBoxCircuit );
+          removeBlackBoxContents( userBlackBoxCircuitStruct );
 
           // Any attachable vertices outside the box should become attachable and draggable
-          circuit.vertices.forEach( vertex => {
+          circuit.vertexGroup.forEach( vertex => {
             if ( !vertex.blackBoxInterfaceProperty.get() ) {
               vertex.draggableProperty.set( true );
               vertex.attachableProperty.set( true );
@@ -250,7 +251,7 @@ define( require => {
       this.resetBlackBoxSceneModel = () => {
         addWireStubs();
         addBlackBoxContents( trueBlackBoxCircuitStruct );
-        userBlackBoxCircuit.clear();
+        userBlackBoxCircuitStruct.clear();
       };
     }
 
