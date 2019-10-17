@@ -12,8 +12,9 @@ define( require => {
 
   // modules
   const BlackBoxSceneView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxSceneView' );
-  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   const Circuit = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Circuit' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
+  const merge = require( 'PHET_CORE/merge' );
   const MultiLineText = require( 'SCENERY_PHET/MultiLineText' );
   const Property = require( 'AXON/Property' );
   const ScreenView = require( 'JOIST/ScreenView' );
@@ -36,7 +37,7 @@ define( require => {
       };
 
       // TODO: i18n
-      const questionText = new MultiLineText( 'What circuit is\nin the black box?', _.extend( {
+      const questionText = new MultiLineText( 'What circuit is\nin the black box?', merge( {
         centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
         top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
       }, textOptions ) );
@@ -45,7 +46,7 @@ define( require => {
       } );
 
       // TODO: i18n
-      const tryToText = new MultiLineText( 'Build a circuit that\nbehaves the same way.', _.extend( {
+      const tryToText = new MultiLineText( 'Build a circuit that\nbehaves the same way.', merge( {
         centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
         top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
       }, textOptions ) );

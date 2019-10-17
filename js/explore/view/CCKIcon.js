@@ -9,19 +9,20 @@ define( require => {
   'use strict';
 
   // modules
-  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Screen = require( 'JOIST/Screen' );
-  const Vector2 = require( 'DOT/Vector2' );
   const CCKCConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
+  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   const CustomLightBulbNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/CustomLightBulbNode' );
   const HBox = require( 'SCENERY/nodes/HBox' );
   const Image = require( 'SCENERY/nodes/Image' );
+  const merge = require( 'PHET_CORE/merge' );
   const NumberProperty = require( 'AXON/NumberProperty' );
   const Property = require( 'AXON/Property' );
+  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const Resistor = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Resistor' );
   const ResistorNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/ResistorNode' );
+  const Screen = require( 'JOIST/Screen' );
   const VBox = require( 'SCENERY/nodes/VBox' );
+  const Vector2 = require( 'DOT/Vector2' );
   const Vertex = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Vertex' );
   const Wire = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/Wire' );
   const WireNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/WireNode' );
@@ -66,10 +67,10 @@ define( require => {
         focusable: false
       };
 
-      resistorNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / resistorNode.width * 0.75 } ) );
-      wireNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / wireNode.width * 0.7 } ) );
-      batteryNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / batteryNode.width } ) );
-      lightBulbNode.mutate( _.extend( a11yIconOptions, { scale: ELEMENT_WIDTH / lightBulbNode.width / 2 } ) );
+      resistorNode.mutate( merge( a11yIconOptions, { scale: ELEMENT_WIDTH / resistorNode.width * 0.75 } ) );
+      wireNode.mutate( merge( a11yIconOptions, { scale: ELEMENT_WIDTH / wireNode.width * 0.7 } ) );
+      batteryNode.mutate( merge( a11yIconOptions, { scale: ELEMENT_WIDTH / batteryNode.width } ) );
+      lightBulbNode.mutate( merge( a11yIconOptions, { scale: ELEMENT_WIDTH / lightBulbNode.width / 2 } ) );
       const vBox = new VBox( {
         spacing: 20,
         children: [ new HBox( { spacing: 20, children: [ wireNode, resistorNode ] } ), new HBox( {
