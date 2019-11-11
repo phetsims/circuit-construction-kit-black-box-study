@@ -26,6 +26,7 @@ define( require => {
   const Property = require( 'AXON/Property' );
   const RevealButton = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/RevealButton' );
   const ScreenView = require( 'JOIST/ScreenView' );
+  const timer = require( 'AXON/timer' );
   const WhiteBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/WhiteBoxNode' );
 
   // constants
@@ -203,7 +204,7 @@ define( require => {
 
         // Allow the wire drag event to complete so that the wire won't think it was released near another target
         // and attach to it, see #173
-        setTimeout( () => {
+        timer.setTimeout( () => {
 
           // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
           // no need to move it inside the black box.
