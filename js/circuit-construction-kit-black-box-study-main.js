@@ -16,7 +16,7 @@ define( require => {
   const Tandem = require( 'TANDEM/Tandem' );
 
   // constants
-  const TANDEM = Tandem.rootTandem;
+  const TANDEM = Tandem.ROOT;
 
   // strings
   const circuitConstructionKitBlackBoxStudyTitleString = require( 'string!CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuit-construction-kit-black-box-study.title' );
