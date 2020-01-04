@@ -17,8 +17,7 @@ define( require => {
   const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
   const Rectangle = require( 'SCENERY/nodes/Rectangle' );
   const Screen = require( 'JOIST/Screen' );
-  const CCKCConstants =
-    require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
+  const CCKCConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
 
   // constants
   const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
