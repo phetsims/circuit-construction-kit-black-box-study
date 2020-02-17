@@ -28,7 +28,7 @@ define( require => {
   const WireNode = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/view/WireNode' );
 
   // images
-  const batteryMipmap = require( 'mipmap!CIRCUIT_CONSTRUCTION_KIT_COMMON/battery.png' );
+  const battery = require( 'image!CIRCUIT_CONSTRUCTION_KIT_COMMON/battery.png' );
 
   // constants
   const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
@@ -57,7 +57,7 @@ define( require => {
         icon: true
       } );
 
-      const batteryNode = new Image( batteryMipmap );
+      const batteryNode = new Image( battery );
 
       const lightBulbNode = new CustomLightBulbNode( new NumberProperty( 0 ) );
 
