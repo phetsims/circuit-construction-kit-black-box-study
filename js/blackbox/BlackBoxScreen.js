@@ -6,50 +6,47 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const BlackBoxNode = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxNode' );
-  const BlackBoxModel = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/model/BlackBoxModel' );
-  const BlackBoxScreenView = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/blackbox/view/BlackBoxScreenView' );
-  const BooleanProperty = require( 'AXON/BooleanProperty' );
-  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  const Rectangle = require( 'SCENERY/nodes/Rectangle' );
-  const Screen = require( 'JOIST/Screen' );
-  const CCKCConstants = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/CCKCConstants' );
+import BooleanProperty from '../../../axon/js/BooleanProperty.js';
+import CCKCConstants from '../../../circuit-construction-kit-common/js/CCKCConstants.js';
+import Screen from '../../../joist/js/Screen.js';
+import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
+import circuitConstructionKitBlackBoxStudy from '../circuitConstructionKitBlackBoxStudy.js';
+import BlackBoxModel from './model/BlackBoxModel.js';
+import BlackBoxNode from './view/BlackBoxNode.js';
+import BlackBoxScreenView from './view/BlackBoxScreenView.js';
 
-  // constants
-  const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
+// constants
+const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
 
-  class BlackBoxScreen extends Screen {
+class BlackBoxScreen extends Screen {
 
-    constructor( tandem ) {
+  constructor( tandem ) {
 
-      const icon = new Rectangle( 0, 0, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.width, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.height, {
-        fill: BACKGROUND_COLOR
-      } );
-      const blackBoxNode = new BlackBoxNode( 220, 160, new BooleanProperty( true ) );
-      blackBoxNode.mutate( {
-        scale: icon.width / blackBoxNode.bounds.width / 2,
-        centerX: icon.centerX,
-        centerY: icon.centerY
-      } );
-      icon.addChild( blackBoxNode );
+    const icon = new Rectangle( 0, 0, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.width, Screen.MINIMUM_HOME_SCREEN_ICON_SIZE.height, {
+      fill: BACKGROUND_COLOR
+    } );
+    const blackBoxNode = new BlackBoxNode( 220, 160, new BooleanProperty( true ) );
+    blackBoxNode.mutate( {
+      scale: icon.width / blackBoxNode.bounds.width / 2,
+      centerX: icon.centerX,
+      centerY: icon.centerY
+    } );
+    icon.addChild( blackBoxNode );
 
-      const options = {
-        name: 'Black Box', //TODO i18n
-        homeScreenIcon: icon,
-        tandem: tandem,
-        maxDT: CCKCConstants.MAX_DT
-      };
+    const options = {
+      name: 'Black Box', //TODO i18n
+      homeScreenIcon: icon,
+      tandem: tandem,
+      maxDT: CCKCConstants.MAX_DT
+    };
 
-      super(
-        () => new BlackBoxModel( tandem.createTandem( 'model' ) ),
-        model => new BlackBoxScreenView( model, tandem.createTandem( 'view' ) ),
-        options );
-    }
+    super(
+      () => new BlackBoxModel( tandem.createTandem( 'model' ) ),
+      model => new BlackBoxScreenView( model, tandem.createTandem( 'view' ) ),
+      options );
   }
+}
 
-  return circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreen', BlackBoxScreen );
-} );
+circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreen', BlackBoxScreen );
+export default BlackBoxScreen;

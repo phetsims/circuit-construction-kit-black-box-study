@@ -5,18 +5,16 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  const CircuitConstructionKitModel = require( 'CIRCUIT_CONSTRUCTION_KIT_COMMON/model/CircuitConstructionKitModel' );
+import CircuitConstructionKitModel
+  from '../../../../circuit-construction-kit-common/js/model/CircuitConstructionKitModel.js';
+import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
-  class ExploreModel extends CircuitConstructionKitModel {
-    constructor( tandem ) {
-      super( tandem, { blackBoxStudy: true } );
-    }
+class ExploreModel extends CircuitConstructionKitModel {
+  constructor( tandem ) {
+    super( tandem, { blackBoxStudy: true } );
   }
+}
 
-  return circuitConstructionKitBlackBoxStudy.register( 'ExploreModel', ExploreModel );
-} );
+circuitConstructionKitBlackBoxStudy.register( 'ExploreModel', ExploreModel );
+export default ExploreModel;

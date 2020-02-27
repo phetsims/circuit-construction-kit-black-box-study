@@ -5,20 +5,17 @@
  *
  * @author Sam Reid (PhET Interactive Simulations)
  */
-define( require => {
-  'use strict';
 
-  // modules
-  const circuitConstructionKitBlackBoxStudy = require( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY/circuitConstructionKitBlackBoxStudy' );
-  const StringProperty = require( 'AXON/StringProperty' );
+import StringProperty from '../../../../axon/js/StringProperty.js';
+import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
-  class BlackBoxModel {
-    constructor() {
+class BlackBoxModel {
+  constructor() {
 
-      // @public - indicates which scene is selected: warmup/scene0-scene14
-      this.sceneProperty = new StringProperty( 'warmup' );
-    }
+    // @public - indicates which scene is selected: warmup/scene0-scene14
+    this.sceneProperty = new StringProperty( 'warmup' );
   }
+}
 
-  return circuitConstructionKitBlackBoxStudy.register( 'BlackBoxModel', BlackBoxModel );
-} );
+circuitConstructionKitBlackBoxStudy.register( 'BlackBoxModel', BlackBoxModel );
+export default BlackBoxModel;
