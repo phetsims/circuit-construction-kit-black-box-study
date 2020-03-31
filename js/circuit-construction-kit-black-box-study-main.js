@@ -10,7 +10,7 @@ import Sim from '../../joist/js/Sim.js';
 import SimLauncher from '../../joist/js/SimLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import BlackBoxScreen from './blackbox/BlackBoxScreen.js';
-import circuitConstructionKitBlackBoxStudyStrings from './circuit-construction-kit-black-box-study-strings.js';
+import circuitConstructionKitBlackBoxStudyStrings from './circuitConstructionKitBlackBoxStudyStrings.js';
 import ExploreScreen from './explore/ExploreScreen.js';
 
 // constants
