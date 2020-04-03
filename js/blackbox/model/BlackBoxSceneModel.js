@@ -11,8 +11,7 @@
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Battery from '../../../../circuit-construction-kit-common/js/model/Battery.js';
 import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
-import CircuitConstructionKitModel
-  from '../../../../circuit-construction-kit-common/js/model/CircuitConstructionKitModel.js';
+import CircuitConstructionKitModel from '../../../../circuit-construction-kit-common/js/model/CircuitConstructionKitModel.js';
 import CircuitStruct from '../../../../circuit-construction-kit-common/js/model/CircuitStruct.js';
 import LightBulb from '../../../../circuit-construction-kit-common/js/model/LightBulb.js';
 import Resistor from '../../../../circuit-construction-kit-common/js/model/Resistor.js';

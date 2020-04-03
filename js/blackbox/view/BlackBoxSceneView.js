@@ -13,8 +13,7 @@ import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCCo
 import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import Resistor from '../../../../circuit-construction-kit-common/js/model/Resistor.js';
 import CCKCScreenView from '../../../../circuit-construction-kit-common/js/view/CCKCScreenView.js';
-import CircuitElementToolFactory
-  from '../../../../circuit-construction-kit-common/js/view/CircuitElementToolFactory.js';
+import CircuitElementToolFactory from '../../../../circuit-construction-kit-common/js/view/CircuitElementToolFactory.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
