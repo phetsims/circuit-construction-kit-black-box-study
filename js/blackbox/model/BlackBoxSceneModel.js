@@ -93,7 +93,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
           const dy = side === 'top' ? -extentLength :
                      side === 'bottom' ? +extentLength :
                      0;
-          const outerVertex = this.circuit.vertexGroup.createNextMember( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
+          const outerVertex = this.circuit.vertexGroup.createNextElement( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
           // const outerVertex = new Vertex( new Vector2( vertex.positionProperty.value.x + dx, vertex.positionProperty.value.y + dy ) );
           // outerVertex.attachable = true;
           outerVertex.blackBoxInterfaceProperty.set( true );
