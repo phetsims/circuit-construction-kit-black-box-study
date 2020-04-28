@@ -145,7 +145,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
 
       // Remove the vertices but not those on the black box interface
       // for ( const i = 0; i < blackBoxCircuit.vertices.length; i++ ) {
-      //   const vertex = blackBoxCircuit.vertexGroup.get(i);
+      //   const vertex = blackBoxCircuit.vertexGroup.getElement(i);
       //   if ( !vertex.blackBoxInterfaceProperty.get() ) {
       //     circuit.vertices.remove( vertex );
       //   }
