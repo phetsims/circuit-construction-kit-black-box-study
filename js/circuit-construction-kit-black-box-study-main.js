@@ -7,7 +7,7 @@
  */
 
 import Sim from '../../joist/js/Sim.js';
-import SimLauncher from '../../joist/js/SimLauncher.js';
+import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import BlackBoxScreen from './blackbox/BlackBoxScreen.js';
 import circuitConstructionKitBlackBoxStudyStrings from './circuitConstructionKitBlackBoxStudyStrings.js';
@@ -32,7 +32,7 @@ const simOptions = {
 // algorithm.  In order to load the classes into an accessible namespace, the *-config.js and *-main.js are loaded
 // however, when running the unit tests we don't also want to launch the simulation.
 if ( !window.circuitConstructionKitTestSuite ) {
-  SimLauncher.launch( () => {
+  simLauncher.launch( () => {
     const sim = new Sim( circuitConstructionKitBlackBoxStudyTitleString, [
       new ExploreScreen( TANDEM.createTandem( 'exploreScreen' ) ),
       new BlackBoxScreen( TANDEM.createTandem( 'blackBoxScreen' ) )
