@@ -88,6 +88,7 @@ class BlackBoxScreenView extends ScreenView {
   /**
    * When the model clock ticks in Joist, send the clock tick to the selected scene.
    * @param {number} dt - in seconds
+   * @public
    */
   step( dt ) {
     this.sceneViews[ this.blackBoxScreenModel.sceneProperty.value ].model.step( dt );
