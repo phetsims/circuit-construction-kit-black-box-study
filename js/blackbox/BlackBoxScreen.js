@@ -10,6 +10,7 @@
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import CCKCConstants from '../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import Screen from '../../../joist/js/Screen.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
 import circuitConstructionKitBlackBoxStudy from '../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxModel from './model/BlackBoxModel.js';
@@ -36,7 +37,10 @@ class BlackBoxScreen extends Screen {
 
     const options = {
       name: 'Black Box', //TODO i18n
-      homeScreenIcon: icon,
+      homeScreenIcon: new ScreenIcon( icon, {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
       tandem: tandem,
       maxDT: CCKCConstants.MAX_DT
     };

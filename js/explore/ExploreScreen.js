@@ -10,6 +10,7 @@
 import Property from '../../../axon/js/Property.js';
 import CCKCConstants from '../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import Screen from '../../../joist/js/Screen.js';
+import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
 import circuitConstructionKitBlackBoxStudy from '../circuitConstructionKitBlackBoxStudy.js';
 import ExploreModel from './model/ExploreModel.js';
@@ -21,7 +22,10 @@ class ExploreScreen extends Screen {
     const options = {
       name: 'Explore', //TODO i18n
       backgroundColorProperty: new Property( CCKCConstants.BACKGROUND_COLOR ),
-      homeScreenIcon: new Rectangle( 0, 0, 548, 373, { fill: 'red' } ),
+      homeScreenIcon: new ScreenIcon( new Rectangle( 0, 0, 548, 373, { fill: 'red' } ), {
+        maxIconWidthProportion: 1,
+        maxIconHeightProportion: 1
+      } ),
       tandem: tandem,
       maxDT: CCKCConstants.MAX_DT
     };
