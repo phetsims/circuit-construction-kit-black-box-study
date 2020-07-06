@@ -117,7 +117,6 @@ class BlackBoxSceneView extends CCKCScreenView {
     }
     // create a node to keep track of combo box popup menu
     const listParent = new Node();
-    this.addChild( listParent );
 
     const sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
       xMargin: 12,
@@ -126,6 +125,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       tandem: tandem.createTandem( 'sceneSelectionComboBox' )
     } );
     this.addChild( sceneSelectionComboBox );
+    this.addChild( listParent ); // Must be in front of ComboBox
 
     // Layout when the screen view size changed
     this.visibleBoundsProperty.link( visibleBounds => {
