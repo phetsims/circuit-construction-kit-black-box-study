@@ -206,7 +206,7 @@ class BlackBoxSceneView extends CCKCScreenView {
 
         // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
         // no need to move it inside the black box.
-        if ( blackBoxSceneModel.circuit.vertexGroup.contains( vertex ) && blackBoxSceneModel.modeProperty.get() === InteractionMode.TEST ) {
+        if ( blackBoxSceneModel.circuit.vertexGroup.includes( vertex ) && blackBoxSceneModel.modeProperty.get() === InteractionMode.TEST ) {
 
           // Find all the vertices that must be translated into the box, translating wires
           ( () => {
