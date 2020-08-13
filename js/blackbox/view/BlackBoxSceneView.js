@@ -105,13 +105,13 @@ class BlackBoxSceneView extends CCKCScreenView {
     const elements = [ new ComboBoxItem(
       new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
       'warmup', {
-        tandemName: 'warmup'
+        tandemName: 'warmupItem'
       } ) ];
     for ( let i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
       elements.push( new ComboBoxItem(
         new Text( 'Black Box ' + ( i + 1 ), comboBoxTextOptions ), // TODO: i18n
         'scene' + i, {
-          tandemName: 'scene' + i
+          tandemName: `scene${i}Item`
         }
       ) );
     }
