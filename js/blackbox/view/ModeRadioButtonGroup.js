@@ -28,13 +28,13 @@ class ModeRadioButtonGroup extends RadioButtonGroup {
 
       // TODO: i18n
       node: new Text( 'Explore', textOptions ),
-      tandemName: 'investigateCircuitButton'
+      tandemName: 'investigateCircuitRadioButton'
     }, {
       value: InteractionMode.TEST,
 
       // TODO: i18n
       node: new Text( 'Test', textOptions ),
-      tandemName: 'buildCircuitButton'
+      tandemName: 'buildCircuitRadioButton'
     } ], {
       tandem: tandem.createTandem( 'ModeRadioButtonGroup' ),
       baseColor: 'white',
