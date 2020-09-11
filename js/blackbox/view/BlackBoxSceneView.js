@@ -8,7 +8,7 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import timer from '../../../../axon/js/timer.js';
+import stepTimer from '../../../../axon/js/stepTimer.js';
 import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import Resistor from '../../../../circuit-construction-kit-common/js/model/Resistor.js';
@@ -202,7 +202,7 @@ class BlackBoxSceneView extends CCKCScreenView {
 
       // Allow the wire drag event to complete so that the wire won't think it was released near another target
       // and attach to it, see #173
-      timer.setTimeout( () => {
+      stepTimer.setTimeout( () => {
 
         // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
         // no need to move it inside the black box.
