@@ -14,7 +14,7 @@ import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBla
 
 // constants
 const LIGHT_GREEN = '#91e053';
-const MIN_MARGIN = 15;
+const MARGIN = 15;
 
 class RevealButton extends RoundMomentaryButton {
 
@@ -28,8 +28,8 @@ class RevealButton extends RoundMomentaryButton {
     super( false, true, revealingProperty, {
       tandem: tandem,
       baseColor: 'yellow',
-      minXMargin: MIN_MARGIN,
-      minYMargin: MIN_MARGIN,
+      xMargin: MARGIN,
+      yMargin: MARGIN,
       content: new VBox( {
         spacing: 5,
         children: [
