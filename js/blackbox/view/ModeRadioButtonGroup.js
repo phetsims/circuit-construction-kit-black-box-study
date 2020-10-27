@@ -9,13 +9,13 @@
 import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import RadioButtonGroup from '../../../../sun/js/buttons/RadioButtonGroup.js';
+import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants
 const InteractionMode = Circuit.InteractionMode;
 
-class ModeRadioButtonGroup extends RadioButtonGroup {
+class ModeRadioButtonGroup extends RectangularRadioButtonGroup {
 
   /**
    * @param {Property.<string>} modeProperty - property that indicates which mode the black box simulation is in
