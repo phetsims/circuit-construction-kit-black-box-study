@@ -14,7 +14,8 @@
     "phetLibs": [
       "circuit-construction-kit-common",
       "twixt",
-      "griddle"
+      "griddle",
+      "bamboo"
     ],
     "preload": [
       "../sherpa/lib/lz-string-1.4.4.js",
