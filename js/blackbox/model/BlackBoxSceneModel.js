@@ -18,6 +18,7 @@ import Resistor from '../../../../circuit-construction-kit-common/js/model/Resis
 import Switch from '../../../../circuit-construction-kit-common/js/model/Switch.js';
 import Wire from '../../../../circuit-construction-kit-common/js/model/Wire.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import Tandem from '../../../../tandem/js/Tandem.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants
@@ -71,7 +72,6 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
     const userBlackBoxCircuitStruct = new CircuitStruct();
     const circuit = this.circuit;
 
-    const wireStubGroupTandem = tandem.createGroupTandem( 'wireStubs' );
     // Add wire stubs outside the black box, see https://github.com/phetsims/circuit-construction-kit-black-box-study/issues/21
     const addWireStubs = () => {
       for ( let i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
@@ -101,7 +101,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
           outerVertex.outerWireStub = true;
           vertex.blackBoxInterfaceProperty.set( true );
 
-          const w = new Wire( vertex, outerVertex, this.circuit.wireResistivityProperty, wireStubGroupTandem.createNextTandem(), {
+          const w = new Wire( vertex, outerVertex, this.circuit.wireResistivityProperty, Tandem.OPT_OUT, {
             wireStub: true,
             interactive: false
           } );
