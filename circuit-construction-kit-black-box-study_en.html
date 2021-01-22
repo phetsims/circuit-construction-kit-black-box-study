@@ -36,7 +36,8 @@
         "phetLibs": [
           "circuit-construction-kit-common",
           "twixt",
-          "griddle"
+          "griddle",
+          "bamboo"
         ],
         "preload": [
           "../sherpa/lib/lz-string-1.4.4.js",
@@ -56,6 +57,10 @@
     };
   window.phet.chipper.stringRepos =
     [
+      {
+        "repo": "bamboo",
+        "requirejsNamespace": "BAMBOO"
+      },
       {
         "repo": "circuit-construction-kit-black-box-study",
         "requirejsNamespace": "CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY"
