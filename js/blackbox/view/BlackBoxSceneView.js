@@ -65,7 +65,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       circuitElementToolFactory.createCoinToolNode( 1, tandem.createTandem( 'coinToolNode' ) ),
       circuitElementToolFactory.createEraserToolNode( 1, tandem.createTandem( 'eraserToolNode' ) ),
 
-      new Node( { children: [ wireToolNode ] } ),// Wire should appear at the top of each carousel page
+      new Node( { children: [ wireToolNode ] } ), // Wire should appear at the top of each carousel page
       circuitElementToolFactory.createPencilToolNode( 1, tandem.createTandem( 'pencilToolNode' ) ),
       circuitElementToolFactory.createHandToolNode( 1, tandem.createTandem( 'handToolNode' ) ),
       circuitElementToolFactory.createDogToolNode( 1, tandem.createTandem( 'dogToolNode' ) )
