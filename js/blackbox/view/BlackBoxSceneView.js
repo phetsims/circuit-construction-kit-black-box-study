@@ -72,7 +72,6 @@ class BlackBoxSceneView extends CCKCScreenView {
     ];
 
     super( blackBoxSceneModel, circuitElementToolNodes, tandem, {
-      toolboxOrientation: 'vertical',
       showResetAllButton: true,
       blackBoxStudy: true
     } );

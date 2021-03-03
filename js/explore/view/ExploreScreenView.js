@@ -46,7 +46,6 @@ class ExploreScreenView extends CCKCScreenView {
       circuitElementToolFactory.createDogToolNode( 1, tandem.createTandem( 'dogToolNode' ) )
     ];
     super( model, circuitElementToolNodes, tandem, {
-      toolboxOrientation: 'vertical', // The toolbox should be vertical
       showResetAllButton: true, // The reset all button should be shown.
       blackBoxStudy: true
     } );
