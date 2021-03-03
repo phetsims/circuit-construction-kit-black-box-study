@@ -47,7 +47,6 @@ class ExploreScreenView extends CCKCScreenView {
       circuitElementToolFactory.createDogToolNode()
     ];
     super( model, circuitElementToolNodes, tandem, {
-      showResetAllButton: true, // The reset all button should be shown.
       blackBoxStudy: true
     } );
   }
