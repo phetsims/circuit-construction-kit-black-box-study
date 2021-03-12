@@ -44,7 +44,7 @@ class BlackBoxScreenView extends ScreenView {
             blackBoxHeight,
             new BlackBoxSceneModel( ChallengeSet.warmupCircuitStateObject, tandem.createTandem( scene + 'Model' ) ),
             blackBoxScreenModel.sceneProperty,
-            tandem.createTandem( scene + 'SceneView' )
+            tandem.createTandem( scene + 'Scene' ).createTandem( 'view' )
           );
         }
         else if ( scene.indexOf( 'scene' ) === 0 ) {
