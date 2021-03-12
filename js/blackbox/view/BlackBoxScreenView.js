@@ -42,9 +42,9 @@ class BlackBoxScreenView extends ScreenView {
           this.sceneViews[ scene ] = new WarmUpSceneView(
             blackBoxWidth,
             blackBoxHeight,
-            new BlackBoxSceneModel( ChallengeSet.warmupCircuitStateObject, tandem.createTandem( scene + 'Model' ) ),
+            new BlackBoxSceneModel( ChallengeSet.warmupCircuitStateObject, tandem.createTandem( `${scene}Model` ) ),
             blackBoxScreenModel.sceneProperty,
-            tandem.createTandem( scene + 'Scene' ).createTandem( 'view' )
+            tandem.createTandem( `${scene}Scene` ).createTandem( 'view' )
           );
         }
         else if ( scene.indexOf( 'scene' ) === 0 ) {
@@ -52,9 +52,9 @@ class BlackBoxScreenView extends ScreenView {
           this.sceneViews[ scene ] = new BlackBoxSceneView(
             blackBoxWidth,
             blackBoxHeight,
-            new BlackBoxSceneModel( ChallengeSet.challengeArray[ index ], tandem.createTandem( scene + 'Model' ) ),
+            new BlackBoxSceneModel( ChallengeSet.challengeArray[ index ], tandem.createTandem( `${scene}Model` ) ),
             blackBoxScreenModel.sceneProperty,
-            tandem.createTandem( scene + 'SceneView' )
+            tandem.createTandem( `${scene}SceneView` )
           );
         }
         else {
