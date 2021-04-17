@@ -8,8 +8,8 @@
 
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
+import Eye from '../../../../sherpa/js/fontawesome-5/solid/Eye.js';
 import RoundMomentaryButton from '../../../../sun/js/buttons/RoundMomentaryButton.js';
-import FontAwesomeNode from '../../../../sun/js/FontAwesomeNode.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants
@@ -33,7 +33,7 @@ class RevealButton extends RoundMomentaryButton {
       content: new VBox( {
         spacing: 5,
         children: [
-          new FontAwesomeNode( 'eye_open', { scale: 0.75 } ),
+          new Eye( { fill: 'black', maxWidth: 33.6 } ),
           new Text( 'Reveal', { fontSize: 15 } )
         ]
       } )
