@@ -6,9 +6,10 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
+import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
-import Eye from '../../../../sherpa/js/fontawesome-5/solid/Eye.js';
+import eyeShape from '../../../../sherpa/js/fontawesome-5/eyeSolidShape.js';
 import RoundMomentaryButton from '../../../../sun/js/buttons/RoundMomentaryButton.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
@@ -33,7 +34,7 @@ class RevealButton extends RoundMomentaryButton {
       content: new VBox( {
         spacing: 5,
         children: [
-          new Eye( { fill: 'black', maxWidth: 33.6 } ),
+          new Path( eyeShape, { fill: 'black', maxWidth: 33.6 } ),
           new Text( 'Reveal', { fontSize: 15 } )
         ]
       } )
