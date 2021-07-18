@@ -3,7 +3,7 @@
 /**
  * Query parameters used in sim-specific code.
  *
- * @author Sam Reid
+ * @author Sam Reid (PhET Interactive Simulations)
  */
 
 import circuitConstructionKitBlackBoxStudy from '../circuitConstructionKitBlackBoxStudy.js';
