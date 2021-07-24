@@ -9,7 +9,7 @@
 import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
-import eyeRegularShape from '../../../../sherpa/js/fontawesome-5/eyeRegularShape.js';
+import eyeSolidShape from '../../../../sherpa/js/fontawesome-5/eyeSolidShape.js';
 import RoundMomentaryButton from '../../../../sun/js/buttons/RoundMomentaryButton.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
@@ -34,7 +34,7 @@ class RevealButton extends RoundMomentaryButton {
       content: new VBox( {
         spacing: 5,
         children: [
-          new Path( eyeRegularShape, { fill: 'black', maxWidth: 33.6 } ),
+          new Path( eyeSolidShape, { fill: 'black', maxWidth: 33.6 } ),
           new Text( 'Reveal', { fontSize: 15 } )
         ]
       } )
