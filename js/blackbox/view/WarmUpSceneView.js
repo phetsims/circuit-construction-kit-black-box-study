@@ -9,15 +9,11 @@
  */
 
 import Property from '../../../../axon/js/Property.js';
-import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import merge from '../../../../phet-core/js/merge.js';
 import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxSceneView from './BlackBoxSceneView.js';
-
-// constants
-const InteractionMode = Circuit.InteractionMode;
 
 class WarmUpSceneView extends BlackBoxSceneView {
 
@@ -39,7 +35,7 @@ class WarmUpSceneView extends BlackBoxSceneView {
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], ( mode, revealing ) => {
-      questionText.visible = !revealing && mode === InteractionMode.EXPLORE;
+      questionText.visible = !revealing && mode === 'explore';
     } );
 
     // TODO: i18n
@@ -48,7 +44,7 @@ class WarmUpSceneView extends BlackBoxSceneView {
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
     blackBoxSceneModel.modeProperty.link( mode => {
-      tryToText.visible = mode === InteractionMode.TEST;
+      tryToText.visible = mode === 'test';
     } );
 
     this.addChild( questionText );

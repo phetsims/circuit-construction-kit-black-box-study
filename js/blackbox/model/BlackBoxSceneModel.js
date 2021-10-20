@@ -10,7 +10,6 @@
 
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Battery from '../../../../circuit-construction-kit-common/js/model/Battery.js';
-import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import CircuitConstructionKitModel from '../../../../circuit-construction-kit-common/js/model/CircuitConstructionKitModel.js';
 import CircuitStruct from '../../../../circuit-construction-kit-common/js/model/CircuitStruct.js';
 import LightBulb from '../../../../circuit-construction-kit-common/js/model/LightBulb.js';
@@ -20,9 +19,6 @@ import Wire from '../../../../circuit-construction-kit-common/js/model/Wire.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
-
-// constants
-const InteractionMode = Circuit.InteractionMode;
 
 class BlackBoxSceneModel extends CircuitConstructionKitModel {
 
@@ -66,7 +62,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
     this.circuit = this.circuit || null;
 
     // When reveal is pressed, true black box circuit should be shown instead of the user-created circuit
-    this.revealingProperty.lazyLink( revealing => this.modeProperty.set( revealing ? InteractionMode.EXPLORE : InteractionMode.TEST ) );
+    this.revealingProperty.lazyLink( revealing => this.modeProperty.set( revealing ? 'explore' : 'test' ) );
 
     // Keep track of what the user has built inside the black box so it may be restored.
     const userBlackBoxCircuitStruct = new CircuitStruct();
@@ -129,7 +125,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
 
     // Enable the reveal button if the user has done something in build mode.
     circuit.circuitChangedEmitter.addListener( () => {
-      const builtSomething = this.modeProperty.get() === InteractionMode.TEST && userBuiltSomething();
+      const builtSomething = this.modeProperty.get() === 'test' && userBuiltSomething();
       this.isRevealEnabledProperty.set( this.revealingProperty.get() || builtSomething );
     } );
 
@@ -173,7 +169,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
     this.modeProperty.link( mode => {
 
       // When switching to InteractionMode.TEST mode, remove all of the black box circuitry and vice-versa
-      if ( mode === InteractionMode.TEST ) {
+      if ( mode === 'test' ) {
 
         removeBlackBoxContents( trueBlackBoxCircuitStruct );
 

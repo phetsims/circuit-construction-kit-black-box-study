@@ -10,7 +10,6 @@
 import Property from '../../../../axon/js/Property.js';
 import stepTimer from '../../../../axon/js/stepTimer.js';
 import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
-import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import CCKCScreenView from '../../../../circuit-construction-kit-common/js/view/CCKCScreenView.js';
 import CircuitElementToolFactory from '../../../../circuit-construction-kit-common/js/view/CircuitElementToolFactory.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
@@ -25,9 +24,6 @@ import BlackBoxNode from './BlackBoxNode.js';
 import ModeRadioButtonGroup from './ModeRadioButtonGroup.js';
 import RevealButton from './RevealButton.js';
 import WhiteBoxNode from './WhiteBoxNode.js';
-
-// constants
-const InteractionMode = Circuit.InteractionMode;
 
 // constants
 // const FADED_COLOR = new Color( '#e3edfc' );
@@ -153,7 +149,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       blackBoxNode.opacity = revealing ? 0.2 : 1.0;
     } );
     blackBoxSceneModel.modeProperty.link( mode => {
-      blackBoxNode.visible = mode === InteractionMode.EXPLORE;
+      blackBoxNode.visible = mode === 'explore';
     } );
 
     const whiteBoxNode = new WhiteBoxNode( blackBoxWidth, blackBoxHeight, {
@@ -163,7 +159,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       centerY: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 2
     } );
     blackBoxSceneModel.modeProperty.link( mode => {
-      whiteBoxNode.visible = mode === InteractionMode.TEST;
+      whiteBoxNode.visible = mode === 'test';
     } );
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
@@ -174,7 +170,7 @@ class BlackBoxSceneView extends CCKCScreenView {
 
     // Update the layering of view objects when the mode changes
     Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], ( mode, isValueDepictionEnabled ) => {
-      const isTestMode = mode === InteractionMode.TEST;
+      const isTestMode = mode === 'test';
 
       // self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
       //                             isTestMode ? FADED_COLOR :
@@ -206,7 +202,7 @@ class BlackBoxSceneView extends CCKCScreenView {
 
         // If the wire connected to a black box vertex, then it may no longer exist in the model. In this case there is
         // no need to move it inside the black box.
-        if ( blackBoxSceneModel.circuit.vertexGroup.includes( vertex ) && blackBoxSceneModel.modeProperty.get() === InteractionMode.TEST ) {
+        if ( blackBoxSceneModel.circuit.vertexGroup.includes( vertex ) && blackBoxSceneModel.modeProperty.get() === 'test' ) {
 
           // Find all the vertices that must be translated into the box, translating wires
           ( () => {

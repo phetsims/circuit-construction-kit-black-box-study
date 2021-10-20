@@ -6,14 +6,10 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import Circuit from '../../../../circuit-construction-kit-common/js/model/Circuit.js';
 import PhetColorScheme from '../../../../scenery-phet/js/PhetColorScheme.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import RectangularRadioButtonGroup from '../../../../sun/js/buttons/RectangularRadioButtonGroup.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
-
-// constants
-const InteractionMode = Circuit.InteractionMode;
 
 class ModeRadioButtonGroup extends RectangularRadioButtonGroup {
 
@@ -24,13 +20,13 @@ class ModeRadioButtonGroup extends RectangularRadioButtonGroup {
   constructor( modeProperty, tandem ) {
     const textOptions = { fontSize: 18 };
     super( modeProperty, [ {
-      value: InteractionMode.EXPLORE,
+      value: 'explore',
 
       // TODO: i18n
       node: new Text( 'Explore', textOptions ),
       tandemName: 'investigateCircuitRadioButton'
     }, {
-      value: InteractionMode.TEST,
+      value: 'test',
 
       // TODO: i18n
       node: new Text( 'Test', textOptions ),
