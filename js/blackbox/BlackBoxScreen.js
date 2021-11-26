@@ -11,7 +11,7 @@ import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import CCKCConstants from '../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
-import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
+import { Rectangle } from '../../../scenery/js/imports.js';
 import circuitConstructionKitBlackBoxStudy from '../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxModel from './model/BlackBoxModel.js';
 import BlackBoxNode from './view/BlackBoxNode.js';
