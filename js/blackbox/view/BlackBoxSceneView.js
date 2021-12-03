@@ -44,7 +44,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       blackBoxSceneModel.showLabelsProperty,
       blackBoxSceneModel.viewTypeProperty,
       point => this.circuitLayerNode.globalToLocalPoint( point ),
-      tandem
+      tandem.createTandem( 'circuitElementToolbox' ).createTandem( 'circuitElementTools' )
     );
 
     // Tool nodes that appear on every screen. Pagination for the carousel, each page should begin with wire node
