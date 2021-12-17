@@ -8,7 +8,7 @@
 
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
-import battery from '../../../../circuit-construction-kit-common/images/battery_png.js';
+import battery_png from '../../../../circuit-construction-kit-common/images/battery_png.js';
 import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import Resistor from '../../../../circuit-construction-kit-common/js/model/Resistor.js';
 import Vertex from '../../../../circuit-construction-kit-common/js/model/Vertex.js';
@@ -52,7 +52,7 @@ class CCKIcon extends Rectangle {
       icon: true
     } );
 
-    const batteryNode = new Image( battery );
+    const batteryNode = new Image( battery_png );
 
     const lightBulbNode = new CustomLightBulbNode( new NumberProperty( 0 ) );
 
