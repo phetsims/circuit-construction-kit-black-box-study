@@ -11,7 +11,7 @@ import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBla
 
 class ExploreModel extends CircuitConstructionKitModel {
   constructor( tandem ) {
-    super( true, tandem, { blackBoxStudy: true } );
+    super( true, false, tandem, { blackBoxStudy: true } );
   }
 }
 

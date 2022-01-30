@@ -27,7 +27,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
    * @param {Tandem} tandem
    */
   constructor( trueBlackBoxCircuitObject, tandem ) {
-    super( true, tandem, {
+    super( true, false, tandem, {
       revealing: false,
       blackBoxStudy: true
     } );
