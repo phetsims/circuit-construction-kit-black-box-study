@@ -9,7 +9,7 @@ import circuitConstructionKitBlackBoxStudy from './circuitConstructionKitBlackBo
 
 type StringsType = {
   'circuit-construction-kit-black-box-study': {
-    'title': string
+    'title': string;
   }
 };
 
