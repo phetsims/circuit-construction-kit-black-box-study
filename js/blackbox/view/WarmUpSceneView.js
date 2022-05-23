@@ -8,7 +8,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import merge from '../../../../phet-core/js/merge.js';
 import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
@@ -34,7 +34,7 @@ class WarmUpSceneView extends BlackBoxSceneView {
       centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
-    Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], ( mode, revealing ) => {
+    Multilink.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.revealingProperty ], ( mode, revealing ) => {
       questionText.visible = !revealing && mode === 'explore';
     } );
 

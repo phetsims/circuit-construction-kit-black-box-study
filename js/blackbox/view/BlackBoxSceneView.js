@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import Property from '../../../../axon/js/Property.js';
+import Multilink from '../../../../axon/js/Multilink.js';
 import stepTimer from '../../../../axon/js/stepTimer.js';
 import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import CCKCScreenView from '../../../../circuit-construction-kit-common/js/view/CCKCScreenView.js';
@@ -169,7 +169,7 @@ class BlackBoxSceneView extends CCKCScreenView {
     this.circuitLayerNode.beforeCircuitElementsLayer.addChild( whiteBoxNode );
 
     // Update the layering of view objects when the mode changes
-    Property.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], ( mode, isValueDepictionEnabled ) => {
+    Multilink.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], ( mode, isValueDepictionEnabled ) => {
       const isTestMode = mode === 'test';
 
       // self.backgroundPlane.fill = !isValueDepictionEnabled ? 'gray' :
