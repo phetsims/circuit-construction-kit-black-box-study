@@ -114,7 +114,7 @@ class BlackBoxSceneView extends CCKCScreenView {
     // create a node to keep track of combo box popup menu
     const listParent = new Node();
 
-    const sceneSelectionComboBox = new ComboBox( elements, sceneProperty, listParent, {
+    const sceneSelectionComboBox = new ComboBox( sceneProperty, elements, listParent, {
       xMargin: 12,
       yMargin: 10,
       cornerRadius: 6,
