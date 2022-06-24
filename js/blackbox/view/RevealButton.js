@@ -26,7 +26,7 @@ class RevealButton extends RoundMomentaryButton {
    * @param {Tandem} tandem
    */
   constructor( revealingProperty, enabledProperty, tandem ) {
-    super( false, true, revealingProperty, {
+    super( revealingProperty, false, true, {
       tandem: tandem,
       baseColor: 'yellow',
       xMargin: MARGIN,
