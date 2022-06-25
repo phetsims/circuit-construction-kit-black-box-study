@@ -48,7 +48,7 @@ class BlackBoxScreenView extends ScreenView {
           );
         }
         else if ( scene.indexOf( 'scene' ) === 0 ) {
-          const index = parseInt( scene.substring( 'scene'.length ), 10 );
+          const index = Number( scene.substring( 'scene'.length ) );
           this.sceneViews[ scene ] = new BlackBoxSceneView(
             blackBoxWidth,
             blackBoxHeight,
