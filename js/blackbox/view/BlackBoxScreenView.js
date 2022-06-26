@@ -1,4 +1,4 @@
-// Copyright 2016-2021, University of Colorado Boulder
+// Copyright 2016-2022, University of Colorado Boulder
 
 /**
  * This screen view creates and delegates to the scene views, it does not show anything that is not in a scene.
