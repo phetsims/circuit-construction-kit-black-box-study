@@ -16,7 +16,6 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import { Node } from '../../../../scenery/js/imports.js';
 import { Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
-import ComboBoxItem from '../../../../sun/js/ComboBoxItem.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxQueryParameters from '../BlackBoxQueryParameters.js';
 import ChallengeSet from '../model/ChallengeSet.js';
@@ -98,19 +97,19 @@ class BlackBoxSceneView extends CCKCScreenView {
     };
 
     // A different ComboBox instance appears in each BlackBoxSceneView
-    const elements = [ new ComboBoxItem(
-      new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
-      'warmup', {
-        tandemName: 'warmupItem'
-      } ) ];
+    const elements = [ {
+      value: 'warmup',
+      node: new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
+      tandemName: `warmup${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
+    } ];
     for ( let i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
-      elements.push( new ComboBoxItem(
-        new Text( `Black Box ${i + 1}`, comboBoxTextOptions ), // TODO: i18n
-        `scene${i}`, {
-          tandemName: `scene${i}Item`
-        }
-      ) );
+      elements.push( {
+        value: `scene${i}`,
+        node: new Text( `Black Box ${i + 1}`, comboBoxTextOptions ), // TODO: i18n
+        tandemName: `scene${i}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
+      } );
     }
+
     // create a node to keep track of combo box popup menu
     const listParent = new Node();
 
