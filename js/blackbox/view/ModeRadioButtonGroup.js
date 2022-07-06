@@ -32,12 +32,14 @@ class ModeRadioButtonGroup extends RectangularRadioButtonGroup {
       node: new Text( 'Test', textOptions ),
       tandemName: 'buildCircuitRadioButton'
     } ], {
-      tandem: tandem.createTandem( 'ModeRadioButtonGroup' ),
-      baseColor: 'white',
-      buttonContentXMargin: 10,
-      buttonContentYMargin: 15,
-      selectedStroke: PhetColorScheme.RESET_ALL_BUTTON_BASE_COLOR,
-      selectedLineWidth: 2.5
+      radioButtonOptions: {
+        baseColor: 'white',
+        xMargin: 10,
+        yMargin: 15,
+        selectedStroke: PhetColorScheme.RESET_ALL_BUTTON_BASE_COLOR,
+        selectedLineWidth: 2.5
+      },
+      tandem: tandem.createTandem( 'ModeRadioButtonGroup' )
     } );
   }
 }
