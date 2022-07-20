@@ -19,10 +19,7 @@ import WireNode from '../../../../circuit-construction-kit-common/js/view/WireNo
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Screen from '../../../../joist/js/Screen.js';
 import merge from '../../../../phet-core/js/merge.js';
-import { HBox } from '../../../../scenery/js/imports.js';
-import { Image } from '../../../../scenery/js/imports.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { VBox } from '../../../../scenery/js/imports.js';
+import { HBox, Image, Rectangle, VBox } from '../../../../scenery/js/imports.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants

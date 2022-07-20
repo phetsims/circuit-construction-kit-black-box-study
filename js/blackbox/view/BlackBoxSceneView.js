@@ -13,8 +13,7 @@ import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCCo
 import CCKCScreenView from '../../../../circuit-construction-kit-common/js/view/CCKCScreenView.js';
 import CircuitElementToolFactory from '../../../../circuit-construction-kit-common/js/view/CircuitElementToolFactory.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import { Node } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { Node, Text } from '../../../../scenery/js/imports.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxQueryParameters from '../BlackBoxQueryParameters.js';

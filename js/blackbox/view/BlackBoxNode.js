@@ -6,9 +6,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import { Node } from '../../../../scenery/js/imports.js';
-import { Rectangle } from '../../../../scenery/js/imports.js';
-import { Text } from '../../../../scenery/js/imports.js';
+import { Node, Rectangle, Text } from '../../../../scenery/js/imports.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class BlackBoxNode extends Node {
