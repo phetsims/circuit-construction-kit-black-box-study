@@ -36,8 +36,10 @@ class ModeRadioButtonGroup extends RectangularRadioButtonGroup {
         baseColor: 'white',
         xMargin: 10,
         yMargin: 15,
-        selectedStroke: PhetColorScheme.RESET_ALL_BUTTON_BASE_COLOR,
-        selectedLineWidth: 2.5
+        buttonAppearanceStrategyOptions: {
+          selectedStroke: PhetColorScheme.RESET_ALL_BUTTON_BASE_COLOR,
+          selectedLineWidth: 2.5
+        }
       },
       tandem: tandem.createTandem( 'ModeRadioButtonGroup' )
     } );
