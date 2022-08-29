@@ -11,7 +11,7 @@ import circuitConstructionKitBlackBoxStudy from './circuitConstructionKitBlackBo
 type StringsType = {
   'circuit-construction-kit-black-box-study': {
     'title': string;
-    'titleProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': TReadOnlyProperty<string>;
   }
 };
 
