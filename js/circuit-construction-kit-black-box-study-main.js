@@ -15,7 +15,7 @@ import ExploreScreen from './explore/ExploreScreen.js';
 // constants
 const TANDEM = Tandem.ROOT;
 
-const circuitConstructionKitBlackBoxStudyTitleString = circuitConstructionKitBlackBoxStudyStrings[ 'circuit-construction-kit-black-box-study' ].title;
+const circuitConstructionKitBlackBoxStudyTitleStringProperty = circuitConstructionKitBlackBoxStudyStrings[ 'circuit-construction-kit-black-box-study' ].titleStringProperty;
 
 const simOptions = {
   credits: {
@@ -32,7 +32,7 @@ const simOptions = {
 // however, when running the unit tests we don't also want to launch the simulation.
 if ( !window.circuitConstructionKitTestSuite ) {
   simLauncher.launch( () => {
-    const sim = new Sim( circuitConstructionKitBlackBoxStudyTitleString, [
+    const sim = new Sim( circuitConstructionKitBlackBoxStudyTitleStringProperty, [
       new ExploreScreen( TANDEM.createTandem( 'exploreScreen' ) )
       // new BlackBoxScreen( TANDEM.createTandem( 'blackBoxScreen' ) )
     ], simOptions );
