@@ -9,13 +9,13 @@
 import Sim from '../../joist/js/Sim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
-import circuitConstructionKitBlackBoxStudyStrings from './circuitConstructionKitBlackBoxStudyStrings.js';
+import CircuitConstructionKitBlackBoxStudyStrings from './CircuitConstructionKitBlackBoxStudyStrings.js';
 import ExploreScreen from './explore/ExploreScreen.js';
 
 // constants
 const TANDEM = Tandem.ROOT;
 
-const circuitConstructionKitBlackBoxStudyTitleStringProperty = circuitConstructionKitBlackBoxStudyStrings[ 'circuit-construction-kit-black-box-study' ].titleStringProperty;
+const circuitConstructionKitBlackBoxStudyTitleStringProperty = CircuitConstructionKitBlackBoxStudyStrings[ 'circuit-construction-kit-black-box-study' ].titleStringProperty;
 
 const simOptions = {
   credits: {

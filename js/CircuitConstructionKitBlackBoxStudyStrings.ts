@@ -15,8 +15,8 @@ type StringsType = {
   }
 };
 
-const circuitConstructionKitBlackBoxStudyStrings = getStringModule( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY' ) as StringsType;
+const CircuitConstructionKitBlackBoxStudyStrings = getStringModule( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY' ) as StringsType;
 
-circuitConstructionKitBlackBoxStudy.register( 'circuitConstructionKitBlackBoxStudyStrings', circuitConstructionKitBlackBoxStudyStrings );
+circuitConstructionKitBlackBoxStudy.register( 'CircuitConstructionKitBlackBoxStudyStrings', CircuitConstructionKitBlackBoxStudyStrings );
 
-export default circuitConstructionKitBlackBoxStudyStrings;
+export default CircuitConstructionKitBlackBoxStudyStrings;
