@@ -8,6 +8,7 @@
  */
 
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
+import Property from '../../../axon/js/Property.js';
 import CCKCConstants from '../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
@@ -36,7 +37,7 @@ class BlackBoxScreen extends Screen {
     icon.addChild( blackBoxNode );
 
     const options = {
-      name: 'Black Box', //TODO i18n
+      name: new Property( 'Black Box' ), //TODO i18n
       homeScreenIcon: new ScreenIcon( icon, {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

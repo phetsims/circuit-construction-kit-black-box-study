@@ -20,7 +20,7 @@ class ExploreScreen extends Screen {
   constructor( tandem ) {
 
     const options = {
-      name: 'Explore', //TODO i18n
+      name: new Property( 'Explore' ), //TODO i18n
       backgroundColorProperty: new Property( CCKCConstants.BACKGROUND_COLOR ),
       homeScreenIcon: new ScreenIcon( new Rectangle( 0, 0, 548, 373, { fill: 'red' } ), {
         maxIconWidthProportion: 1,
