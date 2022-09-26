@@ -5,13 +5,13 @@
  */
 /* eslint-disable */
 import getStringModule from '../../chipper/js/getStringModule.js';
-import TReadOnlyProperty from '../../axon/js/TReadOnlyProperty.js';
+import LinkableProperty from '../../axon/js/LinkableProperty.js';
 import circuitConstructionKitBlackBoxStudy from './circuitConstructionKitBlackBoxStudy.js';
 
 type StringsType = {
   'circuit-construction-kit-black-box-study': {
     'title': string;
-    'titleStringProperty': TReadOnlyProperty<string>;
+    'titleStringProperty': LinkableProperty<string>;
   }
 };
 
