@@ -13,11 +13,11 @@
     "branch": "HEAD"
   },
   "chipper": {
-    "sha": "d8782bc1e039ccc8d4c2653fcd4151376a320720",
+    "sha": "c2e9385dadb3f63f2e98502a85fa3fba36aca136",
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "928ec8f16744f6390d86853e13d87310c5e45a1e",
+    "sha": "df271914a62ec97f451a5b3dcd60fe613bbfd1b4",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
