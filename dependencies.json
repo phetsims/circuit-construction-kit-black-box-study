@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "dfe8ce2e7dd279448c4c4f658c3ba524ac31cc38",
+    "sha": "40af2103a0e16030274cf5319c03454f173bff3d",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
@@ -29,7 +29,7 @@
     "branch": "HEAD"
   },
   "joist": {
-    "sha": "33f79b38af025c2ce1812989797c670c2a34aa00",
+    "sha": "c47a53b3016b7058253c7c5e90dc06cea270aabd",
     "branch": "HEAD"
   },
   "kite": {
