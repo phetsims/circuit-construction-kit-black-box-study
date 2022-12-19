@@ -42,8 +42,7 @@ class ExploreScreenView extends CCKCScreenView {
       circuitElementToolFactory.createEraserToolNode(),
 
       circuitElementToolFactory.createWireToolNode(),
-      circuitElementToolFactory.createPencilToolNode(),
-      circuitElementToolFactory.createHandToolNode()
+      circuitElementToolFactory.createPencilToolNode()
     ];
     super( model, circuitElementToolNodes, tandem, {
       blackBoxStudy: true

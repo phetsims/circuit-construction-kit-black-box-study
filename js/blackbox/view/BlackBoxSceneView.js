@@ -62,8 +62,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       circuitElementToolFactory.createEraserToolNode(),
 
       circuitElementToolFactory.createWireToolNode(),
-      circuitElementToolFactory.createPencilToolNode(),
-      circuitElementToolFactory.createHandToolNode()
+      circuitElementToolFactory.createPencilToolNode()
     ];
 
     super( blackBoxSceneModel, circuitElementToolNodes, tandem, {
