@@ -7,6 +7,7 @@
  */
 
 import CCKCScreenView from '../../../../circuit-construction-kit-common/js/view/CCKCScreenView.js';
+import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import CircuitElementToolFactory from '../../../../circuit-construction-kit-common/js/view/CircuitElementToolFactory.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
@@ -45,7 +46,8 @@ class ExploreScreenView extends CCKCScreenView {
       circuitElementToolFactory.createPencilToolNode()
     ];
     super( model, circuitElementToolNodes, tandem, {
-      blackBoxStudy: true
+      blackBoxStudy: true,
+      circuitElementToolboxOptions: { carouselScale: CCKCConstants.DC_CAROUSEL_SCALE }
     } );
   }
 }
