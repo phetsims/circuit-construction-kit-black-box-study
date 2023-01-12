@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "43ed6be1e7ea8de74738d0d808d3e4d47f1fd1a7",
+    "sha": "3d2a29f015f89f3580bba015497bb721791b7815",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
@@ -49,7 +49,7 @@
     "branch": "HEAD"
   },
   "phetcommon": {
-    "sha": "b1b4b12373b771cd442d6225823985c780581e20",
+    "sha": "81c5f641f0d594809c02b866438ff2ad51d47089",
     "branch": "HEAD"
   },
   "phetmarks": {
