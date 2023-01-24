@@ -41,7 +41,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       blackBoxSceneModel.circuit,
       blackBoxSceneModel.showLabelsProperty,
       blackBoxSceneModel.viewTypeProperty,
-      point => this.circuitLayerNode.globalToLocalPoint( point ),
+      point => this.circuitNode.globalToLocalPoint( point ),
       tandem.createTandem( 'circuitElementToolbox' ).createTandem( 'carousel' ).createTandem( 'circuitElementTools' )
     );
 
@@ -159,10 +159,10 @@ class BlackBoxSceneView extends CCKCScreenView {
     } );
 
     // Interleave the black/white box node in the nodes, so things may go in front of it.
-    this.circuitLayerNode.afterCircuitElementsLayer.addChild( blackBoxNode );
+    this.circuitNode.afterCircuitElementsLayer.addChild( blackBoxNode );
 
     // Store the black box node reference for help with layering
-    this.circuitLayerNode.beforeCircuitElementsLayer.addChild( whiteBoxNode );
+    this.circuitNode.beforeCircuitElementsLayer.addChild( whiteBoxNode );
 
     // Update the layering of view objects when the mode changes
     Multilink.multilink( [ blackBoxSceneModel.modeProperty, blackBoxSceneModel.isValueDepictionEnabledProperty ], ( mode, isValueDepictionEnabled ) => {
@@ -211,7 +211,7 @@ class BlackBoxSceneView extends CCKCScreenView {
                 const closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
                 const delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
 
-                this.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
+                this.circuitNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
               }
             }
           } )();
@@ -228,7 +228,7 @@ class BlackBoxSceneView extends CCKCScreenView {
                 const closestPoint = blackBoxNode.bounds.eroded( 30 ).closestPointTo( vertexInGroup.positionProperty.get() );
                 const delta = closestPoint.minus( vertexInGroup.positionProperty.get() );
 
-                this.circuitLayerNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
+                this.circuitNode.translateVertexGroup( vertexInGroup, vertices, delta, null, [] );
               }
             }
           } )();
