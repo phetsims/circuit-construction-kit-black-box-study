@@ -1,5 +1,5 @@
 {
-  "comment": "# circuit-construction-kit-black-box-study 1.1.23-phetiorc.1 Tue Jan 31 2023 15:08:39 GMT-0700 (Mountain Standard Time)",
+  "comment": "# circuit-construction-kit-black-box-study 1.1.23-phetio Wed Feb 01 2023 10:41:35 GMT-0700 (Mountain Standard Time)",
   "assert": {
     "sha": "a707328cc11048787a807714496af23e0bd25be1",
     "branch": "HEAD"
@@ -17,7 +17,7 @@
     "branch": "HEAD"
   },
   "circuit-construction-kit-black-box-study": {
-    "sha": "577662fa598a652ce8ba736bde326bb6100323d4",
+    "sha": "ebee0568a363b519da8a826274c453830fdc8b42",
     "branch": "1.1-phetio"
   },
   "circuit-construction-kit-common": {
