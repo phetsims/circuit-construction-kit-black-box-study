@@ -30,20 +30,21 @@ class ExploreScreenView extends CCKCScreenView {
     const circuitElementToolNodes = [
 
       // This page is duplicated in the Lab Screen View
-      circuitElementToolFactory.createWireToolNode(),
-      circuitElementToolFactory.createRightBatteryToolNode(),
-      circuitElementToolFactory.createLightBulbToolNode(),
-      circuitElementToolFactory.createResistorToolNode(),
-      circuitElementToolFactory.createSwitchToolNode(),
+      { createNode: tandem => circuitElementToolFactory.createWireToolNode( tandem ), tandemName: 'wireToolNode1' },
+      { createNode: tandem => circuitElementToolFactory.createRightBatteryToolNode( tandem ), tandemName: 'batteryToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createLightBulbToolNode( tandem ), tandemName: 'lightBulbToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createResistorToolNode( tandem ), tandemName: 'resistorToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createSwitchToolNode( tandem ), tandemName: 'switchToolNode' },
 
-      circuitElementToolFactory.createWireToolNode(),
-      circuitElementToolFactory.createDollarBillToolNode(),
-      circuitElementToolFactory.createPaperClipToolNode(),
-      circuitElementToolFactory.createCoinToolNode(),
-      circuitElementToolFactory.createEraserToolNode(),
+      { createNode: tandem => circuitElementToolFactory.createWireToolNode( tandem ), tandemName: 'wireToolNode2' },
+      { createNode: tandem => circuitElementToolFactory.createFuseToolNode( tandem ), tandemName: 'fuseToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createDollarBillToolNode( tandem ), tandemName: 'dollarBillToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createPaperClipToolNode( tandem ), tandemName: 'paperClipToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createCoinToolNode( tandem ), tandemName: 'coinToolNode' },
+      { createNode: tandem => circuitElementToolFactory.createEraserToolNode( tandem ), tandemName: 'eraserToolNode' },
 
-      circuitElementToolFactory.createWireToolNode(),
-      circuitElementToolFactory.createPencilToolNode()
+      { createNode: tandem => circuitElementToolFactory.createWireToolNode( tandem ), tandemName: 'wireToolNode3' },
+      { createNode: tandem => circuitElementToolFactory.createPencilToolNode( tandem ), tandemName: 'pencilToolNode' }
     ];
     super( model, circuitElementToolNodes, tandem, {
       blackBoxStudy: true,
