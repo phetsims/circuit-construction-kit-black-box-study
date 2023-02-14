@@ -25,7 +25,7 @@ import WhiteBoxNode from './WhiteBoxNode.js';
 
 // constants
 // const FADED_COLOR = new Color( '#e3edfc' );
-// const SOLID_COLOR = CCKCConstants.BACKGROUND_COLOR;
+// const SOLID_COLOR = CCKCColors.screenBackgroundColorProperty;
 
 class BlackBoxSceneView extends CCKCScreenView {
   /**

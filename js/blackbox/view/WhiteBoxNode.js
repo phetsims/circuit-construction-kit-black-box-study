@@ -7,7 +7,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
+import CCKCColors from '../../../../circuit-construction-kit-common/js/view/CCKCColors.js';
 import { Node, Rectangle } from '../../../../scenery/js/imports.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
@@ -18,7 +18,7 @@ class WhiteBoxNode extends Node {
         new Rectangle( 0, 0, width, height, 20, 20, {
           stroke: 'black',
           lineWidth: 3,
-          fill: CCKCConstants.BACKGROUND_COLOR
+          fill: CCKCColors.screenBackgroundColorProperty
         } )
       ]
     } );

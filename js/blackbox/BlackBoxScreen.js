@@ -10,6 +10,7 @@
 import BooleanProperty from '../../../axon/js/BooleanProperty.js';
 import Property from '../../../axon/js/Property.js';
 import CCKCConstants from '../../../circuit-construction-kit-common/js/CCKCConstants.js';
+import CCKCColors from '../../../circuit-construction-kit-common/js/view/CCKCColors.js';
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import { Rectangle } from '../../../scenery/js/imports.js';
@@ -19,7 +20,7 @@ import BlackBoxNode from './view/BlackBoxNode.js';
 import BlackBoxScreenView from './view/BlackBoxScreenView.js';
 
 // constants
-const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
+const BACKGROUND_COLOR = CCKCColors.screenBackgroundColorProperty;
 
 class BlackBoxScreen extends Screen {
 

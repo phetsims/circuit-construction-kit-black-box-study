@@ -10,6 +10,7 @@ import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import battery_png from '../../../../circuit-construction-kit-common/images/battery_png.js';
 import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
+import CCKCColors from '../../../../circuit-construction-kit-common/js/view/CCKCColors.js';
 import Resistor from '../../../../circuit-construction-kit-common/js/model/Resistor.js';
 import Vertex from '../../../../circuit-construction-kit-common/js/model/Vertex.js';
 import Wire from '../../../../circuit-construction-kit-common/js/model/Wire.js';
@@ -23,7 +24,7 @@ import { HBox, Image, Rectangle, VBox } from '../../../../scenery/js/imports.js'
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants
-const BACKGROUND_COLOR = CCKCConstants.BACKGROUND_COLOR;
+const BACKGROUND_COLOR = CCKCColors.screenBackgroundColorProperty;
 const ELEMENT_WIDTH = 50;
 
 class CCKIcon extends Rectangle {
