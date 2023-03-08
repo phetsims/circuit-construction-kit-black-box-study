@@ -11,7 +11,7 @@
 import Multilink from '../../../../axon/js/Multilink.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import merge from '../../../../phet-core/js/merge.js';
-import MultiLineText from '../../../../scenery-phet/js/MultiLineText.js';
+import { RichText } from '../../../../scenery/js/imports.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxSceneView from './BlackBoxSceneView.js';
 
@@ -30,7 +30,8 @@ class WarmUpSceneView extends BlackBoxSceneView {
     };
 
     // TODO: i18n
-    const questionText = new MultiLineText( 'What circuit is\nin the black box?', merge( {
+    const questionText = new RichText( 'What circuit is<br>in the black box?', merge( {
+      align: 'center',
       centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
@@ -39,7 +40,8 @@ class WarmUpSceneView extends BlackBoxSceneView {
     } );
 
     // TODO: i18n
-    const tryToText = new MultiLineText( 'Build a circuit that\nbehaves the same way.', merge( {
+    const tryToText = new RichText( 'Build a circuit that<n>behaves the same way.', merge( {
+      align: 'center',
       centerX: ScreenView.DEFAULT_LAYOUT_BOUNDS.width / 2,
       top: ScreenView.DEFAULT_LAYOUT_BOUNDS.height / 6
     }, textOptions ) );
