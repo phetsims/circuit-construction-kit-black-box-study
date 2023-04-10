@@ -96,13 +96,13 @@ class BlackBoxSceneView extends CCKCScreenView {
     // A different ComboBox instance appears in each BlackBoxSceneView
     const elements = [ {
       value: 'warmup',
-      node: new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
+      createNode: () => new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
       tandemName: `warmup${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
     } ];
     for ( let i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
       elements.push( {
         value: `scene${i}`,
-        node: new Text( `Black Box ${i + 1}`, comboBoxTextOptions ), // TODO: i18n
+        createNode: () => new Text( `Black Box ${i + 1}`, comboBoxTextOptions ), // TODO: i18n
         tandemName: `scene${i}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
       } );
     }
