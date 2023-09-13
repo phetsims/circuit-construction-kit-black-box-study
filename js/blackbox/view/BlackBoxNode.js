@@ -19,7 +19,7 @@ class BlackBoxNode extends Node {
    */
   constructor( width, height, revealingProperty, options ) {
 
-    // TODO: i18n
+    // TODO: i18n https://github.com/phetsims/tasks/issues/1129
     const questionMarkTextNode = new Text( '?', {
       fontSize: 82,
       centerX: width / 2,

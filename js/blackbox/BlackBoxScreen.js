@@ -1,5 +1,5 @@
 // Copyright 2016-2023, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
+// TODO: Review, document, annotate, i18n, bring up to standards https://github.com/phetsims/tasks/issues/1129
 
 /**
  * The 'Black Box' screen.
@@ -38,7 +38,7 @@ class BlackBoxScreen extends Screen {
     icon.addChild( blackBoxNode );
 
     const options = {
-      name: new Property( 'Black Box' ), //TODO i18n
+      name: new Property( 'Black Box' ), //TODO i18n https://github.com/phetsims/tasks/issues/1129
       homeScreenIcon: new ScreenIcon( icon, {
         maxIconWidthProportion: 1,
         maxIconHeightProportion: 1

@@ -1,5 +1,5 @@
 // Copyright 2017-2023, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
+// TODO: Review, document, annotate, i18n, bring up to standards https://github.com/phetsims/tasks/issues/1129
 
 /**
  * The "Explore Screen", used in both Black Box Study and DC simulations.
@@ -21,7 +21,7 @@ class ExploreScreen extends Screen {
   constructor( tandem ) {
 
     const options = {
-      name: new Property( 'Explore' ), //TODO i18n
+      name: new Property( 'Explore' ), //TODO i18n https://github.com/phetsims/tasks/issues/1129
       backgroundColorProperty: new Property( CCKCColors.screenBackgroundColorProperty ),
       homeScreenIcon: new ScreenIcon( new Rectangle( 0, 0, 548, 373, { fill: 'red' } ), {
         maxIconWidthProportion: 1,

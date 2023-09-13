@@ -22,13 +22,13 @@ class ModeRadioButtonGroup extends RectangularRadioButtonGroup {
     super( modeProperty, [ {
       value: 'explore',
 
-      // TODO: i18n
+      // TODO: i18n https://github.com/phetsims/tasks/issues/1129
       node: new Text( 'Explore', textOptions ),
       tandemName: 'investigateCircuitRadioButton'
     }, {
       value: 'test',
 
-      // TODO: i18n
+      // TODO: i18n https://github.com/phetsims/tasks/issues/1129
       node: new Text( 'Test', textOptions ),
       tandemName: 'buildCircuitRadioButton'
     } ], {

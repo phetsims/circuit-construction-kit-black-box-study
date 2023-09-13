@@ -75,7 +75,7 @@ class BlackBoxScreenView extends ScreenView {
 
     this.visibleBoundsProperty.link( visibleBounds => {
 
-      // TODO: it seems odd to change this function each time the bounds change.  Perhaps factor out into a single function.
+      // TODO: it seems odd to change this function each time the bounds change.  Perhaps factor out into a single function. https://github.com/phetsims/tasks/issues/1129
       this.updateAllSceneLayouts = () => {
         _.keys( this.sceneViews ).forEach(
           key => this.sceneViews[ key ].visibleBoundsProperty.set( visibleBounds.copy() )

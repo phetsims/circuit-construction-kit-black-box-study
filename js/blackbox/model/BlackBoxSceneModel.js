@@ -1,5 +1,5 @@
 // Copyright 2016-2022, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
+// TODO: Review, document, annotate, i18n, bring up to standards https://github.com/phetsims/tasks/issues/1129
 
 /**
  * One scene for the black box screen, which focuses on a single black box and deals with the contents of the
@@ -41,7 +41,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
     assert && assert( trueBlackBoxCircuitStruct instanceof CircuitStruct, 'circuit should be CircuitStruct' );
 
     // When loading a black box circuit, none of the vertices should be draggable
-    // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch.
+    // TODO: Fix this in the saved/loaded data structures, not here as a post-hoc patch. https://github.com/phetsims/tasks/issues/1129
     for ( let i = 0; i < trueBlackBoxCircuitStruct.vertices.length; i++ ) {
       trueBlackBoxCircuitStruct.vertices[ i ].draggableProperty.set( false );
 
@@ -165,7 +165,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
     };
 
     // Logic for changing the contents of the black box when the mode changes
-    // TODO: All of this logic must be re-read and re-evaluated.
+    // TODO: All of this logic must be re-read and re-evaluated. https://github.com/phetsims/tasks/issues/1129
     this.modeProperty.link( mode => {
 
       // When switching to InteractionMode.TEST mode, remove all of the black box circuitry and vice-versa
@@ -197,7 +197,7 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
         circuit.circuitElements.forEach( circuitElement => {
           if ( circuitElement.interactiveProperty.get() ) {
 
-            // TODO: abstraction
+            // TODO: abstraction https://github.com/phetsims/tasks/issues/1129
             if ( circuitElement instanceof Wire ) {
               userBlackBoxCircuitStruct.wires.push( circuitElement );
             }

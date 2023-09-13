@@ -1,5 +1,5 @@
 // Copyright 2016-2023, University of Colorado Boulder
-// TODO: Review, document, annotate, i18n, bring up to standards
+// TODO: Review, document, annotate, i18n, bring up to standards https://github.com/phetsims/tasks/issues/1129
 
 /**
  * One scene focuses on one black box, and has a separate model + view because scenes are independent.
@@ -96,13 +96,13 @@ class BlackBoxSceneView extends CCKCScreenView {
     // A different ComboBox instance appears in each BlackBoxSceneView
     const elements = [ {
       value: 'warmup',
-      createNode: () => new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n
+      createNode: () => new Text( 'Warm-up', comboBoxTextOptions ), // TODO: i18n https://github.com/phetsims/tasks/issues/1129
       tandemName: `warmup${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
     } ];
     for ( let i = 0; i < ChallengeSet.challengeArray.length; i++ ) {
       elements.push( {
         value: `scene${i}`,
-        createNode: () => new Text( `Black Box ${i + 1}`, comboBoxTextOptions ), // TODO: i18n
+        createNode: () => new Text( `Black Box ${i + 1}`, comboBoxTextOptions ), // TODO: i18n https://github.com/phetsims/tasks/issues/1129
         tandemName: `scene${i}${ComboBox.ITEM_TANDEM_NAME_SUFFIX}`
       } );
     }
@@ -177,7 +177,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       else {
 
         // investigate mode - move black box circuit elements to the back so they won't appear in front of the black box
-        // TODO: fix layering
+        // TODO: fix layering https://github.com/phetsims/tasks/issues/1129
       }
       whiteBoxNode.moveToBack();
     } );
@@ -189,7 +189,7 @@ class BlackBoxSceneView extends CCKCScreenView {
     };
 
     // When dropping an object in "build mode", its vertices should pop inside the black box, see #113
-    // TODO: Let's move this to the model, and make the blackBoxNodeBounds available there.
+    // TODO: Let's move this to the model, and make the blackBoxNodeBounds available there. https://github.com/phetsims/tasks/issues/1129
     blackBoxSceneModel.circuit.vertexDroppedEmitter.addListener( vertex => {
 
       // Allow the wire drag event to complete so that the wire won't think it was released near another target
@@ -217,7 +217,7 @@ class BlackBoxSceneView extends CCKCScreenView {
           } )();
 
           // Find all the vertices that must be translated into the box, shrinking wires
-          // TODO: Factor out
+          // TODO: Factor out https://github.com/phetsims/tasks/issues/1129
           ( () => {
             const vertices = blackBoxSceneModel.circuit.findAllFixedVertices( vertex );
             const connectedToBlackBox = vertices.filter( v => v.blackBoxInterfaceProperty.get() ).length > 0;
