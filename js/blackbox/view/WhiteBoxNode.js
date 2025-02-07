@@ -8,7 +8,8 @@
  */
 
 import CCKCColors from '../../../../circuit-construction-kit-common/js/view/CCKCColors.js';
-import { Node, Rectangle } from '../../../../scenery/js/imports.js';
+import Node from '../../../../scenery/js/nodes/Node.js';
+import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class WhiteBoxNode extends Node {
