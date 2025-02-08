@@ -1,4 +1,4 @@
-// Copyright 2017-2023, University of Colorado Boulder
+// Copyright 2017-2025, University of Colorado Boulder
 // TODO: Review, document, annotate, i18n, bring up to standards https://github.com/phetsims/tasks/issues/1129
 
 /**
