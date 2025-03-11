@@ -6,7 +6,7 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import Sim from '../../joist/js/Sim.js';
+import CCKCSim from '../../circuit-construction-kit-common/js/view/CCKCSim.js';
 import simLauncher from '../../joist/js/simLauncher.js';
 import Tandem from '../../tandem/js/Tandem.js';
 import CircuitConstructionKitBlackBoxStudyStrings from './CircuitConstructionKitBlackBoxStudyStrings.js';
@@ -28,7 +28,7 @@ const simOptions = {
 };
 
 simLauncher.launch( () => {
-  const sim = new Sim( circuitConstructionKitBlackBoxStudyTitleStringProperty, [
+  const sim = new CCKCSim( circuitConstructionKitBlackBoxStudyTitleStringProperty, [
     new ExploreScreen( TANDEM.createTandem( 'exploreScreen' ) )
     // new BlackBoxScreen( TANDEM.createTandem( 'blackBoxScreen' ) )
   ], simOptions );
