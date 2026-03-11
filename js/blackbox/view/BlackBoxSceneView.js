@@ -43,6 +43,7 @@ class BlackBoxSceneView extends CCKCScreenView {
       blackBoxSceneModel.showLabelsProperty,
       blackBoxSceneModel.viewTypeProperty,
       point => this.circuitNode.globalToLocalPoint( point ),
+      () => this.circuitNode.visibleBoundsInCircuitCoordinateFrameProperty.value,
       tandem.createTandem( 'circuitElementToolbox' ).createTandem( 'carousel' ).createTandem( 'circuitElementTools' )
     );
 
