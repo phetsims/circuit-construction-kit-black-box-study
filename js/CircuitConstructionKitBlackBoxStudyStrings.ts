@@ -20,6 +20,4 @@ type StringsType = {
 
 const CircuitConstructionKitBlackBoxStudyStrings = getStringModule( 'CIRCUIT_CONSTRUCTION_KIT_BLACK_BOX_STUDY' ) as StringsType;
 
-circuitConstructionKitBlackBoxStudy.register( 'CircuitConstructionKitBlackBoxStudyStrings', CircuitConstructionKitBlackBoxStudyStrings );
-
 export default CircuitConstructionKitBlackBoxStudyStrings;

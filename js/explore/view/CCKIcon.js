@@ -24,7 +24,6 @@ import HBox from '../../../../scenery/js/layout/nodes/HBox.js';
 import VBox from '../../../../scenery/js/layout/nodes/VBox.js';
 import Image from '../../../../scenery/js/nodes/Image.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants
 const BACKGROUND_COLOR = CCKCColors.screenBackgroundColorProperty;
@@ -82,5 +81,4 @@ class CCKIcon extends Rectangle {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'CCKIcon', CCKIcon );
 export default CCKIcon;

@@ -7,8 +7,6 @@
  * @author Sam Reid (PhET Interactive Simulations)
  */
 
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
-
 // constants
 const resistivity = 1E-4;
 
@@ -1395,7 +1393,5 @@ const ChallengeSet = {
   warmupCircuitStateObject: warmupCircuitStateObject,
   challengeArray: challengeArray
 };
-
-circuitConstructionKitBlackBoxStudy.register( 'ChallengeSet', ChallengeSet );
 
 export default ChallengeSet;

@@ -9,7 +9,6 @@
 import CCKCConstants from '../../../../circuit-construction-kit-common/js/CCKCConstants.js';
 import CCKCScreenView from '../../../../circuit-construction-kit-common/js/view/CCKCScreenView.js';
 import CircuitElementToolFactory from '../../../../circuit-construction-kit-common/js/view/CircuitElementToolFactory.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class ExploreScreenView extends CCKCScreenView {
 
@@ -54,5 +53,4 @@ class ExploreScreenView extends CCKCScreenView {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'ExploreScreenView', ExploreScreenView );
 export default ExploreScreenView;

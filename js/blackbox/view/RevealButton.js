@@ -11,7 +11,6 @@ import Path from '../../../../scenery/js/nodes/Path.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import eyeSolidShape from '../../../../sherpa/js/fontawesome-5/eyeSolidShape.js';
 import RoundMomentaryButton from '../../../../sun/js/buttons/RoundMomentaryButton.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 // constants
 const LIGHT_GREEN = '#91e053';
@@ -46,5 +45,4 @@ class RevealButton extends RoundMomentaryButton {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'RevealButton', RevealButton );
 export default RevealButton;

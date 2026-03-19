@@ -10,7 +10,6 @@
 import CCKCColors from '../../../../circuit-construction-kit-common/js/view/CCKCColors.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class WhiteBoxNode extends Node {
   constructor( width, height, options ) {
@@ -27,5 +26,4 @@ class WhiteBoxNode extends Node {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'WhiteBoxNode', WhiteBoxNode );
 export default WhiteBoxNode;

@@ -18,7 +18,6 @@ import Switch from '../../../../circuit-construction-kit-common/js/model/Switch.
 import Wire from '../../../../circuit-construction-kit-common/js/model/Wire.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import Tandem from '../../../../tandem/js/Tandem.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class BlackBoxSceneModel extends CircuitConstructionKitModel {
 
@@ -260,5 +259,4 @@ class BlackBoxSceneModel extends CircuitConstructionKitModel {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneModel', BlackBoxSceneModel );
 export default BlackBoxSceneModel;

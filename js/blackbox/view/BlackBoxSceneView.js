@@ -16,7 +16,6 @@ import ScreenView from '../../../../joist/js/ScreenView.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import ComboBox from '../../../../sun/js/ComboBox.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxQueryParameters from '../BlackBoxQueryParameters.js';
 import ChallengeSet from '../model/ChallengeSet.js';
 import BlackBoxNode from './BlackBoxNode.js';
@@ -249,5 +248,4 @@ class BlackBoxSceneView extends CCKCScreenView {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'BlackBoxSceneView', BlackBoxSceneView );
 export default BlackBoxSceneView;

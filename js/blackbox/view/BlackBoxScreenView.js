@@ -7,7 +7,6 @@
  */
 
 import ScreenView from '../../../../joist/js/ScreenView.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxSceneModel from '../model/BlackBoxSceneModel.js';
 import ChallengeSet from '../model/ChallengeSet.js';
 import BlackBoxSceneView from './BlackBoxSceneView.js';
@@ -95,5 +94,4 @@ class BlackBoxScreenView extends ScreenView {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreenView', BlackBoxScreenView );
 export default BlackBoxScreenView;

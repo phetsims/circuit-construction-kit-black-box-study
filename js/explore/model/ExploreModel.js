@@ -7,7 +7,6 @@
  */
 
 import CircuitConstructionKitModel from '../../../../circuit-construction-kit-common/js/model/CircuitConstructionKitModel.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class ExploreModel extends CircuitConstructionKitModel {
   constructor( tandem ) {
@@ -15,5 +14,4 @@ class ExploreModel extends CircuitConstructionKitModel {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'ExploreModel', ExploreModel );
 export default ExploreModel;

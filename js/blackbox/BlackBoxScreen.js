@@ -14,7 +14,6 @@ import CCKCColors from '../../../circuit-construction-kit-common/js/view/CCKCCol
 import Screen from '../../../joist/js/Screen.js';
 import ScreenIcon from '../../../joist/js/ScreenIcon.js';
 import Rectangle from '../../../scenery/js/nodes/Rectangle.js';
-import circuitConstructionKitBlackBoxStudy from '../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxModel from './model/BlackBoxModel.js';
 import BlackBoxNode from './view/BlackBoxNode.js';
 import BlackBoxScreenView from './view/BlackBoxScreenView.js';
@@ -54,5 +53,4 @@ class BlackBoxScreen extends Screen {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'BlackBoxScreen', BlackBoxScreen );
 export default BlackBoxScreen;

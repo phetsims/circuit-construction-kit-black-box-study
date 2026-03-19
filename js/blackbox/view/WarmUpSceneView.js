@@ -12,7 +12,6 @@ import Multilink from '../../../../axon/js/Multilink.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import merge from '../../../../phet-core/js/merge.js';
 import RichText from '../../../../scenery/js/nodes/RichText.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 import BlackBoxSceneView from './BlackBoxSceneView.js';
 
 class WarmUpSceneView extends BlackBoxSceneView {
@@ -58,5 +57,4 @@ class WarmUpSceneView extends BlackBoxSceneView {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'WarmUpSceneView', WarmUpSceneView );
 export default WarmUpSceneView;

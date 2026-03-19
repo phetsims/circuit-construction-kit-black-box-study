@@ -9,7 +9,6 @@
 import Node from '../../../../scenery/js/nodes/Node.js';
 import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class BlackBoxNode extends Node {
 
@@ -51,5 +50,4 @@ class BlackBoxNode extends Node {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'BlackBoxNode', BlackBoxNode );
 export default BlackBoxNode;

@@ -7,7 +7,6 @@
  */
 
 import StringProperty from '../../../../axon/js/StringProperty.js';
-import circuitConstructionKitBlackBoxStudy from '../../circuitConstructionKitBlackBoxStudy.js';
 
 class BlackBoxModel {
   constructor() {
@@ -17,5 +16,4 @@ class BlackBoxModel {
   }
 }
 
-circuitConstructionKitBlackBoxStudy.register( 'BlackBoxModel', BlackBoxModel );
 export default BlackBoxModel;
